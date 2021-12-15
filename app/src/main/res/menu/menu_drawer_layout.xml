@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/currentTripFragment"
+        android:title="@string/currentTripFragment_name" />
+    <item
+        android:id="@+id/locationsFragment"
+        android:title="@string/locationsFragment_name" />
+    <item
+        android:id="@+id/routesFragment"
+        android:title="@string/routesFragment_name" />
+    <item
+        android:id="@+id/myLocationsFragment"
+        android:title="@string/myLocationsFragment_name" />
+    <item
+        android:id="@+id/myRoutesFragment"
+        android:title="@string/myRoutesFragment_name" />
+    <item
+        android:id="@+id/settingsFragment"
+        android:title="@string/settingsFragment_name" />
+</menu>

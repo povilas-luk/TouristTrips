@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">TouristTrips</string>
+
+    <!--Drawer layout fragment names-->
+    <string name="currentTripFragment_name">Current Trip</string>
+    <string name="locationsFragment_name">Locations</string>
+    <string name="routesFragment_name">Routes</string>
+    <string name="myLocationsFragment_name">My Locations</string>
+    <string name="myRoutesFragment_name">My Routes</string>
+    <string name="settingsFragment_name">Settings</string>
+
 </resources>
