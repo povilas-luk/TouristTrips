@@ -5,6 +5,10 @@
         android:id="@+id/menu_current"
         android:checkableBehavior="single">
         <item
+            android:id="@+id/homeFragment"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="@string/home" />
+        <item
             android:id="@+id/currentTripFragment"
             android:icon="@drawable/ic_baseline_directions_walk_24"
             android:title="@string/currentTripFragment_name" />

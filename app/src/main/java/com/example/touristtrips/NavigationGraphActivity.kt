@@ -26,6 +26,7 @@ class NavigationGraphActivity : AppCompatActivity() {
 
         appBarConfiguration = AppBarConfiguration(
             topLevelDestinationIds = setOf(
+                R.id.homeFragment,
                 R.id.currentTripFragment,
                 R.id.locationsFragment,
                 R.id.routesFragment,

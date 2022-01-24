@@ -4,17 +4,19 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Work/AndroidStudioProjects/TouristTrips/app/src/main/res/layout/activity_main.xml" value="0.14719202898550723" />
-        <entry key="..\:/Users/Work/AndroidStudioProjects/TouristTrips/app/src/main/res/layout/fragment_current_trip.xml" value="0.4466666666666667" />
-        <entry key="..\:/Users/Work/AndroidStudioProjects/TouristTrips/app/src/main/res/layout/fragment_locations.xml" value="0.161231884057971" />
-        <entry key="..\:/Users/Work/AndroidStudioProjects/TouristTrips/app/src/main/res/layout/fragment_my_locations.xml" value="0.161231884057971" />
-        <entry key="..\:/Users/Work/AndroidStudioProjects/TouristTrips/app/src/main/res/layout/fragment_my_routes.xml" value="0.161231884057971" />
-        <entry key="..\:/Users/Work/AndroidStudioProjects/TouristTrips/app/src/main/res/layout/fragment_routes.xml" value="0.161231884057971" />
-        <entry key="..\:/Users/Work/AndroidStudioProjects/TouristTrips/app/src/main/res/layout/fragment_settings.xml" value="0.161231884057971" />
-        <entry key="..\:/Users/Work/AndroidStudioProjects/TouristTrips/app/src/main/res/menu/menu_drawer_layout.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/pofke/Desktop/CodingProjects/Kotlin_Android/TouristTrips/app/src/main/res/layout/activity_navigation_graph.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/pofke/Desktop/CodingProjects/Kotlin_Android/TouristTrips/app/src/main/res/layout/fragment_current_trip.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/pofke/Desktop/CodingProjects/Kotlin_Android/TouristTrips/app/src/main/res/layout/fragment_home.xml" value="0.35260416666666666" />
+        <entry key="..\:/Users/pofke/Desktop/CodingProjects/Kotlin_Android/TouristTrips/app/src/main/res/layout/fragment_locations.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/pofke/Desktop/CodingProjects/Kotlin_Android/TouristTrips/app/src/main/res/layout/fragment_my_locations.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/pofke/Desktop/CodingProjects/Kotlin_Android/TouristTrips/app/src/main/res/layout/fragment_my_routes.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/pofke/Desktop/CodingProjects/Kotlin_Android/TouristTrips/app/src/main/res/layout/fragment_routes.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/pofke/Desktop/CodingProjects/Kotlin_Android/TouristTrips/app/src/main/res/layout/fragment_settings.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/pofke/Desktop/CodingProjects/Kotlin_Android/TouristTrips/app/src/main/res/menu/menu_drawer_layout.xml" value="0.20520833333333333" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
