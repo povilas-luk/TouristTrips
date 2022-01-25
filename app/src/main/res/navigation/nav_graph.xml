@@ -22,9 +22,13 @@
         tools:layout="@layout/fragment_routes" />
     <fragment
         android:id="@+id/myLocationsFragment"
-        android:name="com.example.touristtrips.MyLocationsFragment"
+        android:name="com.example.touristtrips.feature_location.presentation.locations.MyLocationsFragment"
         android:label="@string/myLocationsFragment_name"
-        tools:layout="@layout/fragment_my_locations" />
+        tools:layout="@layout/fragment_my_locations" >
+        <action
+            android:id="@+id/action_myLocationsFragment_to_addLocationFragment"
+            app:destination="@id/addLocationFragment" />
+    </fragment>
     <fragment
         android:id="@+id/myRoutesFragment"
         android:name="com.example.touristtrips.MyRoutesFragment"
@@ -40,4 +44,9 @@
         android:name="com.example.touristtrips.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/addLocationFragment"
+        android:name="com.example.touristtrips.feature_location.presentation.locations.AddEditLocationFragment"
+        android:label="fragment_add_location"
+        tools:layout="@layout/fragment_add_edit_location" />
 </navigation>

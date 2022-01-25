@@ -8,8 +8,17 @@
     <string name="myLocationsFragment_name">My Locations</string>
     <string name="myRoutesFragment_name">My Routes</string>
     <string name="settingsFragment_name">Settings</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home">Home</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="city">City</string>
+    <string name="image_url">Image Url</string>
+    <string name="save">Save</string>
+    <string name="add">Add</string>
+    <string name="longitude">Longitude</string>
+    <string name="latitude">Latitude</string>
+    <string name="type">Type</string>
 
 </resources>

@@ -9,7 +9,7 @@ import com.example.touristtrips.feature_location.domain.model.Location
 @Database(entities = [Location::class], version = 1)
 abstract class LocalDatabase : RoomDatabase() {
 
-    companion object {
+    /*companion object {
         private var localDatabase: LocalDatabase? = null
 
         fun getDatabase(context: Context): LocalDatabase {
@@ -25,5 +25,12 @@ abstract class LocalDatabase : RoomDatabase() {
                 ).build()
             return localDatabase!!
         }
+    }*/
+
+    companion object {
+        const val DATABASE_NAME = "local_db"
     }
+
+    abstract val locationDao: LocationDao
+
 }

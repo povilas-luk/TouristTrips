@@ -3,11 +3,11 @@ package com.example.touristtrips.feature_location.domain.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(tableName = "location_entity")
 data class Location(
     @PrimaryKey val id: String = "",
     val type: String = "",
-    val name: String = "",
+    val title: String = "",
     val description: String = "",
     val latitude: String = "",
     val longitude: String = "",
@@ -17,3 +17,5 @@ data class Location(
     val months_to_visit: String = "",
     val price: Float = 0.0F
 )
+
+class InvalidLocationException(message: String): Exception(message)
