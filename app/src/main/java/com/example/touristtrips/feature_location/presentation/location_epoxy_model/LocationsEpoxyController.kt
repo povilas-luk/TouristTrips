@@ -1,7 +1,6 @@
 package com.example.touristtrips.feature_location.presentation.location_epoxy_model
 
 import com.airbnb.epoxy.EpoxyController
-import com.example.touristtrips.feature_location.domain.model.Location
 import com.example.touristtrips.feature_location.presentation.locations.LocationState
 
 class LocationsEpoxyController(
@@ -15,7 +14,7 @@ class LocationsEpoxyController(
 
     override fun buildModels() {
         locationsState.locations.forEach { location ->
-            LocationEpoxyModel(location, itemSelected).id(location.id).addTo(this)
+            LocationEpoxyModel(location, itemSelected).id(location.locationId).addTo(this)
         }
     }
 }

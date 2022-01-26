@@ -4,8 +4,10 @@ import android.app.Application
 import androidx.room.Room
 import com.example.touristtrips.core.local_data.local_data_source.LocalDatabase
 import com.example.touristtrips.core.local_data.local_repository.LocationRepositoryImpl
+import com.example.touristtrips.core.local_data.local_repository.RouteRepositoryImpl
 import com.example.touristtrips.feature_location.domain.repository.LocationRepository
 import com.example.touristtrips.feature_location.domain.use_case.*
+import com.example.touristtrips.feature_route.domain.repository.RouteRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,6 +32,12 @@ object AppModule {
     @Singleton
     fun provideLocationRepository(db: LocalDatabase): LocationRepository {
         return LocationRepositoryImpl(db.locationDao)
+    }
+
+    @Provides
+    @Singleton
+    fun provideRouteRepository(db: LocalDatabase): RouteRepository {
+        return RouteRepositoryImpl(db.routeDao)
     }
 
     @Provides

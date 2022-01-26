@@ -5,8 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.touristtrips.feature_location.domain.model.Location
+import com.example.touristtrips.feature_route.domain.model.Route
 
-@Database(entities = [Location::class], version = 1)
+@Database(entities = [Location::class, Route::class, RouteLocationCrossRef::class], version = 1)
 abstract class LocalDatabase : RoomDatabase() {
 
     /*companion object {
@@ -32,5 +33,6 @@ abstract class LocalDatabase : RoomDatabase() {
     }
 
     abstract val locationDao: LocationDao
+    abstract val routeDao: RouteDao
 
 }

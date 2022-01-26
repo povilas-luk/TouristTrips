@@ -20,7 +20,7 @@ data class LocationEpoxyModel(
         Picasso.get().load(Uri.parse(location.imageUrl)).placeholder(R.drawable.bruno_soares_284974).into(headerImageView)
 
         root.setOnClickListener {
-            itemSelected(location.id)
+            itemSelected(location.locationId)
         }
     }
 }

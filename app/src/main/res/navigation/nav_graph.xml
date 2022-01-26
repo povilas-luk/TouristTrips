@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/myRoutesFragment"
-        android:name="com.example.touristtrips.MyRoutesFragment"
+        android:name="com.example.touristtrips.feature_route.presentation.routes.MyRoutesFragment"
         android:label="@string/myRoutesFragment_name"
         tools:layout="@layout/fragment_my_routes" />
     <fragment

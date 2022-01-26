@@ -72,7 +72,7 @@ class AddEditLocationViewModel @Inject constructor(
         if (id.isNotEmpty()) {
             viewModelScope.launch {
                 val location: Location? = locationUseCases.getLocation(id)
-                if (location != null && location.id == id) {
+                if (location != null && location.locationId == id) {
                     _eventFlow.emit(LocationEvent.Success(Operation.FOUND, location))
                 } else {
                     _eventFlow.emit(LocationEvent.Failure("Location not found"))

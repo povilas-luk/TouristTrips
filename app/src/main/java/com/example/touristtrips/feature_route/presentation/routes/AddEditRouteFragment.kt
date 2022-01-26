@@ -1,9 +1,9 @@
-package com.example.touristtrips.feature_location.presentation.locations
+package com.example.touristtrips.feature_route.presentation.routes
 
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -11,28 +11,30 @@ import androidx.navigation.fragment.navArgs
 import com.example.touristtrips.R
 import com.example.touristtrips.databinding.FragmentAddEditLocationBinding
 import com.example.touristtrips.feature_location.domain.model.Location
-import dagger.hilt.android.AndroidEntryPoint
+import com.example.touristtrips.feature_location.presentation.locations.AddEditLocationViewModel
+import com.example.touristtrips.feature_location.presentation.locations.LocationEvent
+import com.example.touristtrips.feature_location.presentation.locations.LocationFragmentArgs
+import com.example.touristtrips.feature_location.presentation.locations.Operation
 import kotlinx.coroutines.flow.collectLatest
 import java.util.*
 
-@AndroidEntryPoint
-class AddEditLocationFragment : Fragment() {
+class AddEditRouteFragment : Fragment() {
     private var _binding: FragmentAddEditLocationBinding? = null
     private val binding get() = _binding!!
 
-    private val safeArgs: LocationFragmentArgs by navArgs()
+    /*private val safeArgs: LocationFragmentArgs by navArgs()
     private val locationId: String by lazy {
         safeArgs.locationId
     }
     private var editMode = false
-    private lateinit var editLocation : Location
+    private lateinit var editLocation : Location*/
 
-    private val viewModel: AddEditLocationViewModel by viewModels()
+    //private val viewModel: AddEditLocationViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setHasOptionsMenu(true)
-        viewModel.getLocation(locationId)
+        //viewModel.getLocation(locationId)
     }
 
     override fun onCreateView(
@@ -48,15 +50,15 @@ class AddEditLocationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.saveButton.setOnClickListener {
-            if (editMode) {
+            /*if (editMode) {
                 viewModel.onEvent(AddEditLocationViewModel.AddEditLocationEvent.EditLocation(getLocation()))
                 findNavController().navigateUp()
             } else {
                 viewModel.onEvent(AddEditLocationViewModel.AddEditLocationEvent.SaveLocation(getLocation()))
-            }
+            }*/
         }
 
-        lifecycleScope.launchWhenCreated {
+        /*lifecycleScope.launchWhenCreated {
             viewModel.eventFlow.collectLatest { event ->
                 when (event) {
                     is LocationEvent.Success -> {
@@ -72,10 +74,10 @@ class AddEditLocationFragment : Fragment() {
                 }
 
             }
-        }
+        }*/
     }
 
-    private fun setEditMode(location: Location) {
+    /*private fun setEditMode(location: Location) {
         editMode = true;
         editLocation = location
 
@@ -88,9 +90,9 @@ class AddEditLocationFragment : Fragment() {
         binding.imageUrlEditText.setText(location.imageUrl)
 
         binding.saveButton.text = getString(R.string.update)
-    }
+    }*/
 
-    private fun getLocation(): Location {
+    /*private fun getLocation(): Location {
         if (editMode) {
             return editLocation.copy(
                 type = binding.typeEditText.text.toString(),
@@ -116,7 +118,7 @@ class AddEditLocationFragment : Fragment() {
             months_to_visit = "March",
             price = 10F
         )
-    }
+    }*/
 
     /*override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_delete, menu)
