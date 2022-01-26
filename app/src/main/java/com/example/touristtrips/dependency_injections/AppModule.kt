@@ -5,9 +5,7 @@ import androidx.room.Room
 import com.example.touristtrips.core.local_data.local_data_source.LocalDatabase
 import com.example.touristtrips.core.local_data.local_repository.LocationRepositoryImpl
 import com.example.touristtrips.feature_location.domain.repository.LocationRepository
-import com.example.touristtrips.feature_location.domain.use_case.AddLocation
-import com.example.touristtrips.feature_location.domain.use_case.GetLocations
-import com.example.touristtrips.feature_location.domain.use_case.LocationUseCases
+import com.example.touristtrips.feature_location.domain.use_case.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -39,7 +37,10 @@ object AppModule {
     fun provideLocationUseCases(repository: LocationRepository): LocationUseCases {
         return LocationUseCases(
             addLocation = AddLocation(repository),
-            getLocations = GetLocations(repository)
+            getLocations = GetLocations(repository),
+            getLocation = GetLocation(repository),
+            updateLocation = UpdateLocation(repository),
+            deleteLocation = DeleteLocation(repository)
         )
     }
 }

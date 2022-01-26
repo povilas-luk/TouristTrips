@@ -20,5 +20,8 @@
     <string name="longitude">Longitude</string>
     <string name="latitude">Latitude</string>
     <string name="type">Type</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="update">Update</string>
 
 </resources>

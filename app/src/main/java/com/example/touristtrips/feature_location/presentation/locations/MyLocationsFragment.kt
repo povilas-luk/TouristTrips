@@ -46,7 +46,7 @@ class MyLocationsFragment : Fragment() {
     }
 
     private fun itemSelected(id: String) {
-
+        findNavController().navigate(MyLocationsFragmentDirections.actionMyLocationsFragmentToLocationFragment(id))
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
