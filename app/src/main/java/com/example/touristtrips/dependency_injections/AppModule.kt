@@ -64,7 +64,8 @@ object AppModule {
             deleteRoute = DeleteRoute(repository),
             addRouteLocation = AddRouteLocation(repository),
             getRouteWithLocations = GetRouteWithLocations(repository),
-            getRoutesWithLocations = GetRoutesWithLocations(repository)
+            getRoutesWithLocations = GetRoutesWithLocations(repository),
+            deleteRouteLocation = DeleteRouteLocation(repository)
         )
     }
 }

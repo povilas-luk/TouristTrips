@@ -27,6 +27,7 @@ class AddEditRouteViewModel @Inject constructor(
     sealed class AddEditRouteEvent {
         data class SaveRoute(val route: Route) : AddEditRouteEvent()
         data class AddLocation(val routeId: String, val locationId: String) : AddEditRouteEvent()
+        data class DeleteLocation(val routeId: String, val locationId: String) : AddEditRouteEvent()
         data class EditRoute(val route: Route) : AddEditRouteEvent()
         data class DeleteRoute(val route: Route) : AddEditRouteEvent()
     }
@@ -103,7 +104,7 @@ class AddEditRouteViewModel @Inject constructor(
                             event.routeId,
                             event.locationId
                         )
-                        _eventFlow.emit(RouteEvent.Success(Operation.DELETED, Route()))
+                        _eventFlow.emit(RouteEvent.Success(Operation.ADDED, Route()))
                     } catch (e: InvalidRouteException) {
                         _eventFlow.emit(
                             RouteEvent.Failure(
@@ -113,7 +114,23 @@ class AddEditRouteViewModel @Inject constructor(
                     }
                 }
             }
-
+            is AddEditRouteEvent.DeleteLocation -> {
+                viewModelScope.launch {
+                    try {
+                        routesUseCases.deleteRouteLocation(
+                            event.routeId,
+                            event.locationId
+                        )
+                        _eventFlow.emit(RouteEvent.Success(Operation.DELETED, Route()))
+                    } catch (e: InvalidRouteException) {
+                        _eventFlow.emit(
+                            RouteEvent.Failure(
+                                e.message ?: "Failed to delete route location"
+                            )
+                        )
+                    }
+                }
+            }
         }
     }
 

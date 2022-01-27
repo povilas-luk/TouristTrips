@@ -8,5 +8,6 @@ class RoutesUseCases(
     val deleteRoute: DeleteRoute,
     val addRouteLocation: AddRouteLocation,
     val getRouteWithLocations: GetRouteWithLocations,
-    val getRoutesWithLocations: GetRoutesWithLocations
+    val getRoutesWithLocations: GetRoutesWithLocations,
+    val deleteRouteLocation: DeleteRouteLocation
 )

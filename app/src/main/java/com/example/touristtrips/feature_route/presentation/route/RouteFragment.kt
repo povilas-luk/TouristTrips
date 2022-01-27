@@ -83,7 +83,7 @@ class RouteFragment : Fragment() {
             }
         }
 
-        val controller = RouteLocationsEpoxyController(::itemSelected)
+        val controller = RouteLocationsEpoxyController(::itemSelected, ::deleteItemSelected)
         binding.routeLocationsEpoxyRecyclerView.setController(controller)
 
         addEditRoutesViewModel.locationsListLiveData.observe(viewLifecycleOwner) { locations ->
@@ -91,8 +91,12 @@ class RouteFragment : Fragment() {
         }
     }
 
-    private fun itemSelected(id: String) {
+    private fun deleteItemSelected(id: String) {
+        addEditRoutesViewModel.onEvent(AddEditRouteViewModel.AddEditRouteEvent.DeleteLocation(routeId, id))
+    }
 
+    private fun itemSelected(id: String) {
+        findNavController().navigate(RouteFragmentDirections.actionRouteFragmentToLocationFragment(id))
     }
 
     private fun displayRoute(route: Route) {
@@ -117,7 +121,7 @@ class RouteFragment : Fragment() {
             findNavController().navigateUp()
             true
         } else if (item.itemId == R.id.menuMap) {
-            findNavController().navigate(RouteFragmentDirections.actionRouteFragmentToRouteMapsFragment())
+            findNavController().navigate(RouteFragmentDirections.actionRouteFragmentToRouteMapsFragment(routeId))
             true
         } else {
             super.onOptionsItemSelected(item)

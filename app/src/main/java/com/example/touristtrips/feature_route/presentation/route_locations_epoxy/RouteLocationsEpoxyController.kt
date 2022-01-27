@@ -6,7 +6,8 @@ import com.example.touristtrips.feature_location.presentation.location_epoxy_mod
 import com.example.touristtrips.feature_location.presentation.locations.LocationState
 
 class RouteLocationsEpoxyController(
-    val itemSelected: (String) -> Unit
+    val itemSelected: (String) -> Unit,
+    val deleteItemSelected: (String) -> Unit
 ): EpoxyController() {
     var locationsList: List<Location> = emptyList()
         set(value) {
@@ -16,7 +17,7 @@ class RouteLocationsEpoxyController(
 
     override fun buildModels() {
         locationsList.forEach { location ->
-            LocationEpoxyModel(location, itemSelected).id(location.locationId).addTo(this)
+            RouteLocationsEpoxyModel(location, itemSelected, deleteItemSelected).id(location.locationId).addTo(this)
         }
     }
 }

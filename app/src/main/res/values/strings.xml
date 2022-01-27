@@ -26,5 +26,6 @@
     <string name="locations">Locations</string>
     <string name="upload_locations">Upload locations</string>
     <string name="map">Map</string>
+    <string name="header_image">Header Image</string>
 
 </resources>

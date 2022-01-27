@@ -119,11 +119,14 @@
         <action
             android:id="@+id/action_routeFragment_to_routeMapsFragment"
             app:destination="@id/routeMapsFragment" />
+        <action
+            android:id="@+id/action_routeFragment_to_locationFragment"
+            app:destination="@id/locationFragment" />
     </fragment>
     <fragment
         android:id="@+id/routeLocationSelectionFragment"
         android:name="com.example.touristtrips.feature_route.presentation.route.RouteLocationSelectionFragment"
-        android:label="fragment_route_location_selection"
+        android:label="Location Selection"
         tools:layout="@layout/fragment_route_location_selection" >
         <argument
             android:name="routeId"
@@ -135,6 +138,10 @@
     <fragment
         android:id="@+id/routeMapsFragment"
         android:name="com.example.touristtrips.feature_route.presentation.route_map.RouteMapsFragment"
-        android:label="fragment_route_maps"
-        tools:layout="@layout/fragment_route_maps" />
+        android:label="Locations Map"
+        tools:layout="@layout/fragment_route_maps" >
+        <argument
+            android:name="routeId"
+            app:argType="string" />
+    </fragment>
 </navigation>
