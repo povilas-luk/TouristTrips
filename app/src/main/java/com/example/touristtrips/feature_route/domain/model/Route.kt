@@ -15,3 +15,5 @@ data class Route(
     val months_to_visit: String = "",
     val price: Float = 0.0F
 )
+
+class InvalidRouteException(message: String): Exception(message)

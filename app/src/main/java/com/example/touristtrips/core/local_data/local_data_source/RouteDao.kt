@@ -26,7 +26,6 @@ interface RouteDao {
     @Query("SELECT * FROM route_entity")
     fun getRoutesWithLocations(): Flow<List<RouteWithLocations>>
 
-    @Transaction
     @Query("SELECT * FROM route_entity WHERE routeId = :id")
     fun getRouteWithLocationsById(id: String): RouteWithLocations?
 

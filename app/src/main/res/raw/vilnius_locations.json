@@ -1,0 +1,30 @@
+{
+  "locations": [
+    {
+      "locationId": "687a58ab-1d73-4d4a-beae-68516b948fd7",
+      "type": "Architecture",
+      "title": "Lukiškių kalėjimas",
+      "description": "Lukiškių kalėjimas buvo vienas moderniausių visoje Rusų imperijoje, jame kaliniai atliko bausmę, dirbo, meldėsi ir gavo sveikatos priežiūros paslaugas. Nuteistieji čia buvo kalinami daugiau nei šimtmetį – per abu Pasaulinius karus, sovietmečiu ir Lietuvai atgavus nepriklausomybę. Paskutiniai kaliniai iš šio kalėjimo buvo iškelti tik 2019 metais. Įdomu tai, kad Lukiškių kalėjimas iki šiol išsaugojo originalius interjero ir eksterjero elementus – plyteles ir dekoracijas, tad ekskursijos metu atkreipkite dėmesį į šį šimtmečio paveldą.\n\nŠiandien kalėjimas įgavo naują dvasią ir kviečia lankytojus atrasti šią paslaptingą teritoriją bei pajusti jos išskirtinę atmosferą. Leiskitės į dienos ar nakties ekskursijas, pamatykite kalinių kameras, išgirskite įdomiausias istorijas ir būkite pasiruošę naujoms patirtims.",
+      "latitude": "54.69180559315594",
+      "longitude": "25.267835687452532",
+      "city": "Vilnius",
+      "createdAt": 1643219159778,
+      "imageUrl": "https://s1.15min.lt/images/photos/2019/03/14/big/lenta-kurioje-pareigunams-suteikiama-informacija-apie-kalinciuju-ypatybes-5c8a63303e0c8.jpg",
+      "months_to_visit": "All Time",
+      "price": 20
+    },
+    {
+      "locationId": "687a58ab-1d73-4d4a-beae-68516b948sr2",
+      "type": "Architecture",
+      "title": "Gedimino pilies bokštas",
+      "description": "Gedimino pilies bokštas yra vienintelis išlikęs Aukštutinės pilies įtvirtinimo bokštas. Legenda byloja, kad didysis kunigaikštis susapnavo ant kalvos staugiantį Geležinį Vilką, pranašaujantį apie didį miestą. Pirma čia buvo pastatyta medinė pilis, vėliau 1409 m. Vytautas Didysis pastatė mūrinę pilį.\n\nKai pilis neteko savo paskirties ir apgriuvo, Gedimino bokštas buvo naudojamas įvairiai - 1838 m. čia įsikūrė pirmasis telegrafas Vilniuje. Prieš šimtmetį bokšto viršuje pirmą kartą buvo iškelta Lietuvos vėliava. Vilniaus pilies muziejus buvo atidarytas 1960 m., o 1968 m. jis tapo Lietuvos nacionalinio muziejaus padaliniu.",
+      "latitude": "54.686803105231135",
+      "longitude": "25.290648204284608",
+      "city": "Vilnius",
+      "createdAt": 1643219159778,
+      "imageUrl": "https://www.lithuania.travel/ckeditor/jsplus_image_editor/files/2b8cba3203c3f7ccb00ac7a95fbecebc817bb8be.jpeg",
+      "months_to_visit": "All Time",
+      "price": 6
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-package com.example.touristtrips.feature_route.presentation.routes
+package com.example.touristtrips.feature_route.presentation.route
 
 import android.os.Bundle
 import android.view.*
@@ -9,32 +9,31 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.touristtrips.R
-import com.example.touristtrips.databinding.FragmentAddEditLocationBinding
-import com.example.touristtrips.feature_location.domain.model.Location
-import com.example.touristtrips.feature_location.presentation.locations.AddEditLocationViewModel
-import com.example.touristtrips.feature_location.presentation.locations.LocationEvent
-import com.example.touristtrips.feature_location.presentation.locations.LocationFragmentArgs
-import com.example.touristtrips.feature_location.presentation.locations.Operation
+import com.example.touristtrips.core.Operation
+import com.example.touristtrips.databinding.FragmentAddEditRouteBinding
+import com.example.touristtrips.feature_route.domain.model.Route
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import java.util.*
 
+@AndroidEntryPoint
 class AddEditRouteFragment : Fragment() {
-    private var _binding: FragmentAddEditLocationBinding? = null
+    private var _binding: FragmentAddEditRouteBinding? = null
     private val binding get() = _binding!!
 
-    /*private val safeArgs: LocationFragmentArgs by navArgs()
-    private val locationId: String by lazy {
-        safeArgs.locationId
+    private val safeArgs: RouteFragmentArgs by navArgs()
+    private val routeId: String by lazy {
+        safeArgs.routeId
     }
     private var editMode = false
-    private lateinit var editLocation : Location*/
+    private lateinit var editRoute : Route
 
-    //private val viewModel: AddEditLocationViewModel by viewModels()
+    private val viewModel: AddEditRouteViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setHasOptionsMenu(true)
-        //viewModel.getLocation(locationId)
+        viewModel.getRouteWithLocations(routeId)
     }
 
     override fun onCreateView(
@@ -42,7 +41,7 @@ class AddEditRouteFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentAddEditLocationBinding.inflate(inflater, container, false)
+        _binding = FragmentAddEditRouteBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -50,75 +49,69 @@ class AddEditRouteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.saveButton.setOnClickListener {
-            /*if (editMode) {
-                viewModel.onEvent(AddEditLocationViewModel.AddEditLocationEvent.EditLocation(getLocation()))
+            if (editMode) {
+                viewModel.onEvent(AddEditRouteViewModel.AddEditRouteEvent.EditRoute(getRoute()))
                 findNavController().navigateUp()
             } else {
-                viewModel.onEvent(AddEditLocationViewModel.AddEditLocationEvent.SaveLocation(getLocation()))
-            }*/
+                viewModel.onEvent(AddEditRouteViewModel.AddEditRouteEvent.SaveRoute(getRoute()))
+            }
         }
 
-        /*lifecycleScope.launchWhenCreated {
+        lifecycleScope.launchWhenCreated {
             viewModel.eventFlow.collectLatest { event ->
                 when (event) {
-                    is LocationEvent.Success -> {
+                    is AddEditRouteViewModel.RouteEvent.Success -> {
                         if (event.operation == Operation.FOUND) {
-                            setEditMode(event.location)
+                            setEditMode(event.route)
                         } else {
-                            Toast.makeText(context, "Location ${event.operation}", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "Route ${event.operation}", Toast.LENGTH_SHORT).show()
                         }
                     }
-                    is LocationEvent.Failure -> {
+                    is AddEditRouteViewModel.RouteEvent.Failure -> {
                         Toast.makeText(context, event.errorText, Toast.LENGTH_SHORT).show()
                     }
                 }
 
             }
-        }*/
+        }
     }
 
-    /*private fun setEditMode(location: Location) {
-        editMode = true;
-        editLocation = location
+    private fun setEditMode(route: Route) {
+        editMode = true
+        editRoute = route
 
-        binding.typeEditText.setText(location.type)
-        binding.titleEditText.setText(location.title)
-        binding.descriptionEditText.setText(location.description)
-        binding.latitudeEditText.setText(location.latitude)
-        binding.longitudeEditText.setText(location.longitude)
-        binding.cityEditText.setText(location.city)
-        binding.imageUrlEditText.setText(location.imageUrl)
+        binding.typeEditText.setText(route.type)
+        binding.titleEditText.setText(route.title)
+        binding.descriptionEditText.setText(route.description)
+        /*binding.latitudeEditText.setText(route.latitude)
+        binding.longitudeEditText.setText(route.longitude)
+        binding.cityEditText.setText(route.city)*/
+        binding.imageUrlEditText.setText(route.imageUrl)
 
         binding.saveButton.text = getString(R.string.update)
-    }*/
+    }
 
-    /*private fun getLocation(): Location {
+    private fun getRoute(): Route {
         if (editMode) {
-            return editLocation.copy(
+            return editRoute.copy(
                 type = binding.typeEditText.text.toString(),
                 title = binding.titleEditText.text.toString(),
                 description = binding.descriptionEditText.text.toString(),
-                latitude = binding.latitudeEditText.text.toString(),
-                longitude = binding.longitudeEditText.text.toString(),
-                city = binding.cityEditText.text.toString(),
                 createdAt = System.currentTimeMillis(),
                 imageUrl = binding.imageUrlEditText.text.toString(),
             )
         }
-        return Location(
-            locationId = UUID.randomUUID().toString(),
+        return Route(
+            routeId = UUID.randomUUID().toString(),
             type = binding.typeEditText.text.toString(),
             title = binding.titleEditText.text.toString(),
             description = binding.descriptionEditText.text.toString(),
-            latitude = binding.latitudeEditText.text.toString(),
-            longitude = binding.longitudeEditText.text.toString(),
-            city = binding.cityEditText.text.toString(),
             createdAt = System.currentTimeMillis(),
             imageUrl = binding.imageUrlEditText.text.toString(),
             months_to_visit = "March",
             price = 10F
         )
-    }*/
+    }
 
     /*override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_delete, menu)

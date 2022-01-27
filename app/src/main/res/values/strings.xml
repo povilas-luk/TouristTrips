@@ -23,5 +23,8 @@
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="update">Update</string>
+    <string name="locations">Locations</string>
+    <string name="upload_locations">Upload locations</string>
+    <string name="map">Map</string>
 
 </resources>

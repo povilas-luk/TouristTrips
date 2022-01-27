@@ -2,7 +2,6 @@ package com.example.touristtrips.feature_location.presentation.locations
 
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -12,9 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.touristtrips.R
 import com.example.touristtrips.databinding.FragmentLocationBinding
-import com.example.touristtrips.databinding.FragmentMyLocationsBinding
 import com.example.touristtrips.feature_location.domain.model.Location
-import com.example.touristtrips.feature_location.presentation.location_epoxy_model.LocationsEpoxyController
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -65,12 +62,12 @@ class LocationFragment : Fragment() {
         lifecycleScope.launchWhenCreated {
             viewModel.eventFlow.collectLatest { event ->
                 when (event) {
-                    is LocationEvent.Success -> {
+                    is AddEditLocationViewModel.LocationEvent.Success -> {
                         Toast.makeText(context, event.operation.toString(), Toast.LENGTH_SHORT).show()
                         currentLocation = event.location
                         displayLocation(currentLocation)
                     }
-                    is LocationEvent.Failure -> {
+                    is AddEditLocationViewModel.LocationEvent.Failure -> {
                         Toast.makeText(context, event.errorText, Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -93,7 +90,7 @@ class LocationFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_edit_delete, menu)
+        inflater.inflate(R.menu.menu_route, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

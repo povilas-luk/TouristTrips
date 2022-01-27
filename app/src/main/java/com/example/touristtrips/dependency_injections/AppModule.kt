@@ -8,6 +8,7 @@ import com.example.touristtrips.core.local_data.local_repository.RouteRepository
 import com.example.touristtrips.feature_location.domain.repository.LocationRepository
 import com.example.touristtrips.feature_location.domain.use_case.*
 import com.example.touristtrips.feature_route.domain.repository.RouteRepository
+import com.example.touristtrips.feature_route.domain.use_case.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -49,6 +50,21 @@ object AppModule {
             getLocation = GetLocation(repository),
             updateLocation = UpdateLocation(repository),
             deleteLocation = DeleteLocation(repository)
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideRouteUseCases(repository: RouteRepository): RoutesUseCases {
+        return RoutesUseCases(
+            addRoute = AddRoute(repository),
+            getRoutes = GetRoutes(repository),
+            getRoute = GetRoute(repository),
+            updateRoute = UpdateRoute(repository),
+            deleteRoute = DeleteRoute(repository),
+            addRouteLocation = AddRouteLocation(repository),
+            getRouteWithLocations = GetRouteWithLocations(repository),
+            getRoutesWithLocations = GetRoutesWithLocations(repository)
         )
     }
 }

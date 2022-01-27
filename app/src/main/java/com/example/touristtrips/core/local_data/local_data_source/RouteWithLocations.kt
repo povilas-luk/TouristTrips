@@ -14,7 +14,7 @@ data class RouteWithLocations(
         parentColumn = "routeId",
         entityColumn = "locationId",
         associateBy = Junction(
-            RouteLocationCrossRef::class
+            RouteLocationCrossRef::class,
         )
     )
     val locations: List<Location>

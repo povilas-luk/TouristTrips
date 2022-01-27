@@ -2,6 +2,7 @@ package com.example.touristtrips.feature_location.presentation.locations
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.touristtrips.core.Operation
 import com.example.touristtrips.feature_location.domain.model.InvalidLocationException
 import com.example.touristtrips.feature_location.domain.model.Location
 import com.example.touristtrips.feature_location.domain.use_case.LocationUseCases
@@ -20,6 +21,13 @@ class AddEditLocationViewModel @Inject constructor(
         data class SaveLocation(val location: Location): AddEditLocationEvent()
         data class EditLocation(val location: Location): AddEditLocationEvent()
         data class DeleteLocation(val location: Location): AddEditLocationEvent()
+    }
+
+    sealed class LocationEvent {
+        class Success(val operation: Operation, val location: Location): LocationEvent()
+        class Failure(val errorText: String): LocationEvent()
+        object Loading : LocationEvent()
+        object Empty: LocationEvent()
     }
 
     private val _eventFlow = MutableSharedFlow<LocationEvent>()

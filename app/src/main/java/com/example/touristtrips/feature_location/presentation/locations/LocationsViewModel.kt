@@ -8,7 +8,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,7 +18,7 @@ class LocationsViewModel @Inject constructor(
     private val _locationsState = MutableLiveData(LocationState())
     val locationsState: MutableLiveData<LocationState> = _locationsState
 
-    private var getNotesJob: Job? = null
+    private var getLocationsJob: Job? = null
 
     init {
         getLocations()
@@ -35,8 +34,8 @@ class LocationsViewModel @Inject constructor(
             //_state.value?.locations
         }*/
 
-        getNotesJob?.cancel()
-        getNotesJob = locationUseCases.getLocations()
+        getLocationsJob?.cancel()
+        getLocationsJob = locationUseCases.getLocations()
             .onEach { locations ->
                 _locationsState.value = locationsState.value?.copy(
                     locations = locations,

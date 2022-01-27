@@ -9,8 +9,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.touristtrips.R
+import com.example.touristtrips.core.Operation
 import com.example.touristtrips.databinding.FragmentAddEditLocationBinding
 import com.example.touristtrips.feature_location.domain.model.Location
+import com.example.touristtrips.feature_location.domain.util.LocalLocations
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import java.util.*
@@ -31,7 +33,7 @@ class AddEditLocationFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setHasOptionsMenu(true)
+        setHasOptionsMenu(true)
         viewModel.getLocation(locationId)
     }
 
@@ -59,14 +61,14 @@ class AddEditLocationFragment : Fragment() {
         lifecycleScope.launchWhenCreated {
             viewModel.eventFlow.collectLatest { event ->
                 when (event) {
-                    is LocationEvent.Success -> {
+                    is AddEditLocationViewModel.LocationEvent.Success -> {
                         if (event.operation == Operation.FOUND) {
                             setEditMode(event.location)
                         } else {
                             Toast.makeText(context, "Location ${event.operation}", Toast.LENGTH_SHORT).show()
                         }
                     }
-                    is LocationEvent.Failure -> {
+                    is AddEditLocationViewModel.LocationEvent.Failure -> {
                         Toast.makeText(context, event.errorText, Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -118,22 +120,28 @@ class AddEditLocationFragment : Fragment() {
         )
     }
 
-    /*override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_delete, menu)
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_upload, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return if (item.itemId == R.id.menuDelete) {
-            deleteLocation()
+        return if (item.itemId == R.id.menuUpload) {
+            uploadLocations()
             true
         } else {
             super.onOptionsItemSelected(item)
         }
     }
 
-    private fun deleteLocation() {
+    private fun uploadLocations() {
+        val locations = LocalLocations().getLocalLocations(requireContext())
 
-    }*/
+        locations.forEach { location ->
+            viewModel.onEvent(AddEditLocationViewModel.AddEditLocationEvent.SaveLocation(location))
+        }
+
+        findNavController().navigateUp()
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
