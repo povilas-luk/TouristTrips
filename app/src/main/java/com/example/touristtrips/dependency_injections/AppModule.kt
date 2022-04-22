@@ -3,11 +3,11 @@ package com.example.touristtrips.dependency_injections
 import android.app.Application
 import androidx.room.Room
 import com.example.touristtrips.core.local_data.local_data_source.LocalDatabase
-import com.example.touristtrips.core.local_data.local_repository.LocationRepositoryImpl
-import com.example.touristtrips.core.local_data.local_repository.RouteRepositoryImpl
-import com.example.touristtrips.feature_location.domain.repository.LocationRepository
+import com.example.touristtrips.core.local_data.local_repository.LocalLocationRepositoryImpl
+import com.example.touristtrips.core.local_data.local_repository.LocalRouteRepositoryImpl
+import com.example.touristtrips.feature_location.domain.repository.LocalLocationRepository
 import com.example.touristtrips.feature_location.domain.use_case.*
-import com.example.touristtrips.feature_route.domain.repository.RouteRepository
+import com.example.touristtrips.feature_route.domain.repository.LocalRouteRepository
 import com.example.touristtrips.feature_route.domain.use_case.*
 import dagger.Module
 import dagger.Provides
@@ -31,41 +31,42 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideLocationRepository(db: LocalDatabase): LocationRepository {
-        return LocationRepositoryImpl(db.locationDao)
+    fun provideLocationRepository(db: LocalDatabase): LocalLocationRepository {
+        return LocalLocationRepositoryImpl(db.locationDao)
     }
 
     @Provides
     @Singleton
-    fun provideRouteRepository(db: LocalDatabase): RouteRepository {
-        return RouteRepositoryImpl(db.routeDao)
+    fun provideRouteRepository(db: LocalDatabase): LocalRouteRepository {
+        return LocalRouteRepositoryImpl(db.routeDao)
     }
 
     @Provides
     @Singleton
-    fun provideLocationUseCases(repository: LocationRepository): LocationUseCases {
-        return LocationUseCases(
-            addLocation = AddLocation(repository),
-            getLocations = GetLocations(repository),
-            getLocation = GetLocation(repository),
-            updateLocation = UpdateLocation(repository),
-            deleteLocation = DeleteLocation(repository)
+    fun provideMyLocationUseCases(repositoryLocal: LocalLocationRepository): MyLocationUseCases {
+        return MyLocationUseCases(
+            addLocation = AddLocation(repositoryLocal),
+            getLocations = GetLocations(repositoryLocal),
+            getLocation = GetLocation(repositoryLocal),
+            updateLocation = UpdateLocation(repositoryLocal),
+            deleteLocation = DeleteLocation(repositoryLocal)
         )
     }
 
     @Provides
     @Singleton
-    fun provideRouteUseCases(repository: RouteRepository): RoutesUseCases {
+    fun provideRouteUseCases(repositoryLocal: LocalRouteRepository): RoutesUseCases {
         return RoutesUseCases(
-            addRoute = AddRoute(repository),
-            getRoutes = GetRoutes(repository),
-            getRoute = GetRoute(repository),
-            updateRoute = UpdateRoute(repository),
-            deleteRoute = DeleteRoute(repository),
-            addRouteLocation = AddRouteLocation(repository),
-            getRouteWithLocations = GetRouteWithLocations(repository),
-            getRoutesWithLocations = GetRoutesWithLocations(repository),
-            deleteRouteLocation = DeleteRouteLocation(repository)
+            addRoute = AddRoute(repositoryLocal),
+            getRoutes = GetRoutes(repositoryLocal),
+            getRoute = GetRoute(repositoryLocal),
+            updateRoute = UpdateRoute(repositoryLocal),
+            deleteRoute = DeleteRoute(repositoryLocal),
+            addRouteLocation = AddRouteLocation(repositoryLocal),
+            getRouteWithLocations = GetRouteWithLocations(repositoryLocal),
+            getRoutesWithLocations = GetRoutesWithLocations(repositoryLocal),
+            deleteRouteLocation = DeleteRouteLocation(repositoryLocal)
         )
     }
+
 }

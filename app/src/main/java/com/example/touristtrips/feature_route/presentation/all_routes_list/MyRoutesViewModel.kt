@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel
-class RoutesViewModel @Inject constructor(
+class MyRoutesViewModel @Inject constructor(
     private val routesUseCases: RoutesUseCases
 ): ViewModel() {
 

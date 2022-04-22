@@ -15,7 +15,7 @@ class MyRoutesFragment : Fragment() {
     private var _binding: FragmentMyRoutesBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: RoutesViewModel by viewModels()
+    private val viewModel: MyRoutesViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

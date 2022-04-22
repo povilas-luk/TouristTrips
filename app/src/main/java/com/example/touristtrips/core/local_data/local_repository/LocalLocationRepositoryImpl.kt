@@ -2,12 +2,12 @@ package com.example.touristtrips.core.local_data.local_repository
 
 import com.example.touristtrips.core.local_data.local_data_source.LocationDao
 import com.example.touristtrips.feature_location.domain.model.Location
-import com.example.touristtrips.feature_location.domain.repository.LocationRepository
+import com.example.touristtrips.feature_location.domain.repository.LocalLocationRepository
 import kotlinx.coroutines.flow.Flow
 
-class LocationRepositoryImpl(
+class LocalLocationRepositoryImpl(
     private val dao: LocationDao
-): LocationRepository {
+): LocalLocationRepository {
     override fun getLocations(): Flow<List<Location>> {
         return dao.getAllLocations()
     }

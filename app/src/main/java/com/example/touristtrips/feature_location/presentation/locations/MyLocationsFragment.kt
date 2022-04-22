@@ -5,10 +5,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
-import com.example.touristtrips.LocationsFragment
 import com.example.touristtrips.R
-import com.example.touristtrips.databinding.FragmentHomeBinding
 import com.example.touristtrips.databinding.FragmentMyLocationsBinding
 import com.example.touristtrips.feature_location.presentation.location_epoxy_model.LocationsEpoxyController
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,7 +15,7 @@ class MyLocationsFragment : Fragment() {
     private var _binding: FragmentMyLocationsBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: LocationsViewModel by viewModels()
+    private val viewModel: MyLocationsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

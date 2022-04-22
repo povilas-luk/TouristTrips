@@ -21,7 +21,7 @@ class AddEditRouteFragment : Fragment() {
     private var _binding: FragmentAddEditRouteBinding? = null
     private val binding get() = _binding!!
 
-    private val safeArgs: RouteFragmentArgs by navArgs()
+    private val safeArgs: MyRouteFragmentArgs by navArgs()
     private val routeId: String by lazy {
         safeArgs.routeId
     }

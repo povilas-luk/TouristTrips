@@ -3,14 +3,13 @@ package com.example.touristtrips.core.local_data.local_repository
 import com.example.touristtrips.core.local_data.local_data_source.RouteDao
 import com.example.touristtrips.core.local_data.local_data_source.RouteLocationCrossRef
 import com.example.touristtrips.core.local_data.local_data_source.RouteWithLocations
-import com.example.touristtrips.feature_location.domain.model.Location
 import com.example.touristtrips.feature_route.domain.model.Route
-import com.example.touristtrips.feature_route.domain.repository.RouteRepository
+import com.example.touristtrips.feature_route.domain.repository.LocalRouteRepository
 import kotlinx.coroutines.flow.Flow
 
-class RouteRepositoryImpl(
+class LocalRouteRepositoryImpl(
     private val dao: RouteDao
-): RouteRepository {
+): LocalRouteRepository {
     override fun getRoutes(): Flow<List<Route>> {
         return dao.getAllRoutes()
     }

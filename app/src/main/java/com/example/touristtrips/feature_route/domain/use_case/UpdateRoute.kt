@@ -1,12 +1,12 @@
 package com.example.touristtrips.feature_route.domain.use_case
 
 import com.example.touristtrips.feature_route.domain.model.Route
-import com.example.touristtrips.feature_route.domain.repository.RouteRepository
+import com.example.touristtrips.feature_route.domain.repository.LocalRouteRepository
 
 class UpdateRoute(
-    private val repository: RouteRepository
+    private val repositoryLocal: LocalRouteRepository
 ) {
     suspend operator fun invoke(route: Route) {
-        repository.updateRoute(route)
+        repositoryLocal.updateRoute(route)
     }
 }

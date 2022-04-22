@@ -22,7 +22,7 @@ class AddEditLocationFragment : Fragment() {
     private var _binding: FragmentAddEditLocationBinding? = null
     private val binding get() = _binding!!
 
-    private val safeArgs: LocationFragmentArgs by navArgs()
+    private val safeArgs: MyLocationFragmentArgs by navArgs()
     private val locationId: String by lazy {
         safeArgs.locationId
     }

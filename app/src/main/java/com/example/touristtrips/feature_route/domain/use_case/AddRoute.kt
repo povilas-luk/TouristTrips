@@ -3,10 +3,10 @@ package com.example.touristtrips.feature_route.domain.use_case
 import com.example.touristtrips.feature_location.domain.model.InvalidLocationException
 import com.example.touristtrips.feature_route.domain.model.InvalidRouteException
 import com.example.touristtrips.feature_route.domain.model.Route
-import com.example.touristtrips.feature_route.domain.repository.RouteRepository
+import com.example.touristtrips.feature_route.domain.repository.LocalRouteRepository
 
 class AddRoute(
-    private val repository: RouteRepository
+    private val repositoryLocal: LocalRouteRepository
 ) {
 
     @Throws(InvalidRouteException::class)
@@ -24,6 +24,6 @@ class AddRoute(
             throw InvalidLocationException("The image of the location can't be empty.")
         }
 
-        repository.insertRoute(route)
+        repositoryLocal.insertRoute(route)
     }
 }

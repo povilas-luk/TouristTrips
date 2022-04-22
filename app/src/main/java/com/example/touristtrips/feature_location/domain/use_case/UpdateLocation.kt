@@ -1,12 +1,12 @@
 package com.example.touristtrips.feature_location.domain.use_case
 
 import com.example.touristtrips.feature_location.domain.model.Location
-import com.example.touristtrips.feature_location.domain.repository.LocationRepository
+import com.example.touristtrips.feature_location.domain.repository.LocalLocationRepository
 
 class UpdateLocation(
-    private val repository: LocationRepository
+    private val repositoryLocal: LocalLocationRepository
 ) {
     suspend operator fun invoke(location: Location) {
-        repository.updateLocation(location)
+        repositoryLocal.updateLocation(location)
     }
 }

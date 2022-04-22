@@ -43,6 +43,10 @@ class NavigationGraphActivity : AppCompatActivity() {
         findViewById<NavigationView>(R.id.nav_view).setupWithNavController(navController)
 
         //this.deleteDatabase("local_db")
+
+        //val db = FirebaseDatabase().writeToDatabase()
+
+
     }
 
     override fun onSupportNavigateUp(): Boolean {

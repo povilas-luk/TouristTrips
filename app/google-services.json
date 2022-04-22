@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "540943628454",
+    "project_id": "touristtrips-339422",
+    "storage_bucket": "touristtrips-339422.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:540943628454:android:41a715878883ff9e931c67",
+        "android_client_info": {
+          "package_name": "com.example.touristtrips"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "540943628454-s4et0rqrgd8r9qm5vgph18bcr8ju4r32.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdaQ2_Tca6U3docAlguAFSMFMqLSaBAaU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "540943628454-s4et0rqrgd8r9qm5vgph18bcr8ju4r32.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

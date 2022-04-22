@@ -1,15 +1,13 @@
 package com.example.touristtrips.feature_route.domain.use_case
 
-import com.example.touristtrips.feature_location.domain.model.Location
-import com.example.touristtrips.feature_location.domain.repository.LocationRepository
 import com.example.touristtrips.feature_route.domain.model.Route
-import com.example.touristtrips.feature_route.domain.repository.RouteRepository
+import com.example.touristtrips.feature_route.domain.repository.LocalRouteRepository
 import kotlinx.coroutines.flow.Flow
 
 class GetRoutes(
-    private val repository: RouteRepository
+    private val repositoryLocal: LocalRouteRepository
 ) {
     operator fun invoke(): Flow<List<Route>> {
-        return repository.getRoutes()
+        return repositoryLocal.getRoutes()
     }
 }

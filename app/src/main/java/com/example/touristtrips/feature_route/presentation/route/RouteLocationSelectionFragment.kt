@@ -6,16 +6,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.touristtrips.R
 import com.example.touristtrips.databinding.FragmentMyLocationsBinding
-import com.example.touristtrips.databinding.FragmentMyRoutesBinding
-import com.example.touristtrips.databinding.FragmentRouteLocationSelectionBinding
 import com.example.touristtrips.feature_location.presentation.location_epoxy_model.LocationsEpoxyController
-import com.example.touristtrips.feature_location.presentation.locations.LocationsViewModel
-import com.example.touristtrips.feature_location.presentation.locations.MyLocationsFragmentDirections
-import com.example.touristtrips.feature_route.presentation.all_routes_list.MyRoutesFragmentDirections
-import com.example.touristtrips.feature_route.presentation.all_routes_list.RoutesViewModel
-import com.example.touristtrips.feature_route.presentation.routes_epoxy.RoutesEpoxyController
+import com.example.touristtrips.feature_location.presentation.locations.MyLocationsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,12 +16,12 @@ class RouteLocationSelectionFragment : Fragment() {
     private var _binding: FragmentMyLocationsBinding? = null
     private val binding get() = _binding!!
 
-    private val safeArgs: RouteFragmentArgs by navArgs()
+    private val safeArgs: MyRouteFragmentArgs by navArgs()
     private val routeId: String by lazy {
         safeArgs.routeId
     }
 
-    private val locationsViewModel: LocationsViewModel by viewModels()
+    private val myLocationsViewModel: MyLocationsViewModel by viewModels()
     private val routesViewModel: AddEditRouteViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +44,7 @@ class RouteLocationSelectionFragment : Fragment() {
         val controller = LocationsEpoxyController(::itemSelected)
         binding.epoxyRecyclerView.setController(controller)
 
-        locationsViewModel.locationsState.observe(viewLifecycleOwner) { locationState ->
+        myLocationsViewModel.locationsState.observe(viewLifecycleOwner) { locationState ->
             controller.locationsState = locationState
         }
     }

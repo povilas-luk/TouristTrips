@@ -2,10 +2,10 @@ package com.example.touristtrips.feature_location.domain.use_case
 
 import com.example.touristtrips.feature_location.domain.model.InvalidLocationException
 import com.example.touristtrips.feature_location.domain.model.Location
-import com.example.touristtrips.feature_location.domain.repository.LocationRepository
+import com.example.touristtrips.feature_location.domain.repository.LocalLocationRepository
 
 class AddLocation(
-    private val repository: LocationRepository
+    private val repositoryLocal: LocalLocationRepository
 ) {
 
     @Throws(InvalidLocationException::class)
@@ -35,7 +35,7 @@ class AddLocation(
             throw InvalidLocationException("The months_to_visit of the location can't be empty.")
         }
 
-        repository.insertLocation(location)
+        repositoryLocal.insertLocation(location)
     }
 
 }

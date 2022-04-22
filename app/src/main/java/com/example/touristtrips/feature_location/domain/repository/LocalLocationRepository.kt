@@ -3,7 +3,7 @@ package com.example.touristtrips.feature_location.domain.repository
 import com.example.touristtrips.feature_location.domain.model.Location
 import kotlinx.coroutines.flow.Flow
 
-interface LocationRepository {
+interface LocalLocationRepository {
 
     fun getLocations(): Flow<List<Location>>
 

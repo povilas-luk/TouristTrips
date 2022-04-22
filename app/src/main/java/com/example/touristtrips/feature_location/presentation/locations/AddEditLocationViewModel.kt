@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.touristtrips.core.Operation
 import com.example.touristtrips.feature_location.domain.model.InvalidLocationException
 import com.example.touristtrips.feature_location.domain.model.Location
-import com.example.touristtrips.feature_location.domain.use_case.LocationUseCases
+import com.example.touristtrips.feature_location.domain.use_case.MyLocationUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AddEditLocationViewModel @Inject constructor(
-    private val locationUseCases: LocationUseCases
+    private val locationUseCases: MyLocationUseCases
 ) : ViewModel() {
 
     sealed class AddEditLocationEvent {

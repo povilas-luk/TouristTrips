@@ -5,7 +5,7 @@ import com.example.touristtrips.feature_location.domain.model.Location
 import com.example.touristtrips.feature_route.domain.model.Route
 import kotlinx.coroutines.flow.Flow
 
-interface RouteRepository {
+interface LocalRouteRepository {
 
     fun getRoutes(): Flow<List<Route>>
 
