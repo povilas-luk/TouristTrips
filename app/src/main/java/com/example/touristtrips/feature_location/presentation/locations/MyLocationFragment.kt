@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.touristtrips.R
+import com.example.touristtrips.core.util.Operation
 import com.example.touristtrips.databinding.FragmentLocationBinding
 import com.example.touristtrips.feature_location.domain.model.Location
 import com.squareup.picasso.Picasso
@@ -21,7 +22,7 @@ class MyLocationFragment : Fragment() {
     private var _binding: FragmentLocationBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: AddEditLocationViewModel by viewModels()
+    private val addEditLocationViewModel: AddEditLocationViewModel by viewModels()
 
     private val safeArgs: MyLocationFragmentArgs by navArgs()
     private val locationId: String by lazy {
@@ -33,12 +34,11 @@ class MyLocationFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        //viewModel.getLocation(locationId)
     }
 
     override fun onResume() {
         super.onResume()
-        viewModel.getLocation(locationId)
+        addEditLocationViewModel.getLocation(locationId)
     }
 
     override fun onCreateView(
@@ -53,31 +53,27 @@ class MyLocationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        /*binding.saveButton.setOnClickListener {
-            Log.i("Testing", "button clicked")
-            viewModel.onEvent(AddEditLocationViewModel.AddEditLocationEvent.SaveLocation(getLocation()))
-        }*/
-
-
         lifecycleScope.launchWhenCreated {
-            viewModel.eventFlow.collectLatest { event ->
+            addEditLocationViewModel.eventFlow.collectLatest { event ->
                 when (event) {
                     is AddEditLocationViewModel.LocationEvent.Success -> {
-                        Toast.makeText(context, event.operation.toString(), Toast.LENGTH_SHORT).show()
-                        currentLocation = event.location
-                        displayLocation(currentLocation)
+                        if (event.operation == Operation.FOUND) {
+                            currentLocation = event.location
+                            displayLocation(currentLocation)
+                        } else {
+                            Toast.makeText(context, "Location ${event.operation.displayName}", Toast.LENGTH_SHORT).show()
+                        }
+                        if (event.operation == Operation.DELETED) {
+                            findNavController().popBackStack()
+                        }
+
                     }
                     is AddEditLocationViewModel.LocationEvent.Failure -> {
                         Toast.makeText(context, event.errorText, Toast.LENGTH_SHORT).show()
                     }
                 }
-
             }
         }
-    }
-
-    private fun itemSelected(id: String) {
-
     }
 
     private fun displayLocation(location: Location) {
@@ -86,7 +82,8 @@ class MyLocationFragment : Fragment() {
         binding.cityTextView.text = location.city
         binding.timeToVisitTextView.text = location.months_to_visit
         binding.descriptionTextView.text = location.description
-        Picasso.get().load(Uri.parse(location.imageUrl)).into(binding.headerImageView)
+        binding.priceTextView.text = location.price
+        Picasso.get().load(Uri.parse(location.imageUrl)).placeholder(R.drawable.bruno_soares_284974).into(binding.headerImageView)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -98,8 +95,7 @@ class MyLocationFragment : Fragment() {
             findNavController().navigate(MyLocationFragmentDirections.actionLocationFragmentToAddLocationFragment(locationId))
             true
         } else if (item.itemId == R.id.menuDelete) {
-            viewModel.onEvent(AddEditLocationViewModel.AddEditLocationEvent.DeleteLocation(currentLocation))
-            findNavController().navigateUp()
+            addEditLocationViewModel.onEvent(AddEditLocationViewModel.AddEditLocationEvent.DeleteLocation(currentLocation))
             true
         } else if (item.itemId == R.id.menuMap) {
             findNavController().navigate(MyLocationFragmentDirections.actionMyLocationFragmentToLocationMapsFragment(myLocationId = locationId))

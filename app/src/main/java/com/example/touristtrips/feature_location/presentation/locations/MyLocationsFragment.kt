@@ -49,20 +49,13 @@ class MyLocationsFragment : Fragment() {
     }
 
     private val textWatcher: TextWatcher = object : TextWatcher {
-        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            // nothing
-        }
-
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             if (p0 != null) {
                 myLocationsViewModel.showLocationsWithText(p0.toString())
             }
         }
-
-        override fun afterTextChanged(p0: Editable?) {
-            // nothing
-        }
-
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
+        override fun afterTextChanged(p0: Editable?) { }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

@@ -1,9 +1,9 @@
 package com.example.touristtrips.core.retrofit_maps
 
-import com.example.touristtrips.core.Constants
-import com.example.touristtrips.core.convertLatLngToString
+import com.example.touristtrips.core.util.Constants
 import com.example.touristtrips.core.domain.model.maps_directions_response_model.DirectionResponses
 import com.example.touristtrips.core.domain.repository.DirectionsRepository
+import com.example.touristtrips.core.util.convertLatLngToString
 import com.google.android.gms.maps.model.LatLng
 import javax.inject.Inject
 

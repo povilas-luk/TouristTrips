@@ -31,7 +31,7 @@
                 android:id="@+id/titleEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapSentences"
+                android:inputType="text"
                 android:textColor="?attr/colorOnBackground" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -103,6 +103,72 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/locationSearchTextField"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:hint="@string/location_search"
+            android:textColorHint="?attr/colorOnBackground"
+            app:errorEnabled="true"
+            app:hintTextColor="?attr/colorOnBackground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cityTextField">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/locationSearchEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapSentences"
+                android:textColor="?attr/colorOnBackground" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/monthsToVisitTextField"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:hint="@string/time_to_visit"
+            android:textColorHint="?attr/colorOnBackground"
+            app:errorEnabled="true"
+            app:hintTextColor="?attr/colorOnBackground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/locationSearchTextField">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/monthsToVisitEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapSentences"
+                android:textColor="?attr/colorOnBackground" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/priceTextField"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:hint="@string/price"
+            android:textColorHint="?attr/colorOnBackground"
+            app:errorEnabled="true"
+            app:hintTextColor="?attr/colorOnBackground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/monthsToVisitTextField">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/priceEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:textColor="?attr/colorOnBackground" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/latitudeTextField"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
@@ -113,13 +179,13 @@
             app:errorEnabled="true"
             app:hintTextColor="?attr/colorOnBackground"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cityTextField">
+            app:layout_constraintTop_toBottomOf="@id/priceTextField">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/latitudeEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapSentences"
+                android:inputType="numberDecimal"
                 android:textColor="?attr/colorOnBackground" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -141,7 +207,7 @@
                 android:id="@+id/longitudeEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapSentences"
+                android:inputType="numberDecimal"
                 android:textColor="?attr/colorOnBackground" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -163,7 +229,7 @@
                 android:id="@+id/imageUrlEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapSentences"
+                android:inputType="text"
                 android:textColor="?attr/colorOnBackground" />
 
         </com.google.android.material.textfield.TextInputLayout>

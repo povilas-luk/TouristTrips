@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.touristtrips.core.Operation
+import com.example.touristtrips.core.util.Operation
 import com.example.touristtrips.feature_location.domain.model.Location
 import com.example.touristtrips.feature_route.domain.model.InvalidRouteException
 import com.example.touristtrips.feature_route.domain.model.Route

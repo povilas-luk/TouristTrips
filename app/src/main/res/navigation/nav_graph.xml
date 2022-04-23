@@ -119,7 +119,7 @@
             android:name="locationToAddId"
             app:argType="string"
             app:nullable="true"
-            android:defaultValue="null" />
+            android:defaultValue="@null" />
         <action
             android:id="@+id/action_routeFragment_to_addEditRouteFragment"
             app:destination="@id/addEditRouteFragment" />

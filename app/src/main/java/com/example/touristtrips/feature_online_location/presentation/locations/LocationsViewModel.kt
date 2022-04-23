@@ -3,9 +3,8 @@ package com.example.touristtrips.feature_online_location.presentation.locations
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.touristtrips.core.findLocationsWithText
 import com.example.touristtrips.core.presentation.locations.location.LocationState
+import com.example.touristtrips.core.util.location.findLocationsWithText
 import com.example.touristtrips.feature_location.domain.model.Location
 import com.example.touristtrips.feature_online_location.domain.use_case.GetLocation
 import com.example.touristtrips.feature_online_location.domain.use_case.GetLocations

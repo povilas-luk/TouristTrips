@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.touristtrips.R
+import com.example.touristtrips.core.util.Operation
 import com.example.touristtrips.databinding.FragmentRouteBinding
 import com.example.touristtrips.feature_location.domain.model.Location
 import com.example.touristtrips.feature_location.presentation.locations.MyLocationsViewModel
@@ -72,9 +73,16 @@ class MyRouteFragment : Fragment() {
             addEditRoutesViewModel.eventFlow.collectLatest { event ->
                 when (event) {
                     is AddEditRouteViewModel.RouteEvent.Success -> {
-                        Toast.makeText(context, event.operation.toString(), Toast.LENGTH_SHORT).show()
-                        currentRoute = event.route
-                        displayRoute(currentRoute)
+                        if (event.operation == Operation.FOUND) {
+                            currentRoute = event.route
+                            displayRoute(currentRoute)
+                        } else {
+                            Toast.makeText(context, "Route ${event.operation.displayName}", Toast.LENGTH_SHORT).show()
+                        }
+                        if (event.operation == Operation.DELETED) {
+                            findNavController().popBackStack()
+                        }
+
                     }
                     is AddEditRouteViewModel.RouteEvent.Failure -> {
                         Toast.makeText(context, event.errorText, Toast.LENGTH_SHORT).show()
@@ -105,7 +113,7 @@ class MyRouteFragment : Fragment() {
         binding.cityTextView.text = route.city
         binding.timeToVisitTextView.text = route.months_to_visit
         binding.descriptionTextView.text = route.description
-        Picasso.get().load(Uri.parse(route.imageUrl)).into(binding.headerImageView)
+        Picasso.get().load(Uri.parse(route.imageUrl)).placeholder(R.drawable.bruno_soares_284974).into(binding.headerImageView)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -118,7 +126,6 @@ class MyRouteFragment : Fragment() {
             true
         } else if (item.itemId == R.id.menuDelete) {
             addEditRoutesViewModel.onEvent(AddEditRouteViewModel.AddEditRouteEvent.DeleteRoute(currentRoute))
-            findNavController().navigateUp()
             true
         } else if (item.itemId == R.id.menuMap) {
             findNavController().navigate(MyRouteFragmentDirections.actionRouteFragmentToRouteMapsFragment(myRouteId = routeId))

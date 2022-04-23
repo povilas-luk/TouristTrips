@@ -125,8 +125,6 @@
             app:layout_constraintTop_toTopOf="@+id/priceLabelTextView"
             tools:text="20" />
 
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

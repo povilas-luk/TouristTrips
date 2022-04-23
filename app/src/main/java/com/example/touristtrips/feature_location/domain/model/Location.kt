@@ -15,7 +15,8 @@ data class Location(
     val createdAt: Long = 0L,
     val imageUrl: String = "",
     val months_to_visit: String = "",
-    val price: Float = 0.0F
+    val price: String = "",
+    val location_search: String = ""
 )
 
 class InvalidLocationException(message: String): Exception(message)

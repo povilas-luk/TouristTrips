@@ -72,7 +72,8 @@ class LocationFragment : Fragment() {
         binding.cityTextView.text = location.city
         binding.timeToVisitTextView.text = location.months_to_visit
         binding.descriptionTextView.text = location.description
-        Picasso.get().load(Uri.parse(location.imageUrl)).into(binding.headerImageView)
+        binding.priceTextView.text = location.price
+        Picasso.get().load(Uri.parse(location.imageUrl)).placeholder(R.drawable.bruno_soares_284974).into(binding.headerImageView)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

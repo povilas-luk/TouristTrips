@@ -9,7 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.touristtrips.R
-import com.example.touristtrips.core.Operation
+import com.example.touristtrips.core.util.Operation
 import com.example.touristtrips.databinding.FragmentAddEditLocationBinding
 import com.example.touristtrips.feature_location.domain.model.Location
 import com.example.touristtrips.feature_location.domain.util.LocalLocations
@@ -22,8 +22,8 @@ class AddEditLocationFragment : Fragment() {
     private var _binding: FragmentAddEditLocationBinding? = null
     private val binding get() = _binding!!
 
-    private val safeArgs: MyLocationFragmentArgs by navArgs()
-    private val locationId: String by lazy {
+    private val safeArgs: AddEditLocationFragmentArgs by navArgs()
+    private val locationId: String? by lazy {
         safeArgs.locationId
     }
     private var editMode = false
@@ -34,7 +34,9 @@ class AddEditLocationFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        viewModel.getLocation(locationId)
+        if (locationId != null) {
+            viewModel.getLocation(locationId!!)
+        }
     }
 
     override fun onCreateView(
@@ -52,7 +54,6 @@ class AddEditLocationFragment : Fragment() {
         binding.saveButton.setOnClickListener {
             if (editMode) {
                 viewModel.onEvent(AddEditLocationViewModel.AddEditLocationEvent.EditLocation(getLocation()))
-                findNavController().navigateUp()
             } else {
                 viewModel.onEvent(AddEditLocationViewModel.AddEditLocationEvent.SaveLocation(getLocation()))
             }
@@ -65,7 +66,13 @@ class AddEditLocationFragment : Fragment() {
                         if (event.operation == Operation.FOUND) {
                             setEditMode(event.location)
                         } else {
-                            Toast.makeText(context, "Location ${event.operation}", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "Location ${event.operation.displayName}", Toast.LENGTH_SHORT).show()
+                        }
+                        if (event.operation == Operation.SAVED) {
+                            findNavController().popBackStack()
+                        }
+                        if (event.operation == Operation.UPDATED) {
+                            findNavController().popBackStack()
                         }
                     }
                     is AddEditLocationViewModel.LocationEvent.Failure -> {
@@ -88,6 +95,9 @@ class AddEditLocationFragment : Fragment() {
         binding.longitudeEditText.setText(location.longitude)
         binding.cityEditText.setText(location.city)
         binding.imageUrlEditText.setText(location.imageUrl)
+        binding.locationSearchEditText.setText(location.location_search)
+        binding.monthsToVisitEditText.setText(location.months_to_visit)
+        binding.priceEditText.setText(location.price)
 
         binding.saveButton.text = getString(R.string.update)
     }
@@ -103,6 +113,9 @@ class AddEditLocationFragment : Fragment() {
                 city = binding.cityEditText.text.toString(),
                 createdAt = System.currentTimeMillis(),
                 imageUrl = binding.imageUrlEditText.text.toString(),
+                months_to_visit = binding.monthsToVisitEditText.text.toString(),
+                price = binding.priceEditText.text.toString(),
+                location_search = binding.locationSearchEditText.text.toString()
             )
         }
         return Location(
@@ -115,8 +128,9 @@ class AddEditLocationFragment : Fragment() {
             city = binding.cityEditText.text.toString(),
             createdAt = System.currentTimeMillis(),
             imageUrl = binding.imageUrlEditText.text.toString(),
-            months_to_visit = "March",
-            price = 10F
+            months_to_visit = binding.monthsToVisitEditText.text.toString(),
+            price = binding.priceEditText.text.toString(),
+            location_search = binding.locationSearchEditText.text.toString()
         )
     }
 
@@ -139,8 +153,7 @@ class AddEditLocationFragment : Fragment() {
         locations.forEach { location ->
             viewModel.onEvent(AddEditLocationViewModel.AddEditLocationEvent.SaveLocation(location))
         }
-
-        findNavController().navigateUp()
+        findNavController().popBackStack()
     }
 
     override fun onDestroyView() {

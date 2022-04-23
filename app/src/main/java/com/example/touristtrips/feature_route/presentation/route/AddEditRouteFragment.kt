@@ -9,7 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.touristtrips.R
-import com.example.touristtrips.core.Operation
+import com.example.touristtrips.core.util.Operation
 import com.example.touristtrips.databinding.FragmentAddEditRouteBinding
 import com.example.touristtrips.feature_route.domain.model.Route
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,8 +21,8 @@ class AddEditRouteFragment : Fragment() {
     private var _binding: FragmentAddEditRouteBinding? = null
     private val binding get() = _binding!!
 
-    private val safeArgs: MyRouteFragmentArgs by navArgs()
-    private val routeId: String by lazy {
+    private val safeArgs: AddEditRouteFragmentArgs by navArgs()
+    private val routeId: String? by lazy {
         safeArgs.routeId
     }
     private var editMode = false
@@ -32,8 +32,10 @@ class AddEditRouteFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setHasOptionsMenu(true)
-        viewModel.getRouteWithLocations(routeId)
+        setHasOptionsMenu(true)
+        if (routeId != null) {
+            viewModel.getRouteWithLocations(routeId!!)
+        }
     }
 
     override fun onCreateView(
@@ -51,7 +53,6 @@ class AddEditRouteFragment : Fragment() {
         binding.saveButton.setOnClickListener {
             if (editMode) {
                 viewModel.onEvent(AddEditRouteViewModel.AddEditRouteEvent.EditRoute(getRoute()))
-                findNavController().navigateUp()
             } else {
                 viewModel.onEvent(AddEditRouteViewModel.AddEditRouteEvent.SaveRoute(getRoute()))
             }
@@ -64,7 +65,13 @@ class AddEditRouteFragment : Fragment() {
                         if (event.operation == Operation.FOUND) {
                             setEditMode(event.route)
                         } else {
-                            Toast.makeText(context, "Route ${event.operation}", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "Route ${event.operation.displayName}", Toast.LENGTH_SHORT).show()
+                        }
+                        if (event.operation == Operation.SAVED) {
+                            findNavController().popBackStack()
+                        }
+                        if (event.operation == Operation.UPDATED) {
+                            findNavController().popBackStack()
                         }
                     }
                     is AddEditRouteViewModel.RouteEvent.Failure -> {
@@ -109,7 +116,7 @@ class AddEditRouteFragment : Fragment() {
             createdAt = System.currentTimeMillis(),
             imageUrl = binding.imageUrlEditText.text.toString(),
             months_to_visit = "March",
-            price = 10F
+            price = "10"
         )
     }
 

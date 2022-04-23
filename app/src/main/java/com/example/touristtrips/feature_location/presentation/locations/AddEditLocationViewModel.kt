@@ -2,7 +2,7 @@ package com.example.touristtrips.feature_location.presentation.locations
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.touristtrips.core.Operation
+import com.example.touristtrips.core.util.Operation
 import com.example.touristtrips.feature_location.domain.model.InvalidLocationException
 import com.example.touristtrips.feature_location.domain.model.Location
 import com.example.touristtrips.feature_location.domain.use_case.MyLocationUseCases

@@ -13,7 +13,7 @@ data class Route(
     val createdAt: Long = 0L,
     val imageUrl: String = "",
     val months_to_visit: String = "",
-    val price: Float = 0.0F
+    val price: String = ""
 )
 
 class InvalidRouteException(message: String): Exception(message)
