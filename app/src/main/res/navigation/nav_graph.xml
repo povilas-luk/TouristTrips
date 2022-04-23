@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -60,18 +59,18 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.touristtrips.HomeFragment"
-        android:label="Home"
+        android:label="@string/homeFragment_name"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/addLocationFragment"
         android:name="com.example.touristtrips.feature_location.presentation.locations.AddEditLocationFragment"
-        android:label="Edit Location"
+        android:label="@string/editLocationFragment_name"
         tools:layout="@layout/fragment_add_edit_location" >
         <argument
             android:name="locationId"
             app:argType="string"
             app:nullable="true"
-            android:defaultValue="null" />
+            android:defaultValue="@null" />
         <action
             android:id="@+id/action_addLocationFragment_to_locationFragment"
             app:destination="@id/myLocationFragment" />
@@ -82,7 +81,7 @@
     <fragment
         android:id="@+id/myLocationFragment"
         android:name="com.example.touristtrips.feature_location.presentation.locations.MyLocationFragment"
-        android:label="Location"
+        android:label="@string/locationFragment_name"
         tools:layout="@layout/fragment_location" >
         <argument
             android:name="locationId"
@@ -90,17 +89,20 @@
         <action
             android:id="@+id/action_locationFragment_to_addLocationFragment"
             app:destination="@id/addLocationFragment" />
+        <action
+            android:id="@+id/action_myLocationFragment_to_locationMapsFragment"
+            app:destination="@id/locationMapsFragment" />
     </fragment>
     <fragment
         android:id="@+id/addEditRouteFragment"
         android:name="com.example.touristtrips.feature_route.presentation.route.AddEditRouteFragment"
-        android:label="Edit Route"
+        android:label="@string/editRouteFragment_name"
         tools:layout="@layout/fragment_add_edit_route">
         <argument
             android:name="routeId"
             app:argType="string"
             app:nullable="true"
-            android:defaultValue="null" />
+            android:defaultValue="@null" />
         <action
             android:id="@+id/action_addEditRouteFragment_to_myRoutesFragment"
             app:destination="@id/myRoutesFragment" />
@@ -108,7 +110,7 @@
     <fragment
         android:id="@+id/myRouteFragment"
         android:name="com.example.touristtrips.feature_route.presentation.route.MyRouteFragment"
-        android:label="Route"
+        android:label="@string/routeFragment_name"
         tools:layout="@layout/fragment_route" >
         <argument
             android:name="routeId"
@@ -134,7 +136,7 @@
     <fragment
         android:id="@+id/routeLocationSelectionFragment"
         android:name="com.example.touristtrips.feature_route.presentation.route.RouteLocationSelectionFragment"
-        android:label="Location Selection"
+        android:label="@string/locationSelectionFragment_name"
         tools:layout="@layout/fragment_route_location_selection" >
         <argument
             android:name="routeId"
@@ -145,28 +147,59 @@
     </fragment>
     <fragment
         android:id="@+id/routeMapsFragment"
-        android:name="com.example.touristtrips.feature_route.presentation.route_map.RouteMapsFragment"
-        android:label="Locations Map"
+        android:name="com.example.touristtrips.core.presentation.routes.route_map.RouteMapsFragment"
+        android:label="@string/routeMapFragment_name"
         tools:layout="@layout/fragment_route_maps" >
         <argument
+            android:name="myRouteId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
             android:name="routeId"
-            app:argType="string" />
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/locationFragment"
         android:name="com.example.touristtrips.feature_online_location.presentation.locations.LocationFragment"
-        android:label="LocationFragment" >
+        android:label="@string/locationFragment_name"
+        tools:layout="@layout/fragment_location" >
         <argument
             android:name="locationId"
             app:argType="string" />
+        <action
+            android:id="@+id/action_locationFragment_to_locationMapsFragment"
+            app:destination="@id/locationMapsFragment" />
     </fragment>
     <fragment
         android:id="@+id/routeFragment"
         android:name="com.example.touristtrips.feature_online_route.presentation.routes.RouteFragment"
-        android:label="RouteFragment" >
+        android:label="@string/routeFragment_name"
+        tools:layout="@layout/fragment_route">
         <argument
             android:name="routeId"
             app:argType="string" />
+        <action
+            android:id="@+id/action_routeFragment_to_routeMapsFragment2"
+            app:destination="@id/routeMapsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/locationMapsFragment"
+        android:name="com.example.touristtrips.core.presentation.locations.location_map.LocationMapsFragment"
+        android:label="@string/locationMapFragment_name"
+        tools:layout="@layout/fragment_location_maps" >
+        <argument
+            android:name="myLocationId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="locationId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
 
 </navigation>

@@ -1,6 +1,8 @@
 package com.example.touristtrips.feature_route.presentation.all_routes_list
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -15,7 +17,7 @@ class MyRoutesFragment : Fragment() {
     private var _binding: FragmentMyRoutesBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: MyRoutesViewModel by viewModels()
+    private val myRoutesViewModel: MyRoutesViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,16 +36,33 @@ class MyRoutesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val controller = RoutesEpoxyController(::itemSelected)
+        val controller = RoutesEpoxyController(::itemSelected, textWatcher)
         binding.epoxyRecyclerView.setController(controller)
 
-        viewModel.routesState.observe(viewLifecycleOwner) { routeState ->
+        myRoutesViewModel.routesState.observe(viewLifecycleOwner) { routeState ->
             controller.routesState = routeState
         }
     }
 
     private fun itemSelected(id: String) {
         findNavController().navigate(MyRoutesFragmentDirections.actionMyRoutesFragmentToRouteFragment(id))
+    }
+
+    private val textWatcher: TextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            // nothing
+        }
+
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            if (p0 != null) {
+                myRoutesViewModel.showRoutesWithText(p0.toString())
+            }
+        }
+
+        override fun afterTextChanged(p0: Editable?) {
+            // nothing
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

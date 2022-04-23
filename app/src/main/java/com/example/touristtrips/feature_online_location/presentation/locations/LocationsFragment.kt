@@ -1,15 +1,14 @@
 package com.example.touristtrips.feature_online_location.presentation.locations
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.touristtrips.R
 import com.example.touristtrips.databinding.FragmentLocationsBinding
 import com.example.touristtrips.feature_location.presentation.location_epoxy_model.LocationsEpoxyController
-import com.example.touristtrips.feature_location.presentation.locations.MyLocationsViewModel
-import com.example.touristtrips.feature_location.presentation.locations.MyLocationsFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,7 +16,7 @@ class LocationsFragment : Fragment() {
     private var _binding: FragmentLocationsBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: LocationsViewModel by viewModels()
+    private val locationsViewModel: LocationsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,18 +35,36 @@ class LocationsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val controller = LocationsEpoxyController(::itemSelected)
+        val controller = LocationsEpoxyController(::itemSelected, textWatcher)
         binding.epoxyRecyclerView.setController(controller)
 
-        viewModel.getLocations()
+        locationsViewModel.getLocations()
 
-        viewModel.locationsState.observe(viewLifecycleOwner) { locationState ->
+        locationsViewModel.locationsState.observe(viewLifecycleOwner) { locationState ->
+            locationsViewModel.setAllLocations()
             controller.locationsState = locationState
         }
     }
 
     private fun itemSelected(id: String) {
         findNavController().navigate(LocationsFragmentDirections.actionLocationsFragmentToLocationFragment2(id))
+    }
+
+    private val textWatcher: TextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            // nothing
+        }
+
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            if (p0 != null) {
+                locationsViewModel.showLocationsWithText(p0.toString())
+            }
+        }
+
+        override fun afterTextChanged(p0: Editable?) {
+            // nothing
+        }
+
     }
 
     override fun onDestroyView() {

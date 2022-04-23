@@ -3,6 +3,12 @@ package com.example.touristtrips.feature_route.presentation.all_routes_list
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.touristtrips.core.findLocationsWithText
+import com.example.touristtrips.core.findRoutesWithText
+import com.example.touristtrips.core.presentation.locations.location.LocationState
+import com.example.touristtrips.core.presentation.routes.route.RoutesState
+import com.example.touristtrips.feature_location.domain.model.Location
+import com.example.touristtrips.feature_route.domain.model.Route
 import com.example.touristtrips.feature_route.domain.use_case.RoutesUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
@@ -17,6 +23,8 @@ class MyRoutesViewModel @Inject constructor(
 
     private val _routesState = MutableLiveData(RoutesState())
     val routesState: MutableLiveData<RoutesState> = _routesState
+
+    private val allRoutesLiveData = MutableLiveData<List<Route>>()
 
     private var getRoutesJob: Job? = null
 
@@ -40,8 +48,15 @@ class MyRoutesViewModel @Inject constructor(
                 _routesState.value = routesState.value?.copy(
                     routes = routes,
                 )
+                allRoutesLiveData.value = routes
             }
             .launchIn(viewModelScope)
+    }
+
+    fun showRoutesWithText(text: String) {
+        val routes = findRoutesWithText(text, allRoutesLiveData.value ?: emptyList())
+
+        _routesState.value = RoutesState(routes)
     }
 
 }

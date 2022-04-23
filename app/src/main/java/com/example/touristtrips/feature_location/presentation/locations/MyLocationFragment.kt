@@ -101,6 +101,9 @@ class MyLocationFragment : Fragment() {
             viewModel.onEvent(AddEditLocationViewModel.AddEditLocationEvent.DeleteLocation(currentLocation))
             findNavController().navigateUp()
             true
+        } else if (item.itemId == R.id.menuMap) {
+            findNavController().navigate(MyLocationFragmentDirections.actionMyLocationFragmentToLocationMapsFragment(myLocationId = locationId))
+            true
         } else {
             super.onOptionsItemSelected(item)
         }

@@ -2,17 +2,23 @@ package com.example.touristtrips.dependency_injections
 
 import android.app.Application
 import androidx.room.Room
-import com.example.touristtrips.core.local_data.local_data_source.LocalDatabase
-import com.example.touristtrips.core.local_data.local_repository.LocalLocationRepositoryImpl
-import com.example.touristtrips.core.local_data.local_repository.LocalRouteRepositoryImpl
+import com.example.touristtrips.core.Constants
+import com.example.touristtrips.core.data.local_data.local_data_source.LocalDatabase
+import com.example.touristtrips.core.data.local_data.local_repository.LocalLocationRepositoryImpl
+import com.example.touristtrips.core.data.local_data.local_repository.LocalRouteRepositoryImpl
+import com.example.touristtrips.core.retrofit_maps.DirectionsApi
+import com.example.touristtrips.core.retrofit_maps.DirectionsRepositoryImpl
 import com.example.touristtrips.feature_location.domain.repository.LocalLocationRepository
 import com.example.touristtrips.feature_location.domain.use_case.*
+import com.example.touristtrips.core.domain.repository.DirectionsRepository
 import com.example.touristtrips.feature_route.domain.repository.LocalRouteRepository
 import com.example.touristtrips.feature_route.domain.use_case.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -29,6 +35,15 @@ object AppModule {
         ).build()
     }
 
+    @Singleton
+    @Provides
+    fun provideDirectionsServices(): DirectionsApi = Retrofit
+        .Builder()
+        .addConverterFactory(GsonConverterFactory.create())
+        .baseUrl(Constants.BASE_URL)
+        .build()
+        .create(DirectionsApi::class.java)
+
     @Provides
     @Singleton
     fun provideLocationRepository(db: LocalDatabase): LocalLocationRepository {
@@ -40,6 +55,10 @@ object AppModule {
     fun provideRouteRepository(db: LocalDatabase): LocalRouteRepository {
         return LocalRouteRepositoryImpl(db.routeDao)
     }
+
+    @Provides
+    @Singleton
+    fun provideDirectionsRepository(directionsApi: DirectionsApi): DirectionsRepository = DirectionsRepositoryImpl(directionsApi)
 
     @Provides
     @Singleton

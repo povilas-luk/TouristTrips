@@ -2,13 +2,15 @@ package com.example.touristtrips.feature_online_route.presentation.routes
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.touristtrips.core.firebase_data.firebase_repository.RouteRepository
-import com.example.touristtrips.feature_location.presentation.locations.LocationState
-import com.example.touristtrips.feature_online_route.domain.model.RouteLocation
+import com.example.touristtrips.core.data.firebase_data.firebase_repository.RouteRepository
+import com.example.touristtrips.core.findRoutesWithText
+import com.example.touristtrips.core.presentation.locations.location.LocationState
+import com.example.touristtrips.core.presentation.routes.route.RouteLocationsState
 import com.example.touristtrips.feature_online_route.domain.use_case.GetRouteLocations
 import com.example.touristtrips.feature_online_route.domain.use_case.GetRouteWithLocationsId
 
-import com.example.touristtrips.feature_route.presentation.all_routes_list.RoutesState
+import com.example.touristtrips.core.presentation.routes.route.RoutesState
+import com.example.touristtrips.feature_route.domain.model.Route
 
 //@HiltViewModel
 class RoutesViewModel : ViewModel() {
@@ -24,6 +26,8 @@ class RoutesViewModel : ViewModel() {
     private val _routeLocations = MutableLiveData<LocationState>()
     val routeLocations: MutableLiveData<LocationState> = _routeLocations
 
+    private var allRoutesLiveData: MutableLiveData<List<Route>>? = null
+
     fun getRoutes() {
         repository.getRoutes(_routesState)
     }
@@ -37,9 +41,18 @@ class RoutesViewModel : ViewModel() {
         if (!locations.isNullOrEmpty()) {
             GetRouteLocations().getRouteLocations(_routeLocations, locations)
         }
-
     }
 
+    fun setAllRoutes() {
+        if (allRoutesLiveData == null) {
+            allRoutesLiveData = MutableLiveData(_routesState.value?.routes ?: emptyList())
+        }
+    }
 
+    fun showRoutesWithText(text: String) {
+        val routes = findRoutesWithText(text, allRoutesLiveData?.value ?: emptyList())
+
+        _routesState.value = RoutesState(routes)
+    }
 
 }

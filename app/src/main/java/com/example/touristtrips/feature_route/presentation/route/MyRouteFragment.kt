@@ -121,7 +121,7 @@ class MyRouteFragment : Fragment() {
             findNavController().navigateUp()
             true
         } else if (item.itemId == R.id.menuMap) {
-            findNavController().navigate(MyRouteFragmentDirections.actionRouteFragmentToRouteMapsFragment(routeId))
+            findNavController().navigate(MyRouteFragmentDirections.actionRouteFragmentToRouteMapsFragment(myRouteId = routeId))
             true
         } else {
             super.onOptionsItemSelected(item)

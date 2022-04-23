@@ -2,8 +2,6 @@ package com.example.touristtrips.feature_route.presentation.route_locations_epox
 
 import com.airbnb.epoxy.EpoxyController
 import com.example.touristtrips.feature_location.domain.model.Location
-import com.example.touristtrips.feature_location.presentation.location_epoxy_model.LocationEpoxyModel
-import com.example.touristtrips.feature_location.presentation.locations.LocationState
 
 class RouteLocationsEpoxyController(
     val itemSelected: (String) -> Unit,

@@ -1,11 +1,8 @@
 package com.example.touristtrips.feature_online_location.domain.use_case
 
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
-import com.example.touristtrips.core.firebase_data.firebase_repository.LocationRepository
-import com.example.touristtrips.feature_location.domain.model.Location
-import com.example.touristtrips.feature_location.presentation.locations.LocationState
+import com.example.touristtrips.core.data.firebase_data.firebase_repository.LocationRepository
+import com.example.touristtrips.core.presentation.locations.location.LocationState
 
 class GetLocation {
 

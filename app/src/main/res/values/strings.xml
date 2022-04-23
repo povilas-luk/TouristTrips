@@ -8,6 +8,14 @@
     <string name="myLocationsFragment_name">My Locations</string>
     <string name="myRoutesFragment_name">My Routes</string>
     <string name="settingsFragment_name">Settings</string>
+    <string name="editLocationFragment_name">Edit Location</string>
+    <string name="homeFragment_name">Home</string>
+    <string name="locationFragment_name">Location</string>
+    <string name="editRouteFragment_name">Edit Route</string>
+    <string name="routeFragment_name">Route</string>
+    <string name="locationSelectionFragment_name">Location Selection</string>
+    <string name="routeMapFragment_name">Route Map</string>
+    <string name="locationMapFragment_name">Location Map</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home">Home</string>
@@ -27,5 +35,7 @@
     <string name="upload_locations">Upload locations</string>
     <string name="map">Map</string>
     <string name="header_image">Header Image</string>
+    <string name="search">Search</string>
+
 
 </resources>

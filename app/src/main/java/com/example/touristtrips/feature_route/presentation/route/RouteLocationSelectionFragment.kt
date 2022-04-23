@@ -1,6 +1,8 @@
 package com.example.touristtrips.feature_route.presentation.route
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -41,7 +43,7 @@ class RouteLocationSelectionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val controller = LocationsEpoxyController(::itemSelected)
+        val controller = LocationsEpoxyController(::itemSelected, textWatcher)
         binding.epoxyRecyclerView.setController(controller)
 
         myLocationsViewModel.locationsState.observe(viewLifecycleOwner) { locationState ->
@@ -53,6 +55,23 @@ class RouteLocationSelectionFragment : Fragment() {
         routesViewModel.onEvent(AddEditRouteViewModel.AddEditRouteEvent.AddLocation(routeId, id))
         //findNavController().navigate(RouteLocationSelectionFragmentDirections.actionRouteLocationSelectionFragmentToRouteFragment(routeId = routeId, locationToAddId = id))
         findNavController().navigateUp()
+    }
+
+    private val textWatcher: TextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            // nothing
+        }
+
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            if (p0 != null) {
+                myLocationsViewModel.showLocationsWithText(p0.toString())
+            }
+        }
+
+        override fun afterTextChanged(p0: Editable?) {
+            // nothing
+        }
+
     }
 
 /*    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

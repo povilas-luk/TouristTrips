@@ -1,8 +1,11 @@
 package com.example.touristtrips.feature_location.presentation.locations
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.touristtrips.core.findLocationsWithText
+import com.example.touristtrips.core.presentation.locations.location.LocationState
 import com.example.touristtrips.feature_location.domain.model.Location
 import com.example.touristtrips.feature_location.domain.use_case.MyLocationUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,7 +20,9 @@ class MyLocationsViewModel @Inject constructor(
 ): ViewModel() {
 
     private val _locationsState = MutableLiveData(LocationState())
-    val locationsState: MutableLiveData<LocationState> = _locationsState
+    val locationsState: LiveData<LocationState> = _locationsState
+
+    private val allLocationsLiveData = MutableLiveData<List<Location>>()
 
     private var getLocationsJob: Job? = null
 
@@ -26,23 +31,21 @@ class MyLocationsViewModel @Inject constructor(
     }
 
     private fun getLocations() {
-        /*viewModelScope.launch {
-            locationUseCases.getLocations().onEach { location ->
-                _locationsState.value = locationsState.value?.copy(
-                    locations = location
-                )
-            }
-            //_state.value?.locations
-        }*/
-
         getLocationsJob?.cancel()
         getLocationsJob = locationUseCases.getLocations.invoke()
             .onEach { locations ->
                 _locationsState.value = locationsState.value?.copy(
                     locations = locations as ArrayList<Location>,
                 )
+                allLocationsLiveData.value = locations
             }
             .launchIn(viewModelScope)
+    }
+
+    fun showLocationsWithText(text: String) {
+        val locations = findLocationsWithText(text, allLocationsLiveData.value ?: emptyList())
+
+        _locationsState.value = LocationState(locations)
     }
 
 }

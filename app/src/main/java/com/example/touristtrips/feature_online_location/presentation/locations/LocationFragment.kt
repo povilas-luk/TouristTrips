@@ -81,7 +81,7 @@ class LocationFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return if (item.itemId == R.id.menuMap) {
-            //findNavController().navigate(MyLocationFragmentDirections.actionLocationFragmentToAddLocationFragment(locationId))
+            findNavController().navigate(LocationFragmentDirections.actionLocationFragmentToLocationMapsFragment(locationId = locationId))
             true
         } else if (item.itemId == R.id.menuSave) {
             saveCurrentLocation()

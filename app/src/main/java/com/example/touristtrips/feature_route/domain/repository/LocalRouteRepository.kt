@@ -1,7 +1,6 @@
 package com.example.touristtrips.feature_route.domain.repository
 
-import com.example.touristtrips.core.local_data.local_data_source.RouteWithLocations
-import com.example.touristtrips.feature_location.domain.model.Location
+import com.example.touristtrips.core.data.local_data.local_data_source.RouteWithLocations
 import com.example.touristtrips.feature_route.domain.model.Route
 import kotlinx.coroutines.flow.Flow
 

@@ -1,10 +1,13 @@
 package com.example.touristtrips.feature_route.presentation.routes_epoxy
 
+import android.text.TextWatcher
 import com.airbnb.epoxy.EpoxyController
-import com.example.touristtrips.feature_route.presentation.all_routes_list.RoutesState
+import com.example.touristtrips.core.Epoxy.model.SearchHeaderEpoxyModel
+import com.example.touristtrips.core.presentation.routes.route.RoutesState
 
 class RoutesEpoxyController(
-    val itemSelected: (String) -> Unit
+    val itemSelected: (String) -> Unit,
+    private val textWatcher: TextWatcher
 ): EpoxyController() {
     var routesState: RoutesState = RoutesState()
     set(value) {
@@ -13,6 +16,8 @@ class RoutesEpoxyController(
     }
 
     override fun buildModels() {
+        SearchHeaderEpoxyModel(textWatcher).id("search").addTo(this)
+
         routesState.routes.forEach { route ->
             RoutesEpoxyModel(route, itemSelected).id(route.routeId).addTo(this)
         }

@@ -6,6 +6,7 @@ import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.touristtrips.R
 import com.example.touristtrips.databinding.FragmentRouteBinding
@@ -99,7 +100,7 @@ class RouteFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return if (item.itemId == R.id.menuMap) {
-            //findNavController().navigate(MyRouteFragmentDirections.actionRouteFragmentToAddEditRouteFragment(routeId))
+            findNavController().navigate(RouteFragmentDirections.actionRouteFragmentToRouteMapsFragment2(routeId = routeId))
             true
         } else if (item.itemId == R.id.menuSave) {
             saveCurrentRoute()
