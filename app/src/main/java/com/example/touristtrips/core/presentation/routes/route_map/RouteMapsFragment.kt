@@ -1,14 +1,23 @@
 package com.example.touristtrips.core.presentation.routes.route_map
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.content.pm.PackageManager
+import android.location.Geocoder
+import android.os.Build
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.touristtrips.R
+import com.example.touristtrips.core.util.requestFineLocationPermission
 import com.example.touristtrips.databinding.FragmentRouteMapsBinding
 import com.example.touristtrips.feature_location.domain.model.Location
 import com.example.touristtrips.feature_online_route.presentation.routes.RoutesViewModel
@@ -38,35 +47,45 @@ class RouteMapsFragment : Fragment() {
     }
 
     lateinit var map: GoogleMap
+    val requestCode = 1;
 
     private val routeMapsViewModel: RouteMapsViewModel by viewModels()
 
-
     override fun onResume() {
         super.onResume()
-        if (myRouteId != null) {
+        /*if (myRouteId != null) {
             myRoutesFragment()
         } else if (routeId != null) {
             routesFragment()
-        }
+        }*/
     }
 
-    private lateinit var locationsList: List<Location>
+    private var locationsList: List<Location> = emptyList()
+    private lateinit var updatedLocationsList: ArrayList<Location>
 
     private val callback = OnMapReadyCallback { googleMap ->
         this.map = googleMap
 
-        if (!locationsList.isNullOrEmpty()) {
-            val firstLocation =
-                LatLng(locationsList[0].latitude.toDouble(), locationsList[0].longitude.toDouble())
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(firstLocation, 12F))
+        updatedLocationsList = ArrayList()
 
-            locationsList.forEach { location ->
-                val latLng = LatLng(location.latitude.toDouble(), location.longitude.toDouble())
-                googleMap.addMarker(MarkerOptions().position(latLng).title(location.title))
+        if (!locationsList.isNullOrEmpty()) {
+
+            locationsList.forEachIndexed {index, location ->
+                val latLng: LatLng? = if (location.location_search.isNotEmpty()) {
+                    searchGeoCoder(location.location_search)
+                } else {
+                    LatLng(location.latitude.toDouble(), location.longitude.toDouble())
+                }
+                if (latLng != null) {
+                    googleMap.addMarker(MarkerOptions().position(latLng).title(location.title))
+                    addToUpdatedLocations(latLng)
+                    if (index == 0) googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10F))
+                } else {
+                    Toast.makeText(context, "Location \"${location.title}\" data not found!", Toast.LENGTH_SHORT).show()
+                }
             }
 
-            routeMapsViewModel.getDirectionsPolylines(locationsList)
+            routeMapsViewModel.getDirectionsPolylines(updatedLocationsList)
 
             routeMapsViewModel.directionsPolylines.observe(viewLifecycleOwner) { polylines ->
                 polylines.forEach { polyline ->
@@ -74,7 +93,23 @@ class RouteMapsFragment : Fragment() {
                 }
             }
         }
+        enableFineLocation()
+    }
 
+    private fun addToUpdatedLocations(latLng: LatLng) {
+        updatedLocationsList.add(Location(
+            latitude = latLng.latitude.toString(),
+            longitude = latLng.longitude.toString(),
+        ))
+    }
+
+    private fun searchGeoCoder(search: String): LatLng? {
+        val listGeoCoder = Geocoder(context).getFromLocationName(search, 1)
+        return if (listGeoCoder.isNotEmpty()) {
+            LatLng(listGeoCoder[0].latitude, listGeoCoder[0].longitude)
+        } else {
+            null
+        }
     }
 
     override fun onCreateView(
@@ -88,7 +123,11 @@ class RouteMapsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        if (myRouteId != null) {
+            myRoutesFragment()
+        } else if (routeId != null) {
+            routesFragment()
+        }
     }
 
     private fun mapReady(){
@@ -112,14 +151,49 @@ class RouteMapsFragment : Fragment() {
 
         routesViewModel.getRouteWithLocationsId(routeId!!)
         routesViewModel.routeWithLocationsId.observe(viewLifecycleOwner) { routeWithLocationsId ->
-            routesViewModel.getRouteLocations()
+            if (locationsList.isNullOrEmpty()) {
+                routesViewModel.getRouteLocations()
+            }
         }
 
         routesViewModel.routeLocations.observe(viewLifecycleOwner) { locationState ->
-            locationsList = locationState.locations
+            if (locationsList.isNullOrEmpty()) {
+                locationsList = locationState.locations
+            }
             mapReady()
         }
+    }
 
+    private fun enableFineLocation() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(requireContext(),
+                    Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+                map.isMyLocationEnabled = true
+            } else {
+                requestFineLocationPermission(requireActivity(), requestCode)
+            }
+        }
+        else {
+            map.isMyLocationEnabled= true
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        when (requestCode) {
+            1 -> {
+                if (grantResults.isNotEmpty() && grantResults[0] ==
+                    PackageManager.PERMISSION_GRANTED) {
+                    if (ContextCompat.checkSelfPermission(requireContext(),
+                            Manifest.permission.ACCESS_FINE_LOCATION)
+                        == PackageManager.PERMISSION_GRANTED) {
+                        map.isMyLocationEnabled = true
+                    }
+                }
+                return
+            }
+        }
     }
 
     override fun onDestroyView() {

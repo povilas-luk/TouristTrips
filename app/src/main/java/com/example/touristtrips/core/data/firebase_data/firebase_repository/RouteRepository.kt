@@ -64,7 +64,7 @@ class RouteRepository {
                 val locationsId: List<String> = snapshot.child("locationsId").children.map { dataSnapshot ->
                     dataSnapshot.getValue<String>()!!
                 }
-                liveData.postValue(RouteLocationsState(route, locationsId))
+                liveData.value = RouteLocationsState(route, locationsId)
             }
 
             override fun onCancelled(error: DatabaseError) {

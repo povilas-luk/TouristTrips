@@ -1,5 +1,6 @@
 package com.example.touristtrips.feature_online_route.presentation.routes
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.touristtrips.core.data.firebase_data.firebase_repository.RouteRepository
@@ -18,13 +19,13 @@ class RoutesViewModel : ViewModel() {
     private val repository = RouteRepository()
 
     private val _routesState = MutableLiveData<RoutesState>()
-    val routesState: MutableLiveData<RoutesState> = _routesState
+    val routesState: LiveData<RoutesState> = _routesState
 
     private val _routeWithLocationsId = MutableLiveData<RouteLocationsState>()
-    val routeWithLocationsId: MutableLiveData<RouteLocationsState> = _routeWithLocationsId
+    val routeWithLocationsId: LiveData<RouteLocationsState> = _routeWithLocationsId
 
     private val _routeLocations = MutableLiveData<LocationState>()
-    val routeLocations: MutableLiveData<LocationState> = _routeLocations
+    val routeLocations: LiveData<LocationState> = _routeLocations
 
     private var allRoutesLiveData: MutableLiveData<List<Route>>? = null
 

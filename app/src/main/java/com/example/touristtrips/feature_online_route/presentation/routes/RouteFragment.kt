@@ -46,6 +46,7 @@ class RouteFragment : Fragment() {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
         //addEditRoutesViewModel.getRouteWithLocations(routeId)
+        viewModel.getRouteWithLocationsId(routeId)
     }
 
     override fun onResume() {
@@ -68,7 +69,6 @@ class RouteFragment : Fragment() {
         val controller = RouteLocationsEpoxyController(::itemSelected, ::deleteItemSelected, deleteButtonIsActive = false)
         binding.routeLocationsEpoxyRecyclerView.setController(controller)
 
-        viewModel.getRouteWithLocationsId(routeId)
         viewModel.routeWithLocationsId.observe(viewLifecycleOwner) { routeWithLocationsId ->
             currentRoute = routeWithLocationsId.route
             displayRoute(currentRoute)

@@ -54,16 +54,17 @@ class LocationRepository {
                     val location = snapshot.getValue<Location>()!!
                     //Log.i("Snapshot", location.toString())
                     locations.add(location)
-                    liveData.value = LocationState(locations = locations)
+                    if (locationId.size == locations.size) {
+                        liveData.value = LocationState(locations)
+                    }
                 }
 
                 override fun onCancelled(error: DatabaseError) {
                     //Nothing
                 }
-
             })
+            //liveData.value = LocationState(locations = locations)
         }
-        //liveData.value = LocationState(locations)
     }
 
 }

@@ -7,8 +7,10 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.touristtrips.R
 import com.example.touristtrips.databinding.FragmentLocationsBinding
 import com.example.touristtrips.feature_location.presentation.location_epoxy_model.LocationsEpoxyController
+import com.example.touristtrips.feature_location.presentation.locations.MyLocationsFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -64,8 +66,8 @@ class LocationsFragment : Fragment() {
         override fun afterTextChanged(p0: Editable?) {
             // nothing
         }
-
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

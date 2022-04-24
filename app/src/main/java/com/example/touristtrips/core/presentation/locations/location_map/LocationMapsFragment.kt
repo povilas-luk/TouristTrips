@@ -1,5 +1,9 @@
 package com.example.touristtrips.core.presentation.locations.location_map
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.location.Geocoder
+import android.os.Build
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
@@ -7,10 +11,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.example.touristtrips.R
+import com.example.touristtrips.core.util.requestFineLocationPermission
 import com.example.touristtrips.databinding.FragmentLocationMapsBinding
 import com.example.touristtrips.feature_location.domain.model.Location
 import com.example.touristtrips.feature_location.presentation.locations.AddEditLocationViewModel
@@ -44,7 +51,9 @@ class LocationMapsFragment : Fragment() {
 
     lateinit var map: GoogleMap
 
-    private lateinit var currentLocation: Location
+    private val requestCode = 2;
+
+    private var currentLocation: Location? = null
 
     //private val addEditRoutesViewModel: AddEditRouteViewModel by viewModels()
 
@@ -74,34 +83,45 @@ class LocationMapsFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        if (myLocationId != null) {
+        /*if (myLocationId != null) {
             myLocationsFragment()
         } else if (locationId != null) {
             locationsFragment()
-        }
+        }*/
     }
 
     //private lateinit var locationsList: List<Location>
 
     private val callback = OnMapReadyCallback { googleMap ->
         this.map = googleMap
-        /**
-         * Manipulates the map once available.
-         * This callback is triggered when the map is ready to be used.
-         * This is where we can add markers or lines, add listeners or move the camera.
-         * In this case, we just add a marker near Sydney, Australia.
-         * If Google Play services is not installed on the device, the user will be prompted to
-         * install it inside the SupportMapFragment. This method will only be triggered once the
-         * user has installed Google Play services and returned to the app.
-         */
+
+        enableMyLocation()
 
         if (currentLocation != null) {
-            val location = LatLng(currentLocation.latitude.toDouble(), currentLocation.longitude.toDouble())
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 12F))
-            googleMap.addMarker(MarkerOptions().position(location).title(currentLocation.title))
+            val latLng: LatLng? = if (currentLocation!!.location_search.isNotEmpty()) {
+                searchGeoCoder(currentLocation!!.location_search)
+            } else {
+                LatLng(currentLocation!!.latitude.toDouble(), currentLocation!!.longitude.toDouble())
+            }
+            if (latLng != null) {
+                googleMap.addMarker(MarkerOptions().position(latLng).title(currentLocation!!.title))
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10F))
+            } else {
+                Toast.makeText(context, "Location \"${currentLocation!!.title}\" data not found!", Toast.LENGTH_SHORT).show()
+            }
         }
 
     }
+
+    private fun searchGeoCoder(search: String): LatLng? {
+        val listGeoCoder = Geocoder(context).getFromLocationName(search, 1)
+        return if (listGeoCoder.isNotEmpty()) {
+            LatLng(listGeoCoder[0].latitude, listGeoCoder[0].longitude)
+        } else {
+            null
+        }
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -115,8 +135,11 @@ class LocationMapsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
+        if (myLocationId != null) {
+            myLocationsFragment()
+        } else if (locationId != null) {
+            locationsFragment()
+        }
     }
 
     private fun mapReady(){
@@ -134,7 +157,9 @@ class LocationMapsFragment : Fragment() {
                 when (event) {
                     is AddEditLocationViewModel.LocationEvent.Success -> {
                         Toast.makeText(context, event.operation.toString(), Toast.LENGTH_SHORT).show()
-                        currentLocation = event.location
+                        if (currentLocation == null) {
+                            currentLocation = event.location
+                        }
                         mapReady()
                     }
                     is AddEditLocationViewModel.LocationEvent.Failure -> {
@@ -152,10 +177,44 @@ class LocationMapsFragment : Fragment() {
         locationsViewModel.getLocation(locationId!!)
 
         locationsViewModel.locationsState.observe(viewLifecycleOwner) { locationState ->
-            currentLocation = locationState.location
+            if (currentLocation == null) {
+                currentLocation = locationState.location
+            }
             mapReady()
         }
 
+    }
+
+    private fun enableMyLocation() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(requireContext(),
+                    Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+                map.isMyLocationEnabled = true
+            } else {
+                requestFineLocationPermission(requireActivity(), requestCode)
+            }
+        }
+        else {
+            map.isMyLocationEnabled = true
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        when (requestCode) {
+            1 -> {
+                if (grantResults.isNotEmpty() && grantResults[0] ==
+                    PackageManager.PERMISSION_GRANTED) {
+                    if (ContextCompat.checkSelfPermission(requireContext(),
+                            Manifest.permission.ACCESS_FINE_LOCATION)
+                        == PackageManager.PERMISSION_GRANTED) {
+                        map.isMyLocationEnabled = true
+                    }
+                }
+                return
+            }
+        }
     }
 
     /*private fun getLocationPermission() {

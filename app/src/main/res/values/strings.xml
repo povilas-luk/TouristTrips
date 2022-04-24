@@ -39,6 +39,8 @@
     <string name="location_search">Location Search</string>
     <string name="time_to_visit">Time To Visit</string>
     <string name="price">Price</string>
+    <string name="apply">Apply</string>
+    <string name="sort">Sort</string>
 
 
 </resources>
