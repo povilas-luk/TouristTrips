@@ -1,5 +1,10 @@
-package com.example.touristtrips.core.util.location
+package com.example.touristtrips.core.domain.util.location
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import com.example.touristtrips.core.domain.util.SortOrder
+import com.example.touristtrips.core.domain.util.SortType
+import com.example.touristtrips.core.presentation.locations.location.LocationState
 import com.example.touristtrips.feature_location.domain.model.InvalidLocationException
 import com.example.touristtrips.feature_location.domain.model.Location
 
@@ -12,6 +17,27 @@ fun findLocationsWithText(text: String, locations: List<Location>): ArrayList<Lo
         }
     }
     return foundLocations
+}
+
+fun sortLocations(sortOrder: SortOrder, locations: ArrayList<Location>): List<Location> {
+    return when (sortOrder.sortType) {
+        is SortType.Descending -> {
+            when (sortOrder) {
+                is SortOrder.City -> locations.sortedByDescending { it.city.lowercase() }
+                is SortOrder.Type -> locations.sortedByDescending { it.type.lowercase() }
+                is SortOrder.TimeToVisit -> locations.sortedByDescending { it.months_to_visit.lowercase() }
+                is SortOrder.Title -> locations.sortedByDescending { it.title.lowercase() }
+            }
+        }
+        is SortType.Ascending -> {
+            when (sortOrder) {
+                is SortOrder.City -> locations.sortedBy { it.city.lowercase() }
+                is SortOrder.Type -> locations.sortedBy { it.type.lowercase() }
+                is SortOrder.TimeToVisit -> locations.sortedBy { it.months_to_visit.lowercase() }
+                is SortOrder.Title -> locations.sortedBy { it.title.lowercase() }
+            }
+        }
+    }
 }
 
 fun checkLocationFormatErrors(location: Location) {

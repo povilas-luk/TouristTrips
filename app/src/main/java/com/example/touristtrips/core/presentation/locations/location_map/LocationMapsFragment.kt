@@ -17,7 +17,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.example.touristtrips.R
-import com.example.touristtrips.core.util.requestFineLocationPermission
+import com.example.touristtrips.core.domain.util.requestFineLocationPermission
 import com.example.touristtrips.databinding.FragmentLocationMapsBinding
 import com.example.touristtrips.feature_location.domain.model.Location
 import com.example.touristtrips.feature_location.presentation.locations.AddEditLocationViewModel

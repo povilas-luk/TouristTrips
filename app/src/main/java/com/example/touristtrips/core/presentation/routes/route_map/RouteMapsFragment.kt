@@ -17,7 +17,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.touristtrips.R
-import com.example.touristtrips.core.util.requestFineLocationPermission
+import com.example.touristtrips.core.domain.util.requestFineLocationPermission
 import com.example.touristtrips.databinding.FragmentRouteMapsBinding
 import com.example.touristtrips.feature_location.domain.model.Location
 import com.example.touristtrips.feature_online_route.presentation.routes.RoutesViewModel

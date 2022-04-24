@@ -10,7 +10,7 @@ import com.example.touristtrips.feature_online_route.domain.use_case.GetRouteLoc
 import com.example.touristtrips.feature_online_route.domain.use_case.GetRouteWithLocationsId
 
 import com.example.touristtrips.core.presentation.routes.route.RoutesState
-import com.example.touristtrips.core.util.findRoutesWithText
+import com.example.touristtrips.core.domain.util.findRoutesWithText
 import com.example.touristtrips.feature_route.domain.model.Route
 
 //@HiltViewModel

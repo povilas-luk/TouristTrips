@@ -9,7 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.touristtrips.R
-import com.example.touristtrips.core.util.Operation
+import com.example.touristtrips.core.domain.util.Operation
 import com.example.touristtrips.databinding.FragmentAddEditRouteBinding
 import com.example.touristtrips.feature_route.domain.model.Route
 import dagger.hilt.android.AndroidEntryPoint

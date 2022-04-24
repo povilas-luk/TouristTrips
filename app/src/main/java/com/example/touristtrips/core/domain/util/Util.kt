@@ -1,4 +1,4 @@
-package com.example.touristtrips.core.util
+package com.example.touristtrips.core.domain.util
 
 import com.example.touristtrips.feature_location.domain.model.Location
 import com.example.touristtrips.feature_route.domain.model.Route

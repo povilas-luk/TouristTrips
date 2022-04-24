@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.touristtrips.core.presentation.locations.location.LocationState
-import com.example.touristtrips.core.util.location.findLocationsWithText
+import com.example.touristtrips.core.domain.util.location.findLocationsWithText
 import com.example.touristtrips.feature_location.domain.model.Location
 import com.example.touristtrips.feature_location.domain.use_case.MyLocationUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel

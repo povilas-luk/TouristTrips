@@ -5,8 +5,10 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import com.example.touristtrips.R
 import com.example.touristtrips.databinding.FragmentLocationsBinding
 import com.example.touristtrips.feature_location.presentation.location_epoxy_model.LocationsEpoxyController
@@ -18,7 +20,7 @@ class LocationsFragment : Fragment() {
     private var _binding: FragmentLocationsBinding? = null
     private val binding get() = _binding!!
 
-    private val locationsViewModel: LocationsViewModel by viewModels()
+    private val locationsViewModel: LocationsViewModel by navGraphViewModels(R.id.locations_graph)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +69,18 @@ class LocationsFragment : Fragment() {
             // nothing
         }
     }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_sort, menu)
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return if (item.itemId == R.id.menuSort) {
+        findNavController().navigate(LocationsFragmentDirections.actionLocationsFragmentToSortOrderBottomSheetDialogFragment())
+            true
+        } else {
+            super.onOptionsItemSelected(item)
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

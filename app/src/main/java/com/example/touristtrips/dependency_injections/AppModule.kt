@@ -2,7 +2,7 @@ package com.example.touristtrips.dependency_injections
 
 import android.app.Application
 import androidx.room.Room
-import com.example.touristtrips.core.util.Constants
+import com.example.touristtrips.core.domain.util.Constants
 import com.example.touristtrips.core.data.local_data.local_data_source.LocalDatabase
 import com.example.touristtrips.core.data.local_data.local_repository.LocalLocationRepositoryImpl
 import com.example.touristtrips.core.data.local_data.local_repository.LocalRouteRepositoryImpl

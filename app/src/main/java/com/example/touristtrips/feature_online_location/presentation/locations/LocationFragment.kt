@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.navGraphViewModels
 import com.example.touristtrips.R
 import com.example.touristtrips.databinding.FragmentLocationBinding
 import com.example.touristtrips.feature_location.domain.model.Location
@@ -22,7 +23,7 @@ class LocationFragment : Fragment() {
     private var _binding: FragmentLocationBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: LocationsViewModel by viewModels()
+    private val viewModel: LocationsViewModel by navGraphViewModels(R.id.locations_graph)
 
     private val safeArgs: MyLocationFragmentArgs by navArgs()
     private val locationId: String by lazy {

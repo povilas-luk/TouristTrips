@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.touristtrips.core.util.Operation
+import com.example.touristtrips.core.domain.util.Operation
 import com.example.touristtrips.databinding.FragmentMyLocationsBinding
 import com.example.touristtrips.feature_location.presentation.location_epoxy_model.LocationsEpoxyController
 import com.example.touristtrips.feature_location.presentation.locations.MyLocationsViewModel

@@ -1,4 +1,4 @@
-package com.example.touristtrips.core.util
+package com.example.touristtrips.core.domain.util
 
 import android.Manifest
 import android.app.Activity

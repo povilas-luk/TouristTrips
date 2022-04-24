@@ -1,4 +1,4 @@
-package com.example.touristtrips.core.util.route
+package com.example.touristtrips.core.domain.util.route
 
 import com.example.touristtrips.feature_route.domain.model.InvalidRouteException
 import com.example.touristtrips.feature_route.domain.model.Route

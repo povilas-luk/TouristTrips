@@ -17,7 +17,7 @@
         android:id="@+id/menu_online"
         android:checkableBehavior="single">
         <item
-            android:id="@+id/locationsFragment"
+            android:id="@+id/locations_graph"
             android:icon="@drawable/ic_baseline_location_on_24"
             android:title="@string/locationsFragment_name" />
         <item

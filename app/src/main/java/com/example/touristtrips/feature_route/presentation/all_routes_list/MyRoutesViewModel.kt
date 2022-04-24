@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.touristtrips.core.presentation.routes.route.RoutesState
-import com.example.touristtrips.core.util.findRoutesWithText
+import com.example.touristtrips.core.domain.util.findRoutesWithText
 import com.example.touristtrips.feature_route.domain.model.Route
 import com.example.touristtrips.feature_route.domain.use_case.RoutesUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel

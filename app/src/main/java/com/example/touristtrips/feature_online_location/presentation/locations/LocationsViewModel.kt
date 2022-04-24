@@ -3,11 +3,15 @@ package com.example.touristtrips.feature_online_location.presentation.locations
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.touristtrips.core.domain.util.SortOrder
 import com.example.touristtrips.core.presentation.locations.location.LocationState
-import com.example.touristtrips.core.util.location.findLocationsWithText
+import com.example.touristtrips.core.domain.util.location.findLocationsWithText
+import com.example.touristtrips.core.domain.util.location.sortLocations
 import com.example.touristtrips.feature_location.domain.model.Location
 import com.example.touristtrips.feature_online_location.domain.use_case.GetLocation
 import com.example.touristtrips.feature_online_location.domain.use_case.GetLocations
+import java.util.*
+import kotlin.collections.ArrayList
 
 //@HiltViewModel
 class LocationsViewModel: ViewModel() {
@@ -35,6 +39,12 @@ class LocationsViewModel: ViewModel() {
         val locations = findLocationsWithText(text, allLocationsLiveData?.value ?: emptyList())
 
         _locationsState.value = LocationState(locations)
+    }
+
+    fun sortLocations(sortOrder: SortOrder) {
+        val locations = sortLocations(sortOrder, locationsState.value?.locations ?: ArrayList())
+
+        _locationsState.value = LocationState(ArrayList(locations), sortOrder = sortOrder)
     }
 
 }
