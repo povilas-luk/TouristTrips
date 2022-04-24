@@ -94,6 +94,8 @@ class AddEditRouteFragment : Fragment() {
         binding.longitudeEditText.setText(route.longitude)
         binding.cityEditText.setText(route.city)*/
         binding.imageUrlEditText.setText(route.imageUrl)
+        binding.cityEditText.setText(route.city)
+        binding.monthsToVisitEditText.setText(route.months_to_visit)
 
         binding.saveButton.text = getString(R.string.update)
     }
@@ -106,6 +108,8 @@ class AddEditRouteFragment : Fragment() {
                 description = binding.descriptionEditText.text.toString(),
                 createdAt = System.currentTimeMillis(),
                 imageUrl = binding.imageUrlEditText.text.toString(),
+                city = binding.cityEditText.text.toString(),
+                months_to_visit = binding.monthsToVisitEditText.text.toString(),
             )
         }
         return Route(
@@ -115,9 +119,18 @@ class AddEditRouteFragment : Fragment() {
             description = binding.descriptionEditText.text.toString(),
             createdAt = System.currentTimeMillis(),
             imageUrl = binding.imageUrlEditText.text.toString(),
-            months_to_visit = "March",
-            price = "10"
+            city = binding.cityEditText.text.toString(),
+            months_to_visit = binding.monthsToVisitEditText.text.toString(),
+            price = getAllLocationsPrice()
         )
+    }
+
+    private fun getAllLocationsPrice(): Float {
+        var price = 0F
+        viewModel.locationsListLiveData.value?.forEach { location ->
+            price += location.price
+        }
+        return price
     }
 
     /*override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

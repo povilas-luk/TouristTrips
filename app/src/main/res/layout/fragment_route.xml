@@ -108,6 +108,35 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" />
 
+        <TextView
+            android:id="@+id/priceLabelTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:text="@string/price"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/route_locations_epoxy_recycler_view" />
+
+        <TextView
+            android:id="@+id/priceTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/priceLabelTextView"
+            app:layout_constraintStart_toEndOf="@+id/priceLabelTextView"
+            app:layout_constraintTop_toTopOf="@+id/priceLabelTextView"
+            tools:text="10" />
+
         <ImageView
             android:id="@+id/locationHeaderImageView"
             android:layout_width="wrap_content"
@@ -124,12 +153,12 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="horizontal"
+            android:paddingBottom="0dp"
             android:layout_marginTop="8dp"
-            android:paddingBottom="20dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/locationHeaderImageView" />
+            app:layout_constraintTop_toBottomOf="@+id/locationHeaderTextView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

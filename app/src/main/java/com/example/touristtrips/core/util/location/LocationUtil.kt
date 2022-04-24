@@ -50,12 +50,12 @@ fun checkLocationFormatErrors(location: Location) {
     if (location.months_to_visit.isBlank()) {
         throw InvalidLocationException("Time to visit of the location can't be empty.")
     }
-    if (location.price.isBlank()) {
+    /*if (location.price.isBlank()) {
         throw InvalidLocationException("Price of the location can't be empty.")
     }
     if (location.price.toDoubleOrNull() == null) {
         throw InvalidLocationException("Price of the location must be a number.")
-    }
+    }*/
     /*if (location.imageUrl.isBlank()) {
         throw InvalidLocationException("Image url of the location can't be empty.")
     }

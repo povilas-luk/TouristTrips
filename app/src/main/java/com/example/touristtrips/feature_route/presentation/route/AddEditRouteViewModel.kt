@@ -103,7 +103,7 @@ class AddEditRouteViewModel @Inject constructor(
                             event.routeId,
                             event.locationId
                         )
-                        _eventFlow.emit(RouteEvent.Success(Operation.ADDED, Route()))
+                        _eventFlow.emit(RouteEvent.Success(Operation.RL_ADDED, Route()))
                     } catch (e: InvalidRouteException) {
                         _eventFlow.emit(
                             RouteEvent.Failure(
@@ -120,7 +120,7 @@ class AddEditRouteViewModel @Inject constructor(
                             event.routeId,
                             event.locationId
                         )
-                        _eventFlow.emit(RouteEvent.Success(Operation.DELETED, Route()))
+                        _eventFlow.emit(RouteEvent.Success(Operation.RL_DELETED, Route()))
                     } catch (e: InvalidRouteException) {
                         _eventFlow.emit(
                             RouteEvent.Failure(

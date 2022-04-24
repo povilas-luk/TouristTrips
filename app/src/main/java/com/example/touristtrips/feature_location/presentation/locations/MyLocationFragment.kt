@@ -82,7 +82,7 @@ class MyLocationFragment : Fragment() {
         binding.cityTextView.text = location.city
         binding.timeToVisitTextView.text = location.months_to_visit
         binding.descriptionTextView.text = location.description
-        binding.priceTextView.text = location.price
+        binding.priceTextView.text = location.price.toString()
         Picasso.get().load(Uri.parse(location.imageUrl)).placeholder(R.drawable.bruno_soares_284974).into(binding.headerImageView)
     }
 

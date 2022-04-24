@@ -97,7 +97,7 @@ class AddEditLocationFragment : Fragment() {
         binding.imageUrlEditText.setText(location.imageUrl)
         binding.locationSearchEditText.setText(location.location_search)
         binding.monthsToVisitEditText.setText(location.months_to_visit)
-        binding.priceEditText.setText(location.price)
+        binding.priceEditText.setText(location.price.toString())
 
         binding.saveButton.text = getString(R.string.update)
     }
@@ -114,7 +114,7 @@ class AddEditLocationFragment : Fragment() {
                 createdAt = System.currentTimeMillis(),
                 imageUrl = binding.imageUrlEditText.text.toString(),
                 months_to_visit = binding.monthsToVisitEditText.text.toString(),
-                price = binding.priceEditText.text.toString(),
+                price = binding.priceEditText.text.toString().toFloatOrNull() ?: 0.0F,
                 location_search = binding.locationSearchEditText.text.toString()
             )
         }
@@ -129,7 +129,7 @@ class AddEditLocationFragment : Fragment() {
             createdAt = System.currentTimeMillis(),
             imageUrl = binding.imageUrlEditText.text.toString(),
             months_to_visit = binding.monthsToVisitEditText.text.toString(),
-            price = binding.priceEditText.text.toString(),
+            price = binding.priceEditText.text.toString().toFloatOrNull() ?: 0.0F,
             location_search = binding.locationSearchEditText.text.toString()
         )
     }

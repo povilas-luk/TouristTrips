@@ -4,6 +4,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -64,7 +65,7 @@ class RouteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val controller = RouteLocationsEpoxyController(::itemSelected, ::deleteItemSelected)
+        val controller = RouteLocationsEpoxyController(::itemSelected, ::deleteItemSelected, deleteButtonIsActive = false)
         binding.routeLocationsEpoxyRecyclerView.setController(controller)
 
         viewModel.getRouteWithLocationsId(routeId)
@@ -91,7 +92,10 @@ class RouteFragment : Fragment() {
         binding.cityTextView.text = route.city
         binding.timeToVisitTextView.text = route.months_to_visit
         binding.descriptionTextView.text = route.description
+        binding.priceTextView.text = route.price.toString()
         Picasso.get().load(Uri.parse(route.imageUrl)).into(binding.headerImageView)
+
+        binding.locationHeaderImageView.isVisible = false
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

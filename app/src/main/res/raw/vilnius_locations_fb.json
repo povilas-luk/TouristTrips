@@ -1,0 +1,64 @@
+{
+	"locations": {
+		"687a58ab-1d73-4d4a-beae-68516b948fd7": {	
+			"locationId": "687a58ab-1d73-4d4a-beae-68516b948fd7",
+			"type": "Architektūra",
+			"title": "Lukiškių kalėjimas",
+			"description": "Lukiškių kalėjimas buvo vienas moderniausių visoje Rusų imperijoje, jame kaliniai atliko bausmę, dirbo, meldėsi ir gavo sveikatos priežiūros paslaugas. Nuteistieji čia buvo kalinami daugiau nei šimtmetį – per abu Pasaulinius karus, sovietmečiu ir Lietuvai atgavus nepriklausomybę. Paskutiniai kaliniai iš šio kalėjimo buvo iškelti tik 2019 metais. Įdomu tai, kad Lukiškių kalėjimas iki šiol išsaugojo originalius interjero ir eksterjero elementus – plyteles ir dekoracijas, tad ekskursijos metu atkreipkite dėmesį į šį šimtmečio paveldą.\n\nŠiandien kalėjimas įgavo naują dvasią ir kviečia lankytojus atrasti šią paslaptingą teritoriją bei pajusti jos išskirtinę atmosferą. Leiskitės į dienos ar nakties ekskursijas, pamatykite kalinių kameras, išgirskite įdomiausias istorijas ir būkite pasiruošę naujoms patirtims.",
+			"latitude": "54.69180559315594",
+			"longitude": "25.267835687452532",
+			"city": "Vilnius",
+			"createdAt": 1643219159778,
+			"imageUrl": "https://s1.15min.lt/images/photos/2019/03/14/big/lenta-kurioje-pareigunams-suteikiama-informacija-apie-kalinciuju-ypatybes-5c8a63303e0c8.jpg",
+			"months_to_visit": "Visus metus",
+			"price": 20,
+			"location_search": "Lukiškių kalėjimas"
+		},
+		"687a58ab-1d73-4d4a-beae-68516b948sr2": {
+			"locationId": "687a58ab-1d73-4d4a-beae-68516b948sr2",
+			"type": "Architektūra",
+			"title": "Gedimino pilies bokštas",
+			"description": "Gedimino pilies bokštas yra vienintelis išlikęs Aukštutinės pilies įtvirtinimo bokštas. Legenda byloja, kad didysis kunigaikštis susapnavo ant kalvos staugiantį Geležinį Vilką, pranašaujantį apie didį miestą. Pirma čia buvo pastatyta medinė pilis, vėliau 1409 m. Vytautas Didysis pastatė mūrinę pilį.\n\nKai pilis neteko savo paskirties ir apgriuvo, Gedimino bokštas buvo naudojamas įvairiai - 1838 m. čia įsikūrė pirmasis telegrafas Vilniuje. Prieš šimtmetį bokšto viršuje pirmą kartą buvo iškelta Lietuvos vėliava. Vilniaus pilies muziejus buvo atidarytas 1960 m., o 1968 m. jis tapo Lietuvos nacionalinio muziejaus padaliniu.",
+			"latitude": "54.686803105231135",
+			"longitude": "25.290648204284608",
+			"city": "Vilnius",
+			"createdAt": 1643219159778,
+			"imageUrl": "https://www.lithuania.travel/ckeditor/jsplus_image_editor/files/2b8cba3203c3f7ccb00ac7a95fbecebc817bb8be.jpeg",
+			"months_to_visit": "Visus metus",
+			"price": 6,
+			"location_search": "Gedimino pilies bokštas"
+		},
+		"520a58ab-1d73-4d4a-beae-68516b948sr2": {
+			"locationId": "520a58ab-1d73-4d4a-beae-68516b948sr2",
+			"type": "Architektūra",
+			"title": "Aušros Vartai",
+			"description": "Aušros Vartai, kaip vienas iš Vilniaus miesto simbolių, pirmą kartą paminėti 1514 metais. Pradžioje šie vartai vadinti Medininkų vartais, nes pro juos vedė kelias į Medininkus. Gali būti, kad dabartinis pavadinimas kilęs nuo Aštriųjų vartų. Mat jie stovi miesto pakraštyje, kuris anuomet vadintas Aštriuoju. Kita vardo kilmės versija teigia, kad vartai yra Rytų pusėje, kur brėkšta Aušra. Be to, ir Mergelė Marija būdavo vadinama Aušros žvaigžde. Iš čia ir Aušros Vartai. XVII amžiuje prie Aušros Vartų buvo pastatyta atskira medinė koplyčia ir į ją perkeltas stebuklingasis švenčiausios Mergelės Marijos paveikslas. Po gaisro pastatyta jau mūrinė koplyčia. Dabartinę vėlyvojo klasicizmo išvaizdą koplyčia įgavo XIX amžiuje, po rekonstrukcijos.",
+			"latitude": "54.67431084312981",
+			"longitude": "25.289526835550728",
+			"city": "Vilnius",
+			"createdAt": 1643219159780,
+			"imageUrl": "https://www.tv3.lt/Uploads/UArticles/leadPhotos/2f/cb/f6/78/2fcbf678622fcf243a213b75142033aa.jpg",
+			"months_to_visit": "Visus metus",
+			"price": 0,
+			"location_search": "Aušros Vartai"
+		}
+	},
+	"routes": {
+		"203a58ab-1d73-4d4a-beae-20316b948fd7": {
+			"routeId": "203a58ab-1d73-4d4a-beae-20316b948fd7",
+			"type": "Architektūra",
+			"title": "Vilniuje",
+			"description": "Nuo Gedimino pilies bokšto iki Lukiškių kalėjimo",
+			"city": "Vilnius",
+			"createdAt": 1643219159779,
+			"imageUrl": "https://i.dailymail.co.uk/1s/2020/03/07/10/25656692-0-image-a-11_1583576081117.jpg",
+			"months_to_visit": "Visus metus",
+			"price": 26,
+			"locationsId": [
+				"687a58ab-1d73-4d4a-beae-68516b948fd7",
+				"687a58ab-1d73-4d4a-beae-68516b948sr2",
+				"520a58ab-1d73-4d4a-beae-68516b948sr2"
+			]
+		}
+	}
+}

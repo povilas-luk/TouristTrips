@@ -1,6 +1,6 @@
 package com.example.touristtrips.feature_route.domain.use_case
 
-import com.example.touristtrips.feature_location.domain.model.InvalidLocationException
+import com.example.touristtrips.core.util.route.checkRouteFormatErrors
 import com.example.touristtrips.feature_route.domain.model.InvalidRouteException
 import com.example.touristtrips.feature_route.domain.model.Route
 import com.example.touristtrips.feature_route.domain.repository.LocalRouteRepository
@@ -11,19 +11,7 @@ class AddRoute(
 
     @Throws(InvalidRouteException::class)
     suspend operator fun invoke(route: Route) {
-        if (route.type.isBlank()) {
-            throw InvalidRouteException("The type of the location can't be empty.")
-        }
-        if (route.title.isBlank()) {
-            throw InvalidRouteException("The title of the location can't be empty.")
-        }
-        if (route.description.isBlank()) {
-            throw InvalidRouteException("The content of the location can't be empty.")
-        }
-        if (route.imageUrl.isBlank()) {
-            throw InvalidRouteException("The image of the location can't be empty.")
-        }
-
+        checkRouteFormatErrors(route)
         repositoryLocal.insertRoute(route)
     }
 }

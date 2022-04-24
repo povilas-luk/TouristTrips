@@ -4,14 +4,18 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.touristtrips.core.util.Operation
 import com.example.touristtrips.databinding.FragmentMyLocationsBinding
 import com.example.touristtrips.feature_location.presentation.location_epoxy_model.LocationsEpoxyController
 import com.example.touristtrips.feature_location.presentation.locations.MyLocationsViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
 class RouteLocationSelectionFragment : Fragment() {
@@ -43,6 +47,22 @@ class RouteLocationSelectionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        lifecycleScope.launchWhenCreated{
+            routesViewModel.eventFlow.collectLatest { event ->
+                when (event) {
+                    is AddEditRouteViewModel.RouteEvent.Success -> {
+                        Toast.makeText(context, "Route ${event.operation.displayName}", Toast.LENGTH_SHORT).show()
+                        if (event.operation == Operation.RL_ADDED) {
+                            findNavController().navigateUp()
+                        }
+                    }
+                    is AddEditRouteViewModel.RouteEvent.Failure -> {
+                        Toast.makeText(context, event.errorText, Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
+
         val controller = LocationsEpoxyController(::itemSelected, textWatcher)
         binding.epoxyRecyclerView.setController(controller)
 
@@ -54,7 +74,7 @@ class RouteLocationSelectionFragment : Fragment() {
     private fun itemSelected(id: String) {
         routesViewModel.onEvent(AddEditRouteViewModel.AddEditRouteEvent.AddLocation(routeId, id))
         //findNavController().navigate(RouteLocationSelectionFragmentDirections.actionRouteLocationSelectionFragmentToRouteFragment(routeId = routeId, locationToAddId = id))
-        findNavController().navigateUp()
+        //findNavController().navigateUp()
     }
 
     private val textWatcher: TextWatcher = object : TextWatcher {

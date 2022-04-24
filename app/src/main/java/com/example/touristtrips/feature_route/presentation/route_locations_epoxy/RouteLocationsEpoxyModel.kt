@@ -1,6 +1,7 @@
 package com.example.touristtrips.feature_route.presentation.route_locations_epoxy
 
 import android.net.Uri
+import androidx.core.view.isVisible
 import com.example.touristtrips.R
 import com.example.touristtrips.core.Epoxy.ViewBindingKotlinModel
 import com.example.touristtrips.databinding.ModelLocationItemBinding
@@ -11,7 +12,8 @@ import com.squareup.picasso.Picasso
 class RouteLocationsEpoxyModel(
     val location: Location,
     val itemSelected: (String) -> Unit,
-    val deleteItemSelected: (String) -> Unit
+    val deleteItemSelected: (String) -> Unit,
+    val deleteButtonIsActive: Boolean = true
 ) : ViewBindingKotlinModel<ModelRouteLocationItemBinding>(R.layout.model_route_location_item) {
 
     override fun ModelRouteLocationItemBinding.bind() {
@@ -25,8 +27,14 @@ class RouteLocationsEpoxyModel(
             itemSelected(location.locationId)
         }
 
-        deleteLocationImageView.setOnClickListener {
-            deleteItemSelected(location.locationId)
+        if (deleteButtonIsActive) {
+            deleteLocationImageView.isVisible = true
+            deleteLocationImageView.setOnClickListener {
+                deleteItemSelected(location.locationId)
+            }
+        } else {
+            deleteLocationImageView.isVisible = false
         }
+
     }
 }

@@ -9,7 +9,9 @@ enum class Operation(val displayName: String) {
     UPDATED("updated"),
     DELETED("deleted"),
     FOUND("found"),
-    ADDED("added")
+    ADDED("added"),
+    RL_DELETED("location deleted"),
+    RL_ADDED("location added")
 }
 
 fun convertLatLngToString(latLng: LatLng): String {

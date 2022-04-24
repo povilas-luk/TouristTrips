@@ -45,12 +45,12 @@ class MyRouteFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        //addEditRoutesViewModel.getRouteWithLocations(routeId)
+        addEditRoutesViewModel.getRouteWithLocations(routeId)
     }
 
     override fun onResume() {
         super.onResume()
-        addEditRoutesViewModel.getRouteWithLocations(routeId)
+        //addEditRoutesViewModel.getRouteWithLocations(routeId)
     }
 
     override fun onCreateView(
@@ -69,7 +69,7 @@ class MyRouteFragment : Fragment() {
             findNavController().navigate(MyRouteFragmentDirections.actionRouteFragmentToRouteLocationSelectionFragment(routeId))
         }
 
-        lifecycleScope.launchWhenCreated {
+        lifecycleScope.launchWhenStarted {
             addEditRoutesViewModel.eventFlow.collectLatest { event ->
                 when (event) {
                     is AddEditRouteViewModel.RouteEvent.Success -> {
@@ -80,7 +80,7 @@ class MyRouteFragment : Fragment() {
                             Toast.makeText(context, "Route ${event.operation.displayName}", Toast.LENGTH_SHORT).show()
                         }
                         if (event.operation == Operation.DELETED) {
-                            findNavController().popBackStack()
+                            findNavController().navigateUp()
                         }
 
                     }
@@ -96,6 +96,7 @@ class MyRouteFragment : Fragment() {
 
         addEditRoutesViewModel.locationsListLiveData.observe(viewLifecycleOwner) { locations ->
             controller.locationsList = locations
+            updatePrice()
         }
     }
 
@@ -113,7 +114,20 @@ class MyRouteFragment : Fragment() {
         binding.cityTextView.text = route.city
         binding.timeToVisitTextView.text = route.months_to_visit
         binding.descriptionTextView.text = route.description
+        binding.priceTextView.text = route.price.toString()
         Picasso.get().load(Uri.parse(route.imageUrl)).placeholder(R.drawable.bruno_soares_284974).into(binding.headerImageView)
+    }
+
+    private fun updatePrice() {
+        binding.priceTextView.text = getAllLocationsPrice().toString()
+    }
+
+    private fun getAllLocationsPrice(): Float {
+        var price = 0F
+        addEditRoutesViewModel.locationsListLiveData.value?.forEach { location ->
+            price += location.price
+        }
+        return price
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
