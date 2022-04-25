@@ -132,8 +132,11 @@
             android:name="routeId"
             app:argType="string" />
         <action
-            android:id="@+id/action_routeFragment_to_routeMapsFragment2"
+            android:id="@+id/action_routeFragment_to_routeMapsFragment"
             app:destination="@id/routeMapsFragment" />
+        <action
+            android:id="@+id/action_routeFragment_to_locationFragment"
+            app:destination="@id/locationFragment" />
     </fragment>
     <fragment
         android:id="@+id/locationMapsFragment"

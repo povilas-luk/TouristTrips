@@ -71,7 +71,9 @@ class RouteFragment : Fragment() {
 
     private fun deleteItemSelected(id: String) {}
 
-    private fun itemSelected(id: String) {}
+    private fun itemSelected(id: String) {
+        findNavController().navigate(RouteFragmentDirections.actionRouteFragmentToLocationFragment(id))
+    }
 
     private fun displayRoute(route: Route) {
         binding.titleTextVIew.text = route.title
@@ -91,7 +93,7 @@ class RouteFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return if (item.itemId == R.id.menuMap) {
-            findNavController().navigate(RouteFragmentDirections.actionRouteFragmentToRouteMapsFragment2(routeId = routeId))
+            findNavController().navigate(RouteFragmentDirections.actionRouteFragmentToRouteMapsFragment(routeId = routeId))
             true
         } else if (item.itemId == R.id.menuSave) {
             saveCurrentRoute()

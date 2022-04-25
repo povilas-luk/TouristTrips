@@ -34,10 +34,14 @@ class MyRouteFragment : Fragment() {
 
     private lateinit var currentRoute: Route
 
+    override fun onResume() {
+        super.onResume()
+        addEditRoutesViewModel.getRouteWithLocations(routeId)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        addEditRoutesViewModel.getRouteWithLocations(routeId)
     }
 
     override fun onCreateView(

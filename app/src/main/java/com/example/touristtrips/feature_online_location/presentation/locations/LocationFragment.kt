@@ -21,7 +21,7 @@ class LocationFragment : Fragment() {
     private var _binding: FragmentLocationBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: LocationsViewModel by navGraphViewModels(R.id.locations_graph)
+    private val viewModel: LocationsViewModel by viewModels()
 
     private val safeArgs: MyLocationFragmentArgs by navArgs()
     private val locationId: String by lazy {
