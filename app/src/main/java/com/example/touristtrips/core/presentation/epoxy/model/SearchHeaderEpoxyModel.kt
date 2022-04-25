@@ -1,8 +1,8 @@
-package com.example.touristtrips.core.Epoxy.model
+package com.example.touristtrips.core.presentation.epoxy.model
 
 import android.text.TextWatcher
 import com.example.touristtrips.R
-import com.example.touristtrips.core.Epoxy.ViewBindingKotlinModel
+import com.example.touristtrips.core.presentation.epoxy.ViewBindingKotlinModel
 import com.example.touristtrips.databinding.ModelSearchHeaderBinding
 
 data class SearchHeaderEpoxyModel(

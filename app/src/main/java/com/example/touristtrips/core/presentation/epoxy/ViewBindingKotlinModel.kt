@@ -1,4 +1,4 @@
-package com.example.touristtrips.core.Epoxy
+package com.example.touristtrips.core.presentation.epoxy
 
 import android.view.View
 import androidx.annotation.LayoutRes

@@ -1,5 +1,7 @@
-package com.example.touristtrips.core.retrofit_maps
+package com.example.touristtrips.core.data.retrofit_data.retrofit_repository
 
+import com.example.touristtrips.core.data.retrofit_data.DirectionsResponseResource
+import com.example.touristtrips.core.data.retrofit_data.retrofit_data_source.DirectionsApi
 import com.example.touristtrips.core.domain.util.Constants
 import com.example.touristtrips.core.domain.model.maps_directions_response_model.DirectionResponses
 import com.example.touristtrips.core.domain.repository.DirectionsRepository

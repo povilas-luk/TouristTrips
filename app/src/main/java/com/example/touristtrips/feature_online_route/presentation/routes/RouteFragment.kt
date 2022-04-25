@@ -3,8 +3,6 @@ package com.example.touristtrips.feature_online_route.presentation.routes
 import android.net.Uri
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -13,11 +11,9 @@ import com.example.touristtrips.R
 import com.example.touristtrips.databinding.FragmentRouteBinding
 import com.example.touristtrips.feature_location.domain.model.Location
 import com.example.touristtrips.feature_location.presentation.locations.AddEditLocationViewModel
-import com.example.touristtrips.feature_location.presentation.locations.MyLocationsViewModel
 import com.example.touristtrips.feature_route.domain.model.Route
 import com.example.touristtrips.feature_route.presentation.route.AddEditRouteViewModel
 import com.example.touristtrips.feature_route.presentation.route.MyRouteFragmentArgs
-import com.example.touristtrips.feature_route.presentation.route.MyRouteFragmentDirections
 import com.example.touristtrips.feature_route.presentation.route_locations_epoxy.RouteLocationsEpoxyController
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint

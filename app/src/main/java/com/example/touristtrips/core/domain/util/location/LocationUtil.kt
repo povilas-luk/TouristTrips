@@ -19,7 +19,7 @@ fun findLocationsWithText(text: String, locations: List<Location>): ArrayList<Lo
     return foundLocations
 }
 
-fun sortLocations(sortOrder: SortOrder, locations: ArrayList<Location>): List<Location> {
+fun sortLocations(sortOrder: SortOrder, locations: List<Location>): List<Location> {
     return when (sortOrder.sortType) {
         is SortType.Descending -> {
             when (sortOrder) {

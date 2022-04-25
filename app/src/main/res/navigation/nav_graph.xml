@@ -10,48 +10,6 @@
         android:label="@string/currentTripFragment_name"
         tools:layout="@layout/fragment_current_trip" />
     <fragment
-        android:id="@+id/routesFragment"
-        android:name="com.example.touristtrips.feature_online_route.presentation.routes.RoutesFragment"
-        android:label="@string/routesFragment_name"
-        tools:layout="@layout/fragment_routes" >
-        <action
-            android:id="@+id/action_routesFragment_to_routeFragment"
-            app:destination="@id/routeFragment" />
-        <action
-            android:id="@+id/action_routesFragment_to_sortOrderBottomSheetDialogFragment"
-            app:destination="@id/locations_graph" />
-    </fragment>
-    <fragment
-        android:id="@+id/myLocationsFragment"
-        android:name="com.example.touristtrips.feature_location.presentation.locations.MyLocationsFragment"
-        android:label="@string/myLocationsFragment_name"
-        tools:layout="@layout/fragment_my_locations" >
-        <action
-            android:id="@+id/action_myLocationsFragment_to_addLocationFragment"
-            app:destination="@id/addLocationFragment" />
-        <action
-            android:id="@+id/action_myLocationsFragment_to_locationFragment"
-            app:destination="@id/myLocationFragment" />
-        <action
-            android:id="@+id/action_myLocationsFragment_to_sortOrderBottomSheetDialogFragment"
-            app:destination="@id/locations_graph" />
-    </fragment>
-    <fragment
-        android:id="@+id/myRoutesFragment"
-        android:name="com.example.touristtrips.feature_route.presentation.all_routes_list.MyRoutesFragment"
-        android:label="@string/myRoutesFragment_name"
-        tools:layout="@layout/fragment_my_routes" >
-        <action
-            android:id="@+id/action_myRoutesFragment_to_addEditRouteFragment"
-            app:destination="@id/addEditRouteFragment" />
-        <action
-            android:id="@+id/action_myRoutesFragment_to_routeFragment"
-            app:destination="@id/myRouteFragment" />
-        <action
-            android:id="@+id/action_myRoutesFragment_to_sortOrderBottomSheetDialogFragment"
-            app:destination="@id/locations_graph" />
-    </fragment>
-    <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.touristtrips.SettingsFragment"
         android:label="@string/settingsFragment_name"
@@ -80,7 +38,7 @@
             app:destination="@id/myLocationFragment" />
         <action
             android:id="@+id/action_addLocationFragment_to_myLocationsFragment"
-            app:destination="@id/myLocationsFragment" />
+            app:destination="@id/my_locations_graph" />
     </fragment>
     <fragment
         android:id="@+id/myLocationFragment"
@@ -109,7 +67,7 @@
             android:defaultValue="@null" />
         <action
             android:id="@+id/action_addEditRouteFragment_to_myRoutesFragment"
-            app:destination="@id/myRoutesFragment" />
+            app:destination="@id/my_routes_graph" />
     </fragment>
     <fragment
         android:id="@+id/myRouteFragment"
@@ -193,6 +151,18 @@
             app:nullable="true"
             android:defaultValue="@null" />
     </fragment>
+    <fragment
+        android:id="@+id/locationFragment"
+        android:name="com.example.touristtrips.feature_online_location.presentation.locations.LocationFragment"
+        android:label="@string/locationFragment_name"
+        tools:layout="@layout/fragment_location">
+        <argument
+            android:name="locationId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_locationFragment_to_locationMapsFragment"
+            app:destination="@id/locationMapsFragment" />
+    </fragment>
     <navigation android:id="@+id/locations_graph"
         app:startDestination="@id/locationsFragment">
 
@@ -206,24 +176,75 @@
                 app:destination="@id/locationFragment" />
             <action
                 android:id="@+id/action_locationsFragment_to_sortOrderBottomSheetDialogFragment"
-                app:destination="@id/sortOrderBottomSheetDialogFragment" />
-        </fragment>
-        <fragment
-            android:id="@+id/locationFragment"
-            android:name="com.example.touristtrips.feature_online_location.presentation.locations.LocationFragment"
-            android:label="@string/locationFragment_name"
-            tools:layout="@layout/fragment_location">
-            <argument
-                android:name="locationId"
-                app:argType="string" />
-            <action
-                android:id="@+id/action_locationFragment_to_locationMapsFragment"
-                app:destination="@id/locationMapsFragment" />
+                app:destination="@id/sortOrderBottomSheetLocationsFragment" />
         </fragment>
         <dialog
-            android:id="@+id/sortOrderBottomSheetDialogFragment"
+            android:id="@+id/sortOrderBottomSheetLocationsFragment"
             android:name="com.example.touristtrips.feature_online_location.presentation.locations.SortBottomSheetLocationsFragment"
             android:label="SortOrderBottomSheetDialogFragment" />
+    </navigation>
+    <navigation android:id="@+id/my_locations_graph"
+        app:startDestination="@id/myLocationsFragment">
+        <fragment
+            android:id="@+id/myLocationsFragment"
+            android:name="com.example.touristtrips.feature_location.presentation.all_locations_list.MyLocationsFragment"
+            android:label="@string/myLocationsFragment_name"
+            tools:layout="@layout/fragment_my_locations">
+            <action
+                android:id="@+id/action_myLocationsFragment_to_addLocationFragment"
+                app:destination="@id/addLocationFragment" />
+            <action
+                android:id="@+id/action_myLocationsFragment_to_locationFragment"
+                app:destination="@id/myLocationFragment" />
+            <action
+                android:id="@+id/action_myLocationsFragment_to_sortBottomSheetMyLocationsFragment"
+                app:destination="@id/sortBottomSheetMyLocationsFragment" />
+        </fragment>
+        <dialog
+            android:id="@+id/sortBottomSheetMyLocationsFragment"
+            android:name="com.example.touristtrips.feature_location.presentation.all_locations_list.SortBottomSheetMyLocationsFragment"
+            android:label="SortBottomSheetMyLocationsFragment" />
+    </navigation>
+    <navigation android:id="@+id/routes_graph"
+        app:startDestination="@id/routesFragment">
+        <fragment
+            android:id="@+id/routesFragment"
+            android:name="com.example.touristtrips.feature_online_route.presentation.routes.RoutesFragment"
+            android:label="@string/routesFragment_name"
+            tools:layout="@layout/fragment_routes">
+            <action
+                android:id="@+id/action_routesFragment_to_routeFragment"
+                app:destination="@id/routeFragment" />
+            <action
+                android:id="@+id/action_routesFragment_to_sortBottomSheetRoutesFragment"
+                app:destination="@id/sortBottomSheetRoutesFragment" />
+        </fragment>
+        <dialog
+            android:id="@+id/sortBottomSheetRoutesFragment"
+            android:name="com.example.touristtrips.feature_online_route.presentation.routes.SortBottomSheetRoutesFragment"
+            android:label="SortBottomSheetRoutesFragment" />
+    </navigation>
+    <navigation android:id="@+id/my_routes_graph"
+        app:startDestination="@id/myRoutesFragment">
+        <fragment
+            android:id="@+id/myRoutesFragment"
+            android:name="com.example.touristtrips.feature_route.presentation.all_routes_list.MyRoutesFragment"
+            android:label="@string/myRoutesFragment_name"
+            tools:layout="@layout/fragment_my_routes">
+            <action
+                android:id="@+id/action_myRoutesFragment_to_addEditRouteFragment"
+                app:destination="@id/addEditRouteFragment" />
+            <action
+                android:id="@+id/action_myRoutesFragment_to_routeFragment"
+                app:destination="@id/myRouteFragment" />
+            <action
+                android:id="@+id/action_myRoutesFragment_to_sortBottomSheetMyRoutesFragment"
+                app:destination="@id/sortBottomSheetMyRoutesFragment" />
+        </fragment>
+        <dialog
+            android:id="@+id/sortBottomSheetMyRoutesFragment"
+            android:name="com.example.touristtrips.feature_route.presentation.all_routes_list.SortBottomSheetMyRoutesFragment"
+            android:label="SortBottomSheetMyRoutesFragment" />
     </navigation>
 
 </navigation>

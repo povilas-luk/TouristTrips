@@ -13,7 +13,7 @@ import com.example.touristtrips.R
 import com.example.touristtrips.core.domain.util.Operation
 import com.example.touristtrips.databinding.FragmentRouteBinding
 import com.example.touristtrips.feature_location.domain.model.Location
-import com.example.touristtrips.feature_location.presentation.locations.MyLocationsViewModel
+import com.example.touristtrips.feature_location.presentation.all_locations_list.MyLocationsViewModel
 import com.example.touristtrips.feature_route.domain.model.Route
 import com.example.touristtrips.feature_route.presentation.route_locations_epoxy.RouteLocationsEpoxyController
 import com.squareup.picasso.Picasso

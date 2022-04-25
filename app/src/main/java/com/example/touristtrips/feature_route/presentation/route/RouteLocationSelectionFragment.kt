@@ -12,8 +12,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.touristtrips.core.domain.util.Operation
 import com.example.touristtrips.databinding.FragmentMyLocationsBinding
-import com.example.touristtrips.feature_location.presentation.location_epoxy_model.LocationsEpoxyController
-import com.example.touristtrips.feature_location.presentation.locations.MyLocationsViewModel
+import com.example.touristtrips.core.presentation.epoxy.location_epoxy_model.LocationsEpoxyController
+import com.example.touristtrips.feature_location.presentation.all_locations_list.MyLocationsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 

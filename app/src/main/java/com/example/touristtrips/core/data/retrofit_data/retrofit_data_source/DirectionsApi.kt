@@ -1,4 +1,4 @@
-package com.example.touristtrips.core.retrofit_maps
+package com.example.touristtrips.core.data.retrofit_data.retrofit_data_source
 
 import com.example.touristtrips.core.domain.model.maps_directions_response_model.DirectionResponses
 import retrofit2.Response

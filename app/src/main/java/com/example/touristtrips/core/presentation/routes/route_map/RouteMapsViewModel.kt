@@ -4,7 +4,7 @@ import android.graphics.Color
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.touristtrips.core.retrofit_maps.DirectionsResponseResource
+import com.example.touristtrips.core.data.retrofit_data.DirectionsResponseResource
 import com.example.touristtrips.feature_location.domain.model.Location
 import com.example.touristtrips.core.domain.repository.DirectionsRepository
 import com.google.android.gms.maps.model.LatLng

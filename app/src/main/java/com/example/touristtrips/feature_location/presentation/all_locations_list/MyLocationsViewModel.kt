@@ -1,13 +1,16 @@
-package com.example.touristtrips.feature_location.presentation.locations
+package com.example.touristtrips.feature_location.presentation.all_locations_list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.touristtrips.core.domain.util.SortOrder
 import com.example.touristtrips.core.presentation.locations.location.LocationState
 import com.example.touristtrips.core.domain.util.location.findLocationsWithText
 import com.example.touristtrips.feature_location.domain.model.Location
 import com.example.touristtrips.feature_location.domain.use_case.MyLocationUseCases
+import com.example.touristtrips.core.domain.util.location.findLocationsWithText
+import com.example.touristtrips.core.domain.util.location.sortLocations
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
@@ -48,6 +51,12 @@ class MyLocationsViewModel @Inject constructor(
         val locations = findLocationsWithText(text, allLocationsLiveData.value ?: emptyList())
 
         _locationsState.value = LocationState(locations)
+    }
+
+    fun sortLocations(sortOrder: SortOrder) {
+        val locations = sortLocations(sortOrder, allLocationsLiveData.value ?: emptyList())
+        allLocationsLiveData.value = ArrayList(locations)
+        _locationsState.value = LocationState(ArrayList(locations), sortOrder = sortOrder)
     }
 
 }

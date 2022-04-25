@@ -5,14 +5,11 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.example.touristtrips.R
 import com.example.touristtrips.databinding.FragmentLocationsBinding
-import com.example.touristtrips.feature_location.presentation.location_epoxy_model.LocationsEpoxyController
-import com.example.touristtrips.feature_location.presentation.locations.MyLocationsFragmentDirections
+import com.example.touristtrips.core.presentation.epoxy.location_epoxy_model.LocationsEpoxyController
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -70,7 +67,7 @@ class LocationsFragment : Fragment() {
         }
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_sort, menu)
+        inflater.inflate(R.menu.menu_locations_fragment, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -38,10 +38,15 @@
         <entry key="..\:/Users/pofke/Desktop/CodingProjects/Kotlin_Android/TouristTrips/app/src/main/res/menu/menu_edit.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/pofke/Desktop/CodingProjects/Kotlin_Android/TouristTrips/app/src/main/res/menu/menu_edit_delete.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/pofke/Desktop/CodingProjects/Kotlin_Android/TouristTrips/app/src/main/res/menu/menu_load.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/pofke/Desktop/CodingProjects/Kotlin_Android/TouristTrips/app/src/main/res/menu/menu_locations_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/pofke/Desktop/CodingProjects/Kotlin_Android/TouristTrips/app/src/main/res/menu/menu_map_edit.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/pofke/Desktop/CodingProjects/Kotlin_Android/TouristTrips/app/src/main/res/menu/menu_map_save.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/pofke/Desktop/CodingProjects/Kotlin_Android/TouristTrips/app/src/main/res/menu/menu_my_locations_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/pofke/Desktop/CodingProjects/Kotlin_Android/TouristTrips/app/src/main/res/menu/menu_route.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/pofke/Desktop/CodingProjects/Kotlin_Android/TouristTrips/app/src/main/res/menu/menu_route_save.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/pofke/Desktop/CodingProjects/Kotlin_Android/TouristTrips/app/src/main/res/menu/menu_routes_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/pofke/Desktop/CodingProjects/Kotlin_Android/TouristTrips/app/src/main/res/menu/menu_sort.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/pofke/Desktop/CodingProjects/Kotlin_Android/TouristTrips/app/src/main/res/menu/menu_upload.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

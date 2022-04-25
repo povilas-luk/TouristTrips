@@ -1,8 +1,8 @@
-package com.example.touristtrips.feature_location.presentation.location_epoxy_model
+package com.example.touristtrips.core.presentation.epoxy.location_epoxy_model
 
 import android.net.Uri
 import com.example.touristtrips.R
-import com.example.touristtrips.core.Epoxy.ViewBindingKotlinModel
+import com.example.touristtrips.core.presentation.epoxy.ViewBindingKotlinModel
 import com.example.touristtrips.databinding.ModelLocationItemBinding
 import com.example.touristtrips.feature_location.domain.model.Location
 import com.squareup.picasso.Picasso

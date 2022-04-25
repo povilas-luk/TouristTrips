@@ -1,7 +1,6 @@
-package com.example.touristtrips.feature_online_location.presentation.locations
+package com.example.touristtrips.feature_location.presentation.all_locations_list
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.navigation.navGraphViewModels
 import com.example.touristtrips.R
@@ -9,12 +8,14 @@ import com.example.touristtrips.core.domain.util.SortOrder
 import com.example.touristtrips.core.domain.util.SortType
 import com.example.touristtrips.databinding.FragmentSortOrderBottomSheetDialogBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-class SortBottomSheetLocationsFragment: BottomSheetDialogFragment() {
+@AndroidEntryPoint
+class SortBottomSheetMyLocationsFragment: BottomSheetDialogFragment() {
     private var _binding: FragmentSortOrderBottomSheetDialogBinding? = null
     private val binding get() = _binding!!
 
-    private val locationsViewModel: LocationsViewModel by navGraphViewModels(R.id.locations_graph)
+    private val myLocationsViewModel: MyLocationsViewModel by navGraphViewModels(R.id.my_locations_graph) { defaultViewModelProviderFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +56,7 @@ class SortBottomSheetLocationsFragment: BottomSheetDialogFragment() {
             }
         }
 
-        locationsViewModel.locationsState.observe(viewLifecycleOwner) {
+        myLocationsViewModel.locationsState.observe(viewLifecycleOwner) {
             setSortRadioButtons()
         }
 
@@ -63,11 +64,11 @@ class SortBottomSheetLocationsFragment: BottomSheetDialogFragment() {
 
     private fun sortLocations(sortById: Int) {
         when (sortById) {
-            binding.titleRadioButton.id -> locationsViewModel.sortLocations(SortOrder.Title(currentSortType))
-            binding.typeRadioButton.id -> locationsViewModel.sortLocations(SortOrder.Type(currentSortType))
-            binding.cityRadioButton.id -> locationsViewModel.sortLocations(SortOrder.City(currentSortType))
-            binding.timeToVisitRadioButton.id -> locationsViewModel.sortLocations(SortOrder.TimeToVisit(currentSortType))
-            else -> locationsViewModel.sortLocations(SortOrder.Title(currentSortType))
+            binding.titleRadioButton.id -> myLocationsViewModel.sortLocations(SortOrder.Title(currentSortType))
+            binding.typeRadioButton.id -> myLocationsViewModel.sortLocations(SortOrder.Type(currentSortType))
+            binding.cityRadioButton.id -> myLocationsViewModel.sortLocations(SortOrder.City(currentSortType))
+            binding.timeToVisitRadioButton.id -> myLocationsViewModel.sortLocations(SortOrder.TimeToVisit(currentSortType))
+            else -> myLocationsViewModel.sortLocations(SortOrder.Title(currentSortType))
         }
         //setSortRadioButtons()
     }
@@ -82,9 +83,9 @@ class SortBottomSheetLocationsFragment: BottomSheetDialogFragment() {
     }
 
     private fun setSortRadioButtons() {
-        if (locationsViewModel.locationsState.value?.sortOrder != null) {
-            currentSortType = locationsViewModel.locationsState.value?.sortOrder?.sortType!!
-            currentSortOrder = locationsViewModel.locationsState.value?.sortOrder!!
+        if (myLocationsViewModel.locationsState.value?.sortOrder != null) {
+            currentSortType = myLocationsViewModel.locationsState.value?.sortOrder?.sortType!!
+            currentSortOrder = myLocationsViewModel.locationsState.value?.sortOrder!!
             currentSortOrderId = getSortById(currentSortOrder)
 
             when (currentSortType) {

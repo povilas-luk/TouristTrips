@@ -6,8 +6,8 @@ import com.example.touristtrips.core.domain.util.Constants
 import com.example.touristtrips.core.data.local_data.local_data_source.LocalDatabase
 import com.example.touristtrips.core.data.local_data.local_repository.LocalLocationRepositoryImpl
 import com.example.touristtrips.core.data.local_data.local_repository.LocalRouteRepositoryImpl
-import com.example.touristtrips.core.retrofit_maps.DirectionsApi
-import com.example.touristtrips.core.retrofit_maps.DirectionsRepositoryImpl
+import com.example.touristtrips.core.data.retrofit_data.retrofit_data_source.DirectionsApi
+import com.example.touristtrips.core.data.retrofit_data.retrofit_repository.DirectionsRepositoryImpl
 import com.example.touristtrips.feature_location.domain.repository.LocalLocationRepository
 import com.example.touristtrips.feature_location.domain.use_case.*
 import com.example.touristtrips.core.domain.repository.DirectionsRepository

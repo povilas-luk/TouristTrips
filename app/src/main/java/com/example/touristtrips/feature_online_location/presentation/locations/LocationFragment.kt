@@ -13,8 +13,6 @@ import com.example.touristtrips.databinding.FragmentLocationBinding
 import com.example.touristtrips.feature_location.domain.model.Location
 import com.example.touristtrips.feature_location.presentation.locations.AddEditLocationViewModel
 import com.example.touristtrips.feature_location.presentation.locations.MyLocationFragmentArgs
-import com.example.touristtrips.feature_location.presentation.locations.MyLocationFragmentDirections
-import com.example.touristtrips.feature_location.presentation.locations.MyLocationsViewModel
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 

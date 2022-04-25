@@ -1,8 +1,8 @@
-package com.example.touristtrips.feature_route.presentation.routes_epoxy
+package com.example.touristtrips.core.presentation.epoxy.routes_epoxy
 
 import android.net.Uri
 import com.example.touristtrips.R
-import com.example.touristtrips.core.Epoxy.ViewBindingKotlinModel
+import com.example.touristtrips.core.presentation.epoxy.ViewBindingKotlinModel
 import com.example.touristtrips.databinding.ModelRouteItemBinding
 import com.example.touristtrips.feature_route.domain.model.Route
 import com.squareup.picasso.Picasso

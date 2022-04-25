@@ -1,8 +1,8 @@
-package com.example.touristtrips.feature_route.presentation.routes_epoxy
+package com.example.touristtrips.core.presentation.epoxy.routes_epoxy
 
 import android.text.TextWatcher
 import com.airbnb.epoxy.EpoxyController
-import com.example.touristtrips.core.Epoxy.model.SearchHeaderEpoxyModel
+import com.example.touristtrips.core.presentation.epoxy.model.SearchHeaderEpoxyModel
 import com.example.touristtrips.core.presentation.routes.route.RoutesState
 
 class RoutesEpoxyController(

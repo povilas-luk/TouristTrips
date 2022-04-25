@@ -42,8 +42,8 @@ class LocationsViewModel: ViewModel() {
     }
 
     fun sortLocations(sortOrder: SortOrder) {
-        val locations = sortLocations(sortOrder, locationsState.value?.locations ?: ArrayList())
-
+        val locations = sortLocations(sortOrder, allLocationsLiveData?.value ?: emptyList())
+        allLocationsLiveData?.value = ArrayList(locations)
         _locationsState.value = LocationState(ArrayList(locations), sortOrder = sortOrder)
     }
 

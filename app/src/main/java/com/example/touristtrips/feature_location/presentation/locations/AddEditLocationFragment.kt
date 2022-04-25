@@ -33,7 +33,7 @@ class AddEditLocationFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
+        //setHasOptionsMenu(true)
         if (locationId != null) {
             viewModel.getLocation(locationId!!)
         }
@@ -78,8 +78,8 @@ class AddEditLocationFragment : Fragment() {
                     is AddEditLocationViewModel.LocationEvent.Failure -> {
                         Toast.makeText(context, event.errorText, Toast.LENGTH_SHORT).show()
                     }
+                    else -> {}
                 }
-
             }
         }
     }
@@ -134,7 +134,7 @@ class AddEditLocationFragment : Fragment() {
         )
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+    /*override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_upload, menu)
     }
 
@@ -154,7 +154,7 @@ class AddEditLocationFragment : Fragment() {
             viewModel.onEvent(AddEditLocationViewModel.AddEditLocationEvent.SaveLocation(location))
         }
         findNavController().popBackStack()
-    }
+    }*/
 
     override fun onDestroyView() {
         super.onDestroyView()

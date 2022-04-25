@@ -21,7 +21,7 @@
             android:icon="@drawable/ic_baseline_location_on_24"
             android:title="@string/locationsFragment_name" />
         <item
-            android:id="@+id/routesFragment"
+            android:id="@+id/routes_graph"
             android:icon="@drawable/ic_baseline_timeline_24"
             android:title="@string/routesFragment_name" />
     </group>
@@ -29,11 +29,11 @@
         android:id="@+id/menu_local"
         android:checkableBehavior="single">
         <item
-            android:id="@+id/myLocationsFragment"
+            android:id="@+id/my_locations_graph"
             android:icon="@drawable/ic_baseline_location_on_24"
             android:title="@string/myLocationsFragment_name" />
         <item
-            android:id="@+id/myRoutesFragment"
+            android:id="@+id/my_routes_graph"
             android:icon="@drawable/ic_baseline_timeline_24"
             android:title="@string/myRoutesFragment_name" />
     </group>

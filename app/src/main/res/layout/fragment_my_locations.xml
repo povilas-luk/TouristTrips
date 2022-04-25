@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".feature_location.presentation.locations.MyLocationsFragment"
+    tools:context=".feature_location.presentation.all_locations_list.MyLocationsFragment"
     android:orientation="vertical">
 
     <com.airbnb.epoxy.EpoxyRecyclerView

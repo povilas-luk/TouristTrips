@@ -3,8 +3,9 @@ package com.example.touristtrips.feature_route.presentation.all_routes_list
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.touristtrips.core.domain.util.SortOrder
+import com.example.touristtrips.core.domain.util.route.findRoutesWithText
 import com.example.touristtrips.core.presentation.routes.route.RoutesState
-import com.example.touristtrips.core.domain.util.findRoutesWithText
 import com.example.touristtrips.feature_route.domain.model.Route
 import com.example.touristtrips.feature_route.domain.use_case.RoutesUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -54,6 +55,15 @@ class MyRoutesViewModel @Inject constructor(
         val routes = findRoutesWithText(text, allRoutesLiveData.value ?: emptyList())
 
         _routesState.value = RoutesState(routes)
+    }
+
+    fun sortRoutes(sortOrder: SortOrder) {
+        val routes = com.example.touristtrips.core.domain.util.route.sortRoutes(
+            sortOrder,
+            allRoutesLiveData?.value ?: emptyList()
+        )
+        allRoutesLiveData?.value = ArrayList(routes)
+        _routesState.value = RoutesState(ArrayList(routes), sortOrder = sortOrder)
     }
 
 }

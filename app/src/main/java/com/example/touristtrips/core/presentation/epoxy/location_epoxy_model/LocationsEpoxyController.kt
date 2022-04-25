@@ -1,8 +1,8 @@
-package com.example.touristtrips.feature_location.presentation.location_epoxy_model
+package com.example.touristtrips.core.presentation.epoxy.location_epoxy_model
 
 import android.text.TextWatcher
 import com.airbnb.epoxy.EpoxyController
-import com.example.touristtrips.core.Epoxy.model.SearchHeaderEpoxyModel
+import com.example.touristtrips.core.presentation.epoxy.model.SearchHeaderEpoxyModel
 import com.example.touristtrips.core.presentation.locations.location.LocationState
 
 class LocationsEpoxyController(

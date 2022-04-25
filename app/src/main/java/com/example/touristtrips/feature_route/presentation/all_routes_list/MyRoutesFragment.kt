@@ -5,11 +5,11 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import com.example.touristtrips.R
 import com.example.touristtrips.databinding.FragmentMyRoutesBinding
-import com.example.touristtrips.feature_route.presentation.routes_epoxy.RoutesEpoxyController
+import com.example.touristtrips.core.presentation.epoxy.routes_epoxy.RoutesEpoxyController
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,7 +17,7 @@ class MyRoutesFragment : Fragment() {
     private var _binding: FragmentMyRoutesBinding? = null
     private val binding get() = _binding!!
 
-    private val myRoutesViewModel: MyRoutesViewModel by viewModels()
+    private val myRoutesViewModel: MyRoutesViewModel by navGraphViewModels(R.id.my_routes_graph) { defaultViewModelProviderFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,12 +66,15 @@ class MyRoutesFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_add, menu)
+        inflater.inflate(R.menu.menu_my_routes_fragment, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return if (item.itemId == R.id.menuAdd) {
             findNavController().navigate(MyRoutesFragmentDirections.actionMyRoutesFragmentToAddEditRouteFragment())
+            true
+        } else if (item.itemId == R.id.menuSort) {
+            findNavController().navigate(MyRoutesFragmentDirections.actionMyRoutesFragmentToSortBottomSheetMyRoutesFragment())
             true
         } else {
             super.onOptionsItemSelected(item)

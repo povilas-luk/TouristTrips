@@ -1,15 +1,15 @@
-package com.example.touristtrips.feature_location.presentation.locations
+package com.example.touristtrips.feature_location.presentation.all_locations_list
 
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import com.example.touristtrips.R
 import com.example.touristtrips.databinding.FragmentMyLocationsBinding
-import com.example.touristtrips.feature_location.presentation.location_epoxy_model.LocationsEpoxyController
+import com.example.touristtrips.core.presentation.epoxy.location_epoxy_model.LocationsEpoxyController
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,7 +17,7 @@ class MyLocationsFragment : Fragment() {
     private var _binding: FragmentMyLocationsBinding? = null
     private val binding get() = _binding!!
 
-    private val myLocationsViewModel: MyLocationsViewModel by viewModels()
+    private val myLocationsViewModel: MyLocationsViewModel by navGraphViewModels(R.id.my_locations_graph) { defaultViewModelProviderFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,12 +59,15 @@ class MyLocationsFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_add, menu)
+        inflater.inflate(R.menu.menu_my_locations_fragment, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return if (item.itemId == R.id.menuAdd) {
             findNavController().navigate(MyLocationsFragmentDirections.actionMyLocationsFragmentToAddLocationFragment())
+            true
+        } else if (item.itemId == R.id.menuSort) {
+            findNavController().navigate(MyLocationsFragmentDirections.actionMyLocationsFragmentToSortBottomSheetMyLocationsFragment())
             true
         } else {
             super.onOptionsItemSelected(item)

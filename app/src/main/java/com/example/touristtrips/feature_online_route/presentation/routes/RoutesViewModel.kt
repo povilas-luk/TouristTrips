@@ -4,13 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.touristtrips.core.data.firebase_data.firebase_repository.RouteRepository
+import com.example.touristtrips.core.domain.util.SortOrder
+import com.example.touristtrips.core.domain.util.route.findRoutesWithText
 import com.example.touristtrips.core.presentation.locations.location.LocationState
 import com.example.touristtrips.core.presentation.routes.route.RouteLocationsState
 import com.example.touristtrips.feature_online_route.domain.use_case.GetRouteLocations
 import com.example.touristtrips.feature_online_route.domain.use_case.GetRouteWithLocationsId
 
 import com.example.touristtrips.core.presentation.routes.route.RoutesState
-import com.example.touristtrips.core.domain.util.findRoutesWithText
 import com.example.touristtrips.feature_route.domain.model.Route
 
 //@HiltViewModel
@@ -54,6 +55,15 @@ class RoutesViewModel : ViewModel() {
         val routes = findRoutesWithText(text, allRoutesLiveData?.value ?: emptyList())
 
         _routesState.value = RoutesState(routes)
+    }
+
+    fun sortRoutes(sortOrder: SortOrder) {
+        val routes = com.example.touristtrips.core.domain.util.route.sortRoutes(
+            sortOrder,
+            allRoutesLiveData?.value ?: emptyList()
+        )
+        allRoutesLiveData?.value = ArrayList(routes)
+        _routesState.value = RoutesState(ArrayList(routes), sortOrder = sortOrder)
     }
 
 }

@@ -3,8 +3,7 @@ package com.example.touristtrips.feature_route.presentation.route_locations_epox
 import android.net.Uri
 import androidx.core.view.isVisible
 import com.example.touristtrips.R
-import com.example.touristtrips.core.Epoxy.ViewBindingKotlinModel
-import com.example.touristtrips.databinding.ModelLocationItemBinding
+import com.example.touristtrips.core.presentation.epoxy.ViewBindingKotlinModel
 import com.example.touristtrips.databinding.ModelRouteLocationItemBinding
 import com.example.touristtrips.feature_location.domain.model.Location
 import com.squareup.picasso.Picasso
