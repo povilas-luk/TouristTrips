@@ -3,7 +3,9 @@ package com.example.touristtrips.feature_route.presentation.route
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -11,8 +13,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.touristtrips.core.domain.util.Operation
-import com.example.touristtrips.databinding.FragmentMyLocationsBinding
 import com.example.touristtrips.core.presentation.epoxy.location_epoxy_model.LocationsEpoxyController
+import com.example.touristtrips.databinding.FragmentMyLocationsBinding
 import com.example.touristtrips.feature_location.presentation.all_locations_list.MyLocationsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -30,11 +32,6 @@ class RouteLocationSelectionFragment : Fragment() {
     private val myLocationsViewModel: MyLocationsViewModel by viewModels()
     private val routesViewModel: AddEditRouteViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        //setHasOptionsMenu(true)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -47,11 +44,15 @@ class RouteLocationSelectionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        lifecycleScope.launchWhenCreated{
+        lifecycleScope.launchWhenCreated {
             routesViewModel.eventFlow.collectLatest { event ->
                 when (event) {
                     is AddEditRouteViewModel.RouteEvent.Success -> {
-                        Toast.makeText(context, "Route ${event.operation.displayName}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            context,
+                            "Route ${event.operation.displayName}",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         if (event.operation == Operation.RL_ADDED) {
                             findNavController().navigateUp()
                         }
@@ -73,8 +74,6 @@ class RouteLocationSelectionFragment : Fragment() {
 
     private fun itemSelected(id: String) {
         routesViewModel.onEvent(AddEditRouteViewModel.AddEditRouteEvent.AddLocation(routeId, id))
-        //findNavController().navigate(RouteLocationSelectionFragmentDirections.actionRouteLocationSelectionFragmentToRouteFragment(routeId = routeId, locationToAddId = id))
-        //findNavController().navigateUp()
     }
 
     private val textWatcher: TextWatcher = object : TextWatcher {
@@ -93,19 +92,6 @@ class RouteLocationSelectionFragment : Fragment() {
         }
 
     }
-
-/*    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_add, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return if (item.itemId == R.id.menuAdd) {
-            findNavController().navigate(MyLocationsFragmentDirections.actionMyLocationsFragmentToAddLocationFragment())
-            true
-        } else {
-            super.onOptionsItemSelected(item)
-        }
-    }*/
 
     override fun onDestroyView() {
         super.onDestroyView()

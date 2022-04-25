@@ -34,7 +34,6 @@ class MyLocationsViewModel @Inject constructor(
     }
 
 
-
     private fun getLocations() {
         getLocationsJob?.cancel()
         getLocationsJob = locationUseCases.getLocations.invoke()

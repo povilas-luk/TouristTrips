@@ -12,7 +12,9 @@ class LocalLocations {
     private val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
 
     fun getLocalLocations(context: Context): List<Location> {
-        val textFromJson = context.resources.openRawResource(R.raw.vilnius_locations).bufferedReader().use {it.readText()}
+        val textFromJson =
+            context.resources.openRawResource(R.raw.vilnius_locations).bufferedReader()
+                .use { it.readText() }
 
         val adapter: JsonAdapter<LocationsResponse> = moshi.adapter(LocationsResponse::class.java)
         return adapter.fromJson(textFromJson)!!.locations

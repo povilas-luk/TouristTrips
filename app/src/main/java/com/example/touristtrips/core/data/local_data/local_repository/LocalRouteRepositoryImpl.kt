@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 
 class LocalRouteRepositoryImpl(
     private val dao: RouteDao
-): LocalRouteRepository {
+) : LocalRouteRepository {
     override fun getRoutes(): Flow<List<Route>> {
         return dao.getAllRoutes()
     }

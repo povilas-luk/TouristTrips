@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.example.touristtrips.R
-import com.example.touristtrips.databinding.FragmentMyRoutesBinding
 import com.example.touristtrips.core.presentation.epoxy.routes_epoxy.RoutesEpoxyController
+import com.example.touristtrips.databinding.FragmentMyRoutesBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -45,7 +45,11 @@ class MyRoutesFragment : Fragment() {
     }
 
     private fun itemSelected(id: String) {
-        findNavController().navigate(MyRoutesFragmentDirections.actionMyRoutesFragmentToRouteFragment(id))
+        findNavController().navigate(
+            MyRoutesFragmentDirections.actionMyRoutesFragmentToRouteFragment(
+                id
+            )
+        )
     }
 
     private val textWatcher: TextWatcher = object : TextWatcher {

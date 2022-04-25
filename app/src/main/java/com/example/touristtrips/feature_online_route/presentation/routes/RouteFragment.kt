@@ -3,6 +3,7 @@ package com.example.touristtrips.feature_online_route.presentation.routes
 import android.net.Uri
 import android.os.Bundle
 import android.view.*
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -31,23 +32,13 @@ class RouteFragment : Fragment() {
         safeArgs.routeId
     }
 
-    /*private val locationToAddId: String? by lazy {
-        safeArgs.locationToAddId
-    }
-*/
     private lateinit var currentRoute: Route
     private lateinit var routeLocations: List<Location>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        //addEditRoutesViewModel.getRouteWithLocations(routeId)
         viewModel.getRouteWithLocationsId(routeId)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        //addEditRoutesViewModel.getRouteWithLocations(routeId)
     }
 
     override fun onCreateView(

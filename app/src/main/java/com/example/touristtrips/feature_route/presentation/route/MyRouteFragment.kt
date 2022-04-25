@@ -12,8 +12,6 @@ import androidx.navigation.fragment.navArgs
 import com.example.touristtrips.R
 import com.example.touristtrips.core.domain.util.Operation
 import com.example.touristtrips.databinding.FragmentRouteBinding
-import com.example.touristtrips.feature_location.domain.model.Location
-import com.example.touristtrips.feature_location.presentation.all_locations_list.MyLocationsViewModel
 import com.example.touristtrips.feature_route.domain.model.Route
 import com.example.touristtrips.feature_route.presentation.route_locations_epoxy.RouteLocationsEpoxyController
 import com.squareup.picasso.Picasso
@@ -27,7 +25,6 @@ class MyRouteFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val addEditRoutesViewModel: AddEditRouteViewModel by viewModels()
-    private val myLocationsViewModel: MyLocationsViewModel by viewModels()
 
     private val safeArgs: MyRouteFragmentArgs by navArgs()
 
@@ -35,22 +32,12 @@ class MyRouteFragment : Fragment() {
         safeArgs.routeId
     }
 
-    /*private val locationToAddId: String? by lazy {
-        safeArgs.locationToAddId
-    }
-*/
     private lateinit var currentRoute: Route
-    private lateinit var routeLocations: List<Location>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
         addEditRoutesViewModel.getRouteWithLocations(routeId)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        //addEditRoutesViewModel.getRouteWithLocations(routeId)
     }
 
     override fun onCreateView(
@@ -66,7 +53,11 @@ class MyRouteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.locationHeaderImageView.setOnClickListener {
-            findNavController().navigate(MyRouteFragmentDirections.actionRouteFragmentToRouteLocationSelectionFragment(routeId))
+            findNavController().navigate(
+                MyRouteFragmentDirections.actionRouteFragmentToRouteLocationSelectionFragment(
+                    routeId
+                )
+            )
         }
 
         lifecycleScope.launchWhenStarted {
@@ -77,7 +68,11 @@ class MyRouteFragment : Fragment() {
                             currentRoute = event.route
                             displayRoute(currentRoute)
                         } else {
-                            Toast.makeText(context, "Route ${event.operation.displayName}", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                context,
+                                "Route ${event.operation.displayName}",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                         if (event.operation == Operation.DELETED) {
                             findNavController().navigateUp()
@@ -101,11 +96,20 @@ class MyRouteFragment : Fragment() {
     }
 
     private fun deleteItemSelected(id: String) {
-        addEditRoutesViewModel.onEvent(AddEditRouteViewModel.AddEditRouteEvent.DeleteLocation(routeId, id))
+        addEditRoutesViewModel.onEvent(
+            AddEditRouteViewModel.AddEditRouteEvent.DeleteLocation(
+                routeId,
+                id
+            )
+        )
     }
 
     private fun itemSelected(id: String) {
-        findNavController().navigate(MyRouteFragmentDirections.actionRouteFragmentToLocationFragment(id))
+        findNavController().navigate(
+            MyRouteFragmentDirections.actionRouteFragmentToLocationFragment(
+                id
+            )
+        )
     }
 
     private fun displayRoute(route: Route) {
@@ -115,7 +119,8 @@ class MyRouteFragment : Fragment() {
         binding.timeToVisitTextView.text = route.months_to_visit
         binding.descriptionTextView.text = route.description
         binding.priceTextView.text = route.price.toString()
-        Picasso.get().load(Uri.parse(route.imageUrl)).placeholder(R.drawable.bruno_soares_284974).into(binding.headerImageView)
+        Picasso.get().load(Uri.parse(route.imageUrl)).placeholder(R.drawable.bruno_soares_284974)
+            .into(binding.headerImageView)
     }
 
     private fun updatePrice() {
@@ -136,13 +141,25 @@ class MyRouteFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return if (item.itemId == R.id.menuEdit) {
-            findNavController().navigate(MyRouteFragmentDirections.actionRouteFragmentToAddEditRouteFragment(routeId))
+            findNavController().navigate(
+                MyRouteFragmentDirections.actionRouteFragmentToAddEditRouteFragment(
+                    routeId
+                )
+            )
             true
         } else if (item.itemId == R.id.menuDelete) {
-            addEditRoutesViewModel.onEvent(AddEditRouteViewModel.AddEditRouteEvent.DeleteRoute(currentRoute))
+            addEditRoutesViewModel.onEvent(
+                AddEditRouteViewModel.AddEditRouteEvent.DeleteRoute(
+                    currentRoute
+                )
+            )
             true
         } else if (item.itemId == R.id.menuMap) {
-            findNavController().navigate(MyRouteFragmentDirections.actionRouteFragmentToRouteMapsFragment(myRouteId = routeId))
+            findNavController().navigate(
+                MyRouteFragmentDirections.actionRouteFragmentToRouteMapsFragment(
+                    myRouteId = routeId
+                )
+            )
             true
         } else {
             super.onOptionsItemSelected(item)

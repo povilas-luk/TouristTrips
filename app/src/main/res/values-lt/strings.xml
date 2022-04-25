@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="currentTripFragment_name">Dabartinė kelionė</string>
+    <string name="locationsFragment_name">Visos Vietovės</string>
+    <string name="routesFragment_name">Visi Maršrutai</string>
+    <string name="myLocationsFragment_name">Mano Vietovės</string>
+    <string name="myRoutesFragment_name">Mano Maršrutai</string>
+    <string name="settingsFragment_name">Nustatymai</string>
+    <string name="editLocationFragment_name">Redaguoti Vietovę</string>
+    <string name="homeFragment_name">Namai</string>
+    <string name="locationFragment_name">Vietovė</string>
+    <string name="editRouteFragment_name">Redaguoti Maršrutą</string>
+    <string name="routeFragment_name">Maršrutas</string>
+    <string name="locationSelectionFragment_name">Vietovės Pasirinkimas</string>
+    <string name="routeMapFragment_name">Maršruto Žemėlapis</string>
+    <string name="locationMapFragment_name">Vietovės Žemėlapis</string>
+
+    <string name="title">Pavadinimas</string>
+    <string name="description">Aprašymas</string>
+    <string name="city">Miestas</string>
+    <string name="image_url">Paveikslo Nuoroda</string>
+    <string name="save">Išsaugoti</string>
+    <string name="add">Pridėti</string>
+    <string name="longitude">Ilguma</string>
+    <string name="latitude">Platuma</string>
+    <string name="type">Tipas</string>
+    <string name="edit">Redaguoti</string>
+    <string name="delete">Ištrinti</string>
+    <string name="update">Atnaujinti</string>
+    <string name="locations">Vietovės</string>
+    <string name="map">Žemėlapis</string>
+    <string name="header_image">Antraštės Paveikslas</string>
+    <string name="search">Paieška</string>
+    <string name="location_search">Vietovės Paieška</string>
+    <string name="time_to_visit">Sezonas</string>
+    <string name="price">Kaina</string>
+    <string name="sort">Rušiuoti</string>
+    <string name="sort_by">Rušiuoti pagal</string>
+    <string name="ascending">Didėjantis</string>
+    <string name="descending">Mažėjantis</string>
+    <string name="language">Kalba</string>
+    <string name="lithuanian">Lietuvių</string>
+    <string name="english">Anglų</string>
+
+</resources>

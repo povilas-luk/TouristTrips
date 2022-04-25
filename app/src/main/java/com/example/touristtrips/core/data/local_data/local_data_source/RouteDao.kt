@@ -11,7 +11,7 @@ interface RouteDao {
     fun getAllRoutes(): Flow<List<Route>>
 
     @Query("SELECT * FROM route_entity WHERE routeId = :id")
-    suspend fun getRouteById(id: String) : Route?
+    suspend fun getRouteById(id: String): Route?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertRoute(route: Route)

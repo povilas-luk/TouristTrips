@@ -7,7 +7,7 @@ import com.example.touristtrips.databinding.ModelSearchHeaderBinding
 
 data class SearchHeaderEpoxyModel(
     val textWatcher: TextWatcher
-): ViewBindingKotlinModel<ModelSearchHeaderBinding>(R.layout.model_search_header) {
+) : ViewBindingKotlinModel<ModelSearchHeaderBinding>(R.layout.model_search_header) {
     override fun ModelSearchHeaderBinding.bind() {
         searchEditText.addTextChangedListener(textWatcher)
     }

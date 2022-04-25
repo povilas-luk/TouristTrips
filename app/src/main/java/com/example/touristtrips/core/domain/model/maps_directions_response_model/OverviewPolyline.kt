@@ -3,6 +3,6 @@ package com.example.touristtrips.core.domain.model.maps_directions_response_mode
 import com.google.gson.annotations.SerializedName
 
 data class OverviewPolyline(
-        @SerializedName("points")
-        var points: String?
+    @SerializedName("points")
+    var points: String?
 )

@@ -3,8 +3,8 @@ package com.example.touristtrips.core.domain.model.maps_directions_response_mode
 import com.google.gson.annotations.SerializedName
 
 data class Bounds(
-        @SerializedName("northeast")
-        var northeast: Northeast?,
-        @SerializedName("southwest")
-        var southwest: Southwest?
+    @SerializedName("northeast")
+    var northeast: Northeast?,
+    @SerializedName("southwest")
+    var southwest: Southwest?
 )

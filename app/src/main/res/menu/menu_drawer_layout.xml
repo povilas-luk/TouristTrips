@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group
+    <!--<group
         android:id="@+id/menu_current"
         android:checkableBehavior="single">
         <item
@@ -12,7 +12,7 @@
             android:id="@+id/currentTripFragment"
             android:icon="@drawable/ic_baseline_directions_walk_24"
             android:title="@string/currentTripFragment_name" />
-    </group>
+    </group>-->
     <group
         android:id="@+id/menu_online"
         android:checkableBehavior="single">

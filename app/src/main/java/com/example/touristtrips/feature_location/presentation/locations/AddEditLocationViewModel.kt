@@ -90,31 +90,4 @@ class AddEditLocationViewModel @Inject constructor(
 
     }
 
-    /*fun saveLocation(
-        type: String = "",
-        title: String = "",
-        description: String = "",
-        latitude: String = "",
-        longitude: String = "",
-        city: String = "",
-        createdAt: Long = 0L,
-        imageUrl: String = "",
-        months_to_visit: String = "",
-        price: Float = 0.0F
-    ) {
-        val location = Location(
-            type = type,
-            title = title,
-            description = description,
-            latitude = latitude,
-            longitude = longitude,
-            city = city,
-            createdAt = createdAt,
-            imageUrl = imageUrl,
-            months_to_visit = months_to_visit,
-            price = price
-        )
-
-    }*/
-
 }

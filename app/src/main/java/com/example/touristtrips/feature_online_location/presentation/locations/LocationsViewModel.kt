@@ -13,7 +13,6 @@ import com.example.touristtrips.feature_online_location.domain.use_case.GetLocat
 import java.util.*
 import kotlin.collections.ArrayList
 
-//@HiltViewModel
 class LocationsViewModel: ViewModel() {
 
     private val _locationsState = MutableLiveData<LocationState>()

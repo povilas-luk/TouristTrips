@@ -8,12 +8,12 @@ import com.example.touristtrips.core.presentation.routes.route.RoutesState
 class RoutesEpoxyController(
     val itemSelected: (String) -> Unit,
     private val textWatcher: TextWatcher
-): EpoxyController() {
+) : EpoxyController() {
     var routesState: RoutesState = RoutesState()
-    set(value) {
-        field = value
-        requestModelBuild()
-    }
+        set(value) {
+            field = value
+            requestModelBuild()
+        }
 
     override fun buildModels() {
         SearchHeaderEpoxyModel(textWatcher).id("search").addTo(this)

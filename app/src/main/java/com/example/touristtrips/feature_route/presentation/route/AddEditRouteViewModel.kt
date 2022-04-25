@@ -32,10 +32,10 @@ class AddEditRouteViewModel @Inject constructor(
     }
 
     sealed class RouteEvent {
-        class Success(val operation: Operation, val route: Route): RouteEvent()
-        class Failure(val errorText: String): RouteEvent()
+        class Success(val operation: Operation, val route: Route) : RouteEvent()
+        class Failure(val errorText: String) : RouteEvent()
         object Loading : RouteEvent()
-        object Empty: RouteEvent()
+        object Empty : RouteEvent()
     }
 
     private val _locationsListLiveData = MutableLiveData<List<Location>>()
@@ -148,8 +148,5 @@ class AddEditRouteViewModel @Inject constructor(
             }
             .launchIn(viewModelScope)
     }
-
-
-    //private fun setLocationsLiveData()
 
 }

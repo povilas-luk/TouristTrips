@@ -1,12 +1,9 @@
 package com.example.touristtrips.core.presentation.routes.route_map
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.os.Build
-import androidx.fragment.app.Fragment
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.touristtrips.R
@@ -22,7 +20,6 @@ import com.example.touristtrips.databinding.FragmentRouteMapsBinding
 import com.example.touristtrips.feature_location.domain.model.Location
 import com.example.touristtrips.feature_online_route.presentation.routes.RoutesViewModel
 import com.example.touristtrips.feature_route.presentation.route.AddEditRouteViewModel
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -47,18 +44,10 @@ class RouteMapsFragment : Fragment() {
     }
 
     lateinit var map: GoogleMap
-    val requestCode = 1;
+    private val requestCode = 1
 
     private val routeMapsViewModel: RouteMapsViewModel by viewModels()
 
-    override fun onResume() {
-        super.onResume()
-        /*if (myRouteId != null) {
-            myRoutesFragment()
-        } else if (routeId != null) {
-            routesFragment()
-        }*/
-    }
 
     private var locationsList: List<Location> = emptyList()
     private lateinit var updatedLocationsList: ArrayList<Location>
@@ -70,7 +59,7 @@ class RouteMapsFragment : Fragment() {
 
         if (!locationsList.isNullOrEmpty()) {
 
-            locationsList.forEachIndexed {index, location ->
+            locationsList.forEachIndexed { index, location ->
                 val latLng: LatLng? = if (location.location_search.isNotEmpty()) {
                     searchGeoCoder(location.location_search)
                 } else {
@@ -79,9 +68,18 @@ class RouteMapsFragment : Fragment() {
                 if (latLng != null) {
                     googleMap.addMarker(MarkerOptions().position(latLng).title(location.title))
                     addToUpdatedLocations(latLng)
-                    if (index == 0) googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10F))
+                    if (index == 0) googleMap.moveCamera(
+                        CameraUpdateFactory.newLatLngZoom(
+                            latLng,
+                            10F
+                        )
+                    )
                 } else {
-                    Toast.makeText(context, "Location \"${location.title}\" data not found!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        "Location \"${location.title}\" data not found!",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 
@@ -97,10 +95,12 @@ class RouteMapsFragment : Fragment() {
     }
 
     private fun addToUpdatedLocations(latLng: LatLng) {
-        updatedLocationsList.add(Location(
-            latitude = latLng.latitude.toString(),
-            longitude = latLng.longitude.toString(),
-        ))
+        updatedLocationsList.add(
+            Location(
+                latitude = latLng.latitude.toString(),
+                longitude = latLng.longitude.toString(),
+            )
+        )
     }
 
     private fun searchGeoCoder(search: String): LatLng? {
@@ -130,7 +130,7 @@ class RouteMapsFragment : Fragment() {
         }
     }
 
-    private fun mapReady(){
+    private fun mapReady() {
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
     }
@@ -166,28 +166,38 @@ class RouteMapsFragment : Fragment() {
 
     private fun enableFineLocation() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(requireContext(),
-                    Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                )
+                == PackageManager.PERMISSION_GRANTED
+            ) {
                 map.isMyLocationEnabled = true
             } else {
                 requestFineLocationPermission(requireActivity(), requestCode)
             }
-        }
-        else {
-            map.isMyLocationEnabled= true
+        } else {
+            map.isMyLocationEnabled = true
         }
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
         when (requestCode) {
             1 -> {
                 if (grantResults.isNotEmpty() && grantResults[0] ==
-                    PackageManager.PERMISSION_GRANTED) {
-                    if (ContextCompat.checkSelfPermission(requireContext(),
-                            Manifest.permission.ACCESS_FINE_LOCATION)
-                        == PackageManager.PERMISSION_GRANTED) {
+                    PackageManager.PERMISSION_GRANTED
+                ) {
+                    if (ContextCompat.checkSelfPermission(
+                            requireContext(),
+                            Manifest.permission.ACCESS_FINE_LOCATION
+                        )
+                        == PackageManager.PERMISSION_GRANTED
+                    ) {
                         map.isMyLocationEnabled = true
                     }
                 }

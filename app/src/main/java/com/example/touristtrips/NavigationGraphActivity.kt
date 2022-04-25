@@ -44,9 +44,6 @@ class NavigationGraphActivity : AppCompatActivity() {
 
         //this.deleteDatabase("local_db")
 
-        //val db = FirebaseDatabase().writeToDatabase()
-
-
     }
 
     override fun onSupportNavigateUp(): Boolean {

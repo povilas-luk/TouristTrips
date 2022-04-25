@@ -37,8 +37,6 @@ class SortBottomSheetMyLocationsFragment: BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //setSortRadioButtons()
-
         binding.sortByRadioGroup.setOnCheckedChangeListener { radioGroup, i ->
             sortLocations(i)
         }
@@ -70,7 +68,6 @@ class SortBottomSheetMyLocationsFragment: BottomSheetDialogFragment() {
             binding.timeToVisitRadioButton.id -> myLocationsViewModel.sortLocations(SortOrder.TimeToVisit(currentSortType))
             else -> myLocationsViewModel.sortLocations(SortOrder.Title(currentSortType))
         }
-        //setSortRadioButtons()
     }
 
     private fun getSortById(sortOrder: SortOrder): Int {
@@ -100,38 +97,6 @@ class SortBottomSheetMyLocationsFragment: BottomSheetDialogFragment() {
             }
         }
     }
-
-    /*private fun itemSelected(id: String) {
-        findNavController().navigate(LocationsFragmentDirections.actionLocationsFragmentToLocationFragment2(id))
-    }
-
-    private val textWatcher: TextWatcher = object : TextWatcher {
-        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            // nothing
-        }
-
-        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            if (p0 != null) {
-                locationsViewModel.showLocationsWithText(p0.toString())
-            }
-        }
-
-        override fun afterTextChanged(p0: Editable?) {
-            // nothing
-        }
-    }
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_sort, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return if (item.itemId == R.id.menuSort) {
-
-            true
-        } else {
-            super.onOptionsItemSelected(item)
-        }
-    }*/
 
     override fun onDestroyView() {
         super.onDestroyView()

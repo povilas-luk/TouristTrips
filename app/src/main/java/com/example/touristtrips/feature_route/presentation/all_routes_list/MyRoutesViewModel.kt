@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MyRoutesViewModel @Inject constructor(
     private val routesUseCases: RoutesUseCases
-): ViewModel() {
+) : ViewModel() {
 
     private val _routesState = MutableLiveData(RoutesState())
     val routesState: MutableLiveData<RoutesState> = _routesState
@@ -31,14 +31,6 @@ class MyRoutesViewModel @Inject constructor(
     }
 
     private fun getRoutes() {
-        /*viewModelScope.launch {
-            locationUseCases.getLocations().onEach { location ->
-                _locationsState.value = locationsState.value?.copy(
-                    locations = location
-                )
-            }
-            //_state.value?.locations
-        }*/
 
         getRoutesJob?.cancel()
         getRoutesJob = routesUseCases.getRoutes()
@@ -60,9 +52,9 @@ class MyRoutesViewModel @Inject constructor(
     fun sortRoutes(sortOrder: SortOrder) {
         val routes = com.example.touristtrips.core.domain.util.route.sortRoutes(
             sortOrder,
-            allRoutesLiveData?.value ?: emptyList()
+            allRoutesLiveData.value ?: emptyList()
         )
-        allRoutesLiveData?.value = ArrayList(routes)
+        allRoutesLiveData.value = ArrayList(routes)
         _routesState.value = RoutesState(ArrayList(routes), sortOrder = sortOrder)
     }
 

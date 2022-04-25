@@ -1,8 +1,8 @@
 package com.example.touristtrips.core.data.firebase_data.firebase_repository
 
 import androidx.lifecycle.MutableLiveData
-import com.example.touristtrips.feature_location.domain.model.Location
 import com.example.touristtrips.core.presentation.locations.location.LocationState
+import com.example.touristtrips.feature_location.domain.model.Location
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -24,10 +24,7 @@ class LocationRepository {
                 liveData.value = LocationState(locations as ArrayList<Location>)
             }
 
-            override fun onCancelled(error: DatabaseError) {
-                //Nothing
-            }
-
+            override fun onCancelled(error: DatabaseError) {}
         })
     }
 
@@ -35,14 +32,10 @@ class LocationRepository {
         locationsReference.child(locationId).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val location = snapshot.getValue<Location>()!!
-                //Log.i("Snapshot", location.toString())
                 liveData.value = LocationState(ArrayList(), location)
             }
 
-            override fun onCancelled(error: DatabaseError) {
-                //Nothing
-            }
-
+            override fun onCancelled(error: DatabaseError) {}
         })
     }
 
@@ -52,18 +45,14 @@ class LocationRepository {
             locationsReference.child(it).addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val location = snapshot.getValue<Location>()!!
-                    //Log.i("Snapshot", location.toString())
                     locations.add(location)
                     if (locationId.size == locations.size) {
                         liveData.value = LocationState(locations)
                     }
                 }
 
-                override fun onCancelled(error: DatabaseError) {
-                    //Nothing
-                }
+                override fun onCancelled(error: DatabaseError) {}
             })
-            //liveData.value = LocationState(locations = locations)
         }
     }
 

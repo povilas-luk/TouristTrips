@@ -17,8 +17,6 @@
     <string name="routeMapFragment_name">Route Map</string>
     <string name="locationMapFragment_name">Location Map</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="home">Home</string>
     <string name="title">Title</string>
     <string name="description">Description</string>
     <string name="city">City</string>
@@ -32,19 +30,19 @@
     <string name="delete">Delete</string>
     <string name="update">Update</string>
     <string name="locations">Locations</string>
-    <string name="upload_locations">Upload locations</string>
     <string name="map">Map</string>
     <string name="header_image">Header Image</string>
     <string name="search">Search</string>
     <string name="location_search">Location Search</string>
     <string name="time_to_visit">Time To Visit</string>
     <string name="price">Price</string>
-    <string name="apply">Apply</string>
     <string name="sort">Sort</string>
-    <string name="sort_order">Sort order</string>
     <string name="sort_by">Sort by</string>
     <string name="ascending">Ascending</string>
     <string name="descending">Descending</string>
+    <string name="language">Language</string>
+    <string name="lithuanian">Lithuanian</string>
+    <string name="english">English</string>
 
 
 </resources>

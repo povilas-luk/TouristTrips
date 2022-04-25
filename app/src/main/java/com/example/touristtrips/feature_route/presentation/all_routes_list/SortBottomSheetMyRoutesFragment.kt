@@ -1,7 +1,9 @@
 package com.example.touristtrips.feature_route.presentation.all_routes_list
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.navigation.navGraphViewModels
 import com.example.touristtrips.R
 import com.example.touristtrips.core.domain.util.SortOrder
@@ -11,15 +13,11 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SortBottomSheetMyRoutesFragment: BottomSheetDialogFragment() {
+class SortBottomSheetMyRoutesFragment : BottomSheetDialogFragment() {
     private var _binding: FragmentSortOrderBottomSheetDialogBinding? = null
     private val binding get() = _binding!!
 
     private val myRoutesViewModel: MyRoutesViewModel by navGraphViewModels(R.id.my_routes_graph) { defaultViewModelProviderFactory }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     private var currentSortType: SortType = SortType.Descending
     private var currentSortOrder: SortOrder = SortOrder.Title(currentSortType)
@@ -36,8 +34,6 @@ class SortBottomSheetMyRoutesFragment: BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        //setSortRadioButtons()
 
         binding.sortByRadioGroup.setOnCheckedChangeListener { radioGroup, i ->
             sortLocations(i)
@@ -64,13 +60,28 @@ class SortBottomSheetMyRoutesFragment: BottomSheetDialogFragment() {
 
     private fun sortLocations(sortById: Int) {
         when (sortById) {
-            binding.titleRadioButton.id -> myRoutesViewModel.sortRoutes(SortOrder.Title(currentSortType))
-            binding.typeRadioButton.id -> myRoutesViewModel.sortRoutes(SortOrder.Type(currentSortType))
-            binding.cityRadioButton.id -> myRoutesViewModel.sortRoutes(SortOrder.City(currentSortType))
-            binding.timeToVisitRadioButton.id -> myRoutesViewModel.sortRoutes(SortOrder.TimeToVisit(currentSortType))
+            binding.titleRadioButton.id -> myRoutesViewModel.sortRoutes(
+                SortOrder.Title(
+                    currentSortType
+                )
+            )
+            binding.typeRadioButton.id -> myRoutesViewModel.sortRoutes(
+                SortOrder.Type(
+                    currentSortType
+                )
+            )
+            binding.cityRadioButton.id -> myRoutesViewModel.sortRoutes(
+                SortOrder.City(
+                    currentSortType
+                )
+            )
+            binding.timeToVisitRadioButton.id -> myRoutesViewModel.sortRoutes(
+                SortOrder.TimeToVisit(
+                    currentSortType
+                )
+            )
             else -> myRoutesViewModel.sortRoutes(SortOrder.Title(currentSortType))
         }
-        //setSortRadioButtons()
     }
 
     private fun getSortById(sortOrder: SortOrder): Int {
@@ -100,38 +111,6 @@ class SortBottomSheetMyRoutesFragment: BottomSheetDialogFragment() {
             }
         }
     }
-
-    /*private fun itemSelected(id: String) {
-        findNavController().navigate(LocationsFragmentDirections.actionLocationsFragmentToLocationFragment2(id))
-    }
-
-    private val textWatcher: TextWatcher = object : TextWatcher {
-        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            // nothing
-        }
-
-        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            if (p0 != null) {
-                locationsViewModel.showLocationsWithText(p0.toString())
-            }
-        }
-
-        override fun afterTextChanged(p0: Editable?) {
-            // nothing
-        }
-    }
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_sort, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return if (item.itemId == R.id.menuSort) {
-
-            true
-        } else {
-            super.onOptionsItemSelected(item)
-        }
-    }*/
 
     override fun onDestroyView() {
         super.onDestroyView()

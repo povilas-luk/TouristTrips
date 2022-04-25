@@ -1,7 +1,9 @@
 package com.example.touristtrips.feature_route.presentation.route
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -26,7 +28,7 @@ class AddEditRouteFragment : Fragment() {
         safeArgs.routeId
     }
     private var editMode = false
-    private lateinit var editRoute : Route
+    private lateinit var editRoute: Route
 
     private val viewModel: AddEditRouteViewModel by viewModels()
 
@@ -65,7 +67,11 @@ class AddEditRouteFragment : Fragment() {
                         if (event.operation == Operation.FOUND) {
                             setEditMode(event.route)
                         } else {
-                            Toast.makeText(context, "Route ${event.operation.displayName}", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                context,
+                                "Route ${event.operation.displayName}",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                         if (event.operation == Operation.SAVED) {
                             findNavController().popBackStack()
@@ -90,9 +96,6 @@ class AddEditRouteFragment : Fragment() {
         binding.typeEditText.setText(route.type)
         binding.titleEditText.setText(route.title)
         binding.descriptionEditText.setText(route.description)
-        /*binding.latitudeEditText.setText(route.latitude)
-        binding.longitudeEditText.setText(route.longitude)
-        binding.cityEditText.setText(route.city)*/
         binding.imageUrlEditText.setText(route.imageUrl)
         binding.cityEditText.setText(route.city)
         binding.monthsToVisitEditText.setText(route.months_to_visit)
@@ -132,23 +135,6 @@ class AddEditRouteFragment : Fragment() {
         }
         return price
     }
-
-    /*override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_delete, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return if (item.itemId == R.id.menuDelete) {
-            deleteLocation()
-            true
-        } else {
-            super.onOptionsItemSelected(item)
-        }
-    }
-
-    private fun deleteLocation() {
-
-    }*/
 
     override fun onDestroyView() {
         super.onDestroyView()

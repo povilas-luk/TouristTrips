@@ -3,8 +3,8 @@ package com.example.touristtrips.core.data.firebase_data.firebase_repository
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.touristtrips.core.presentation.routes.route.RouteLocationsState
-import com.example.touristtrips.feature_route.domain.model.Route
 import com.example.touristtrips.core.presentation.routes.route.RoutesState
+import com.example.touristtrips.feature_route.domain.model.Route
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -27,31 +27,30 @@ class RouteRepository {
                 liveData.value = RoutesState(routes)
             }
 
-            override fun onCancelled(error: DatabaseError) {
-                //Nothing
-            }
-
+            override fun onCancelled(error: DatabaseError) {}
         })
     }
 
-    fun getRoute(liveData: MutableLiveData<Route>, locationsId: ArrayList<String>, routeId: String) {
+    fun getRoute(
+        liveData: MutableLiveData<Route>,
+        locationsId: ArrayList<String>,
+        routeId: String
+    ) {
         routesReference.child(routeId).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val route = snapshot.getValue<Route>()!!
                 Log.i("Snapshot", route.toString())
                 liveData.value = route
 
-                val locId: List<String> = snapshot.child("locationsId").children.map { dataSnapshot ->
-                    dataSnapshot.getValue<String>()!!
-                }
+                val locId: List<String> =
+                    snapshot.child("locationsId").children.map { dataSnapshot ->
+                        dataSnapshot.getValue<String>()!!
+                    }
                 locationsId.addAll(locId)
                 Log.i("Snapshot", locationsId.toString())
             }
 
-            override fun onCancelled(error: DatabaseError) {
-                //Nothing
-            }
-
+            override fun onCancelled(error: DatabaseError) {}
         })
     }
 
@@ -59,18 +58,14 @@ class RouteRepository {
         routesReference.child(routeId).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val route = snapshot.getValue<Route>()!!
-                //Log.i("Snapshot", route.toString())
-
-                val locationsId: List<String> = snapshot.child("locationsId").children.map { dataSnapshot ->
-                    dataSnapshot.getValue<String>()!!
-                }
+                val locationsId: List<String> =
+                    snapshot.child("locationsId").children.map { dataSnapshot ->
+                        dataSnapshot.getValue<String>()!!
+                    }
                 liveData.value = RouteLocationsState(route, locationsId)
             }
 
-            override fun onCancelled(error: DatabaseError) {
-                //Nothing
-            }
-
+            override fun onCancelled(error: DatabaseError) {}
         })
     }
 

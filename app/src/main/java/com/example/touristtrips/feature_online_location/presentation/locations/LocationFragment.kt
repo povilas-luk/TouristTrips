@@ -33,12 +33,7 @@ class LocationFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        //viewModel.getLocation(locationId)
-    }
 
-    override fun onResume() {
-        super.onResume()
-        //viewModel.getLocation(locationId)
     }
 
     override fun onCreateView(
@@ -59,10 +54,6 @@ class LocationFragment : Fragment() {
             currentLocation = locationState.location
             displayLocation(currentLocation)
         }
-    }
-
-    private fun itemSelected(id: String) {
-
     }
 
     private fun displayLocation(location: Location) {

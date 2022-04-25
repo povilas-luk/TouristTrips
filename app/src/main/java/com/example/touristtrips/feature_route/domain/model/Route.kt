@@ -16,4 +16,4 @@ data class Route(
     val price: Float = 0.0F
 )
 
-class InvalidRouteException(message: String): Exception(message)
+class InvalidRouteException(message: String) : Exception(message)

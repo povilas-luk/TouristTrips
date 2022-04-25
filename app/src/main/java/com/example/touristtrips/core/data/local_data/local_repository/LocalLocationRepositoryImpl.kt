@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 class LocalLocationRepositoryImpl(
     private val dao: LocationDao
-): LocalLocationRepository {
+) : LocalLocationRepository {
     override fun getLocations(): Flow<List<Location>> {
         return dao.getAllLocations()
     }

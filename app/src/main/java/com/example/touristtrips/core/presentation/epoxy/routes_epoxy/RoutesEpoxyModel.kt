@@ -17,7 +17,8 @@ data class RoutesEpoxyModel(
         typeTextView.text = route.type
         cityTextView.text = route.city
         timeToVisitTextView.text = route.months_to_visit
-        Picasso.get().load(Uri.parse(route.imageUrl)).placeholder(R.drawable.bruno_soares_284974).into(headerImageView)
+        Picasso.get().load(Uri.parse(route.imageUrl)).placeholder(R.drawable.bruno_soares_284974)
+            .into(headerImageView)
 
         root.setOnClickListener {
             itemSelected(route.routeId)

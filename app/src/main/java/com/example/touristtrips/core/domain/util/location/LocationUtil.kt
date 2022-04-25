@@ -1,10 +1,7 @@
 package com.example.touristtrips.core.domain.util.location
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.example.touristtrips.core.domain.util.SortOrder
 import com.example.touristtrips.core.domain.util.SortType
-import com.example.touristtrips.core.presentation.locations.location.LocationState
 import com.example.touristtrips.feature_location.domain.model.InvalidLocationException
 import com.example.touristtrips.feature_location.domain.model.Location
 

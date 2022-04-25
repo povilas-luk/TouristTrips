@@ -7,7 +7,7 @@ class RouteLocationsEpoxyController(
     val itemSelected: (String) -> Unit,
     val deleteItemSelected: (String) -> Unit,
     val deleteButtonIsActive: Boolean = true
-): EpoxyController() {
+) : EpoxyController() {
     var locationsList: List<Location> = emptyList()
         set(value) {
             field = value
@@ -16,7 +16,12 @@ class RouteLocationsEpoxyController(
 
     override fun buildModels() {
         locationsList.forEach { location ->
-            RouteLocationsEpoxyModel(location, itemSelected, deleteItemSelected, deleteButtonIsActive).id(location.locationId).addTo(this)
+            RouteLocationsEpoxyModel(
+                location,
+                itemSelected,
+                deleteItemSelected,
+                deleteButtonIsActive
+            ).id(location.locationId).addTo(this)
         }
     }
 }

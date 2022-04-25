@@ -2,7 +2,6 @@ package com.example.touristtrips.core.domain.util.route
 
 import com.example.touristtrips.core.domain.util.SortOrder
 import com.example.touristtrips.core.domain.util.SortType
-import com.example.touristtrips.feature_location.domain.model.Location
 import com.example.touristtrips.feature_route.domain.model.InvalidRouteException
 import com.example.touristtrips.feature_route.domain.model.Route
 
