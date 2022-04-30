@@ -11,7 +11,7 @@
         tools:layout="@layout/fragment_current_trip" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.touristtrips.SettingsFragment"
+        android:name="com.example.touristtrips.presentation.settings.SettingsFragment"
         android:label="@string/settingsFragment_name"
         tools:layout="@layout/fragment_settings" />
     <fragment
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/addLocationFragment"
-        android:name="com.example.touristtrips.feature_location.presentation.locations.AddEditLocationFragment"
+        android:name="com.example.touristtrips.presentation.my_locations.locations.AddEditLocationFragment"
         android:label="@string/editLocationFragment_name"
         tools:layout="@layout/fragment_add_edit_location" >
         <argument
@@ -42,7 +42,7 @@
     </fragment>
     <fragment
         android:id="@+id/myLocationFragment"
-        android:name="com.example.touristtrips.feature_location.presentation.locations.MyLocationFragment"
+        android:name="com.example.touristtrips.presentation.my_locations.locations.MyLocationFragment"
         android:label="@string/locationFragment_name"
         tools:layout="@layout/fragment_location" >
         <argument
@@ -57,7 +57,7 @@
     </fragment>
     <fragment
         android:id="@+id/addEditRouteFragment"
-        android:name="com.example.touristtrips.feature_route.presentation.route.AddEditRouteFragment"
+        android:name="com.example.touristtrips.presentation.my_routes.route.AddEditRouteFragment"
         android:label="@string/editRouteFragment_name"
         tools:layout="@layout/fragment_add_edit_route">
         <argument
@@ -71,7 +71,7 @@
     </fragment>
     <fragment
         android:id="@+id/myRouteFragment"
-        android:name="com.example.touristtrips.feature_route.presentation.route.MyRouteFragment"
+        android:name="com.example.touristtrips.presentation.my_routes.route.MyRouteFragment"
         android:label="@string/routeFragment_name"
         tools:layout="@layout/fragment_route" >
         <argument
@@ -97,7 +97,7 @@
     </fragment>
     <fragment
         android:id="@+id/routeLocationSelectionFragment"
-        android:name="com.example.touristtrips.feature_route.presentation.route.RouteLocationSelectionFragment"
+        android:name="com.example.touristtrips.presentation.my_routes.route.RouteLocationSelectionFragment"
         android:label="@string/locationSelectionFragment_name"
         tools:layout="@layout/fragment_route_location_selection" >
         <argument
@@ -109,7 +109,7 @@
     </fragment>
     <fragment
         android:id="@+id/routeMapsFragment"
-        android:name="com.example.touristtrips.core.presentation.routes.route_map.RouteMapsFragment"
+        android:name="com.example.touristtrips.presentation.shared.routes.route_map.RouteMapsFragment"
         android:label="@string/routeMapFragment_name"
         tools:layout="@layout/fragment_route_maps" >
         <argument
@@ -125,7 +125,7 @@
     </fragment>
     <fragment
         android:id="@+id/routeFragment"
-        android:name="com.example.touristtrips.feature_online_route.presentation.routes.RouteFragment"
+        android:name="com.example.touristtrips.presentation.remote_routes.routes.RouteFragment"
         android:label="@string/routeFragment_name"
         tools:layout="@layout/fragment_route">
         <argument
@@ -140,7 +140,7 @@
     </fragment>
     <fragment
         android:id="@+id/locationMapsFragment"
-        android:name="com.example.touristtrips.core.presentation.locations.location_map.LocationMapsFragment"
+        android:name="com.example.touristtrips.presentation.shared.locations.location_map.LocationMapsFragment"
         android:label="@string/locationMapFragment_name"
         tools:layout="@layout/fragment_location_maps" >
         <argument
@@ -156,7 +156,7 @@
     </fragment>
     <fragment
         android:id="@+id/locationFragment"
-        android:name="com.example.touristtrips.feature_online_location.presentation.locations.LocationFragment"
+        android:name="com.example.touristtrips.presentation.remote_locations.locations.LocationFragment"
         android:label="@string/locationFragment_name"
         tools:layout="@layout/fragment_location">
         <argument
@@ -171,7 +171,7 @@
 
         <fragment
             android:id="@+id/locationsFragment"
-            android:name="com.example.touristtrips.feature_online_location.presentation.locations.LocationsFragment"
+            android:name="com.example.touristtrips.presentation.remote_locations.locations.LocationsFragment"
             android:label="@string/locationsFragment_name"
             tools:layout="@layout/fragment_locations">
             <action
@@ -183,14 +183,14 @@
         </fragment>
         <dialog
             android:id="@+id/sortOrderBottomSheetLocationsFragment"
-            android:name="com.example.touristtrips.feature_online_location.presentation.locations.SortBottomSheetLocationsFragment"
+            android:name="com.example.touristtrips.presentation.remote_locations.locations.SortBottomSheetLocationsFragment"
             android:label="SortOrderBottomSheetDialogFragment" />
     </navigation>
     <navigation android:id="@+id/my_locations_graph"
         app:startDestination="@id/myLocationsFragment">
         <fragment
             android:id="@+id/myLocationsFragment"
-            android:name="com.example.touristtrips.feature_location.presentation.all_locations_list.MyLocationsFragment"
+            android:name="com.example.touristtrips.presentation.my_locations.all_locations_list.MyLocationsFragment"
             android:label="@string/myLocationsFragment_name"
             tools:layout="@layout/fragment_my_locations">
             <action
@@ -205,14 +205,14 @@
         </fragment>
         <dialog
             android:id="@+id/sortBottomSheetMyLocationsFragment"
-            android:name="com.example.touristtrips.feature_location.presentation.all_locations_list.SortBottomSheetMyLocationsFragment"
+            android:name="com.example.touristtrips.presentation.my_locations.all_locations_list.SortBottomSheetMyLocationsFragment"
             android:label="SortBottomSheetMyLocationsFragment" />
     </navigation>
     <navigation android:id="@+id/routes_graph"
         app:startDestination="@id/routesFragment">
         <fragment
             android:id="@+id/routesFragment"
-            android:name="com.example.touristtrips.feature_online_route.presentation.routes.RoutesFragment"
+            android:name="com.example.touristtrips.presentation.remote_routes.routes.RoutesFragment"
             android:label="@string/routesFragment_name"
             tools:layout="@layout/fragment_routes">
             <action
@@ -224,14 +224,14 @@
         </fragment>
         <dialog
             android:id="@+id/sortBottomSheetRoutesFragment"
-            android:name="com.example.touristtrips.feature_online_route.presentation.routes.SortBottomSheetRoutesFragment"
+            android:name="com.example.touristtrips.presentation.remote_routes.routes.SortBottomSheetRoutesFragment"
             android:label="SortBottomSheetRoutesFragment" />
     </navigation>
     <navigation android:id="@+id/my_routes_graph"
         app:startDestination="@id/myRoutesFragment">
         <fragment
             android:id="@+id/myRoutesFragment"
-            android:name="com.example.touristtrips.feature_route.presentation.all_routes_list.MyRoutesFragment"
+            android:name="com.example.touristtrips.presentation.my_routes.all_routes_list.MyRoutesFragment"
             android:label="@string/myRoutesFragment_name"
             tools:layout="@layout/fragment_my_routes">
             <action
@@ -246,7 +246,7 @@
         </fragment>
         <dialog
             android:id="@+id/sortBottomSheetMyRoutesFragment"
-            android:name="com.example.touristtrips.feature_route.presentation.all_routes_list.SortBottomSheetMyRoutesFragment"
+            android:name="com.example.touristtrips.presentation.my_routes.all_routes_list.SortBottomSheetMyRoutesFragment"
             android:label="SortBottomSheetMyRoutesFragment" />
     </navigation>
 
