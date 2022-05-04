@@ -13,6 +13,9 @@ import com.example.touristtrips.domain.remote_routes.use_case.GetRouteWithLocati
 
 import com.example.touristtrips.presentation.shared.routes.route.RoutesState
 import com.example.touristtrips.domain.my_routes.model.Route
+import com.example.touristtrips.domain.remote_routes.use_case.GetRoutes
+import com.example.touristtrips.domain.shared.use_case.FindRoutesWithText
+import com.example.touristtrips.domain.shared.use_case.SortRoutes
 
 //@HiltViewModel
 class RoutesViewModel : ViewModel() {
@@ -31,7 +34,8 @@ class RoutesViewModel : ViewModel() {
     private var allRoutesLiveData: MutableLiveData<List<Route>>? = null
 
     fun getRoutes() {
-        repository.getRoutes(_routesState)
+        //repository.getRoutes(_routesState)
+        GetRoutes().getRoutes(_routesState)
     }
 
     fun getRouteWithLocationsId(routeId: String) {
@@ -52,13 +56,13 @@ class RoutesViewModel : ViewModel() {
     }
 
     fun showRoutesWithText(text: String) {
-        val routes = findRoutesWithText(text, allRoutesLiveData?.value ?: emptyList())
+        val routes = FindRoutesWithText().findRoutesWithText(text, allRoutesLiveData?.value ?: emptyList())
 
         _routesState.value = RoutesState(routes)
     }
 
     fun sortRoutes(sortOrder: SortOrder) {
-        val routes = com.example.touristtrips.domain.shared.util.route.sortRoutes(
+        val routes = SortRoutes().sortRoutes(
             sortOrder,
             allRoutesLiveData?.value ?: emptyList()
         )

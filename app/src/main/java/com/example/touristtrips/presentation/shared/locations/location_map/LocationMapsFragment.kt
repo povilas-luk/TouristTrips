@@ -121,8 +121,6 @@ class LocationMapsFragment : Fragment() {
             addEditLocationsViewModel.eventFlow.collectLatest { event ->
                 when (event) {
                     is AddEditLocationViewModel.LocationEvent.Success -> {
-                        Toast.makeText(context, event.operation.toString(), Toast.LENGTH_SHORT)
-                            .show()
                         if (currentLocation == null) {
                             currentLocation = event.location
                         }

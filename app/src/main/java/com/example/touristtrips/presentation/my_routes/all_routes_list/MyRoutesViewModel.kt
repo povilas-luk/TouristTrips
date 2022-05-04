@@ -44,13 +44,13 @@ class MyRoutesViewModel @Inject constructor(
     }
 
     fun showRoutesWithText(text: String) {
-        val routes = findRoutesWithText(text, allRoutesLiveData.value ?: emptyList())
+        val routes = routesUseCases.findRoutesWithText.findRoutesWithText(text, allRoutesLiveData.value ?: emptyList())
 
         _routesState.value = RoutesState(routes)
     }
 
     fun sortRoutes(sortOrder: SortOrder) {
-        val routes = com.example.touristtrips.domain.shared.util.route.sortRoutes(
+        val routes = routesUseCases.sortRoutes.sortRoutes(
             sortOrder,
             allRoutesLiveData.value ?: emptyList()
         )

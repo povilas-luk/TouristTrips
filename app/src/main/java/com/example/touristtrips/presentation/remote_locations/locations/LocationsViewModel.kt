@@ -10,6 +10,8 @@ import com.example.touristtrips.domain.shared.util.location.sortLocations
 import com.example.touristtrips.domain.my_locations.model.Location
 import com.example.touristtrips.domain.remote_locations.use_case.GetLocation
 import com.example.touristtrips.domain.remote_locations.use_case.GetLocations
+import com.example.touristtrips.domain.shared.use_case.FindLocationsWithText
+import com.example.touristtrips.domain.shared.use_case.SortLocations
 import kotlin.collections.ArrayList
 
 class LocationsViewModel: ViewModel() {
@@ -34,13 +36,13 @@ class LocationsViewModel: ViewModel() {
     }
 
     fun showLocationsWithText(text: String) {
-        val locations = findLocationsWithText(text, allLocationsLiveData?.value ?: emptyList())
+        val locations = FindLocationsWithText().findLocationsWithText(text, allLocationsLiveData?.value ?: emptyList())
 
         _locationsState.value = LocationState(locations)
     }
 
     fun sortLocations(sortOrder: SortOrder) {
-        val locations = sortLocations(sortOrder, allLocationsLiveData?.value ?: emptyList())
+        val locations = SortLocations().sortLocations(sortOrder, allLocationsLiveData?.value ?: emptyList())
         allLocationsLiveData?.value = ArrayList(locations)
         _locationsState.value = LocationState(ArrayList(locations), sortOrder = sortOrder)
     }

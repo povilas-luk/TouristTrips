@@ -9,6 +9,7 @@ import com.example.touristtrips.presentation.shared.locations.location.LocationS
 import com.example.touristtrips.domain.shared.util.location.findLocationsWithText
 import com.example.touristtrips.domain.my_locations.model.Location
 import com.example.touristtrips.domain.my_locations.use_case.MyLocationUseCases
+import com.example.touristtrips.domain.shared.use_case.FindLocationsWithText
 import com.example.touristtrips.domain.shared.util.location.sortLocations
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
@@ -32,7 +33,6 @@ class MyLocationsViewModel @Inject constructor(
         getLocations()
     }
 
-
     private fun getLocations() {
         getLocationsJob?.cancel()
         getLocationsJob = locationUseCases.getLocations.invoke()
@@ -46,13 +46,13 @@ class MyLocationsViewModel @Inject constructor(
     }
 
     fun showLocationsWithText(text: String) {
-        val locations = findLocationsWithText(text, allLocationsLiveData.value ?: emptyList())
+        val locations = locationUseCases.findLocationsWithText.findLocationsWithText(text, allLocationsLiveData.value ?: emptyList())
 
         _locationsState.value = LocationState(locations)
     }
 
     fun sortLocations(sortOrder: SortOrder) {
-        val locations = sortLocations(sortOrder, allLocationsLiveData.value ?: emptyList())
+        val locations = locationUseCases.sortLocations.sortLocations(sortOrder, allLocationsLiveData.value ?: emptyList())
         allLocationsLiveData.value = ArrayList(locations)
         _locationsState.value = LocationState(ArrayList(locations), sortOrder = sortOrder)
     }

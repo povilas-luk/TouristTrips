@@ -13,6 +13,7 @@ import com.example.touristtrips.domain.shared.repository.DirectionsRepository
 import com.example.touristtrips.domain.my_locations.use_case.*
 import com.example.touristtrips.domain.my_routes.repository.LocalRouteRepository
 import com.example.touristtrips.domain.my_routes.use_case.*
+import com.example.touristtrips.domain.shared.use_case.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -68,7 +69,9 @@ object AppModule {
             getLocations = GetLocations(repositoryLocal),
             getLocation = GetLocation(repositoryLocal),
             updateLocation = UpdateLocation(repositoryLocal),
-            deleteLocation = DeleteLocation(repositoryLocal)
+            deleteLocation = DeleteLocation(repositoryLocal),
+            sortLocations = SortLocations(),
+            findLocationsWithText = FindLocationsWithText(),
         )
     }
 
@@ -84,8 +87,16 @@ object AppModule {
             addRouteLocation = AddRouteLocation(repositoryLocal),
             getRouteWithLocations = GetRouteWithLocations(repositoryLocal),
             getRoutesWithLocations = GetRoutesWithLocations(repositoryLocal),
-            deleteRouteLocation = DeleteRouteLocation(repositoryLocal)
+            deleteRouteLocation = DeleteRouteLocation(repositoryLocal),
+            sortRoutes = SortRoutes(),
+            findRoutesWithText = FindRoutesWithText(),
         )
+    }
+
+    @Provides
+    @Singleton
+    fun provideDirectionsPolylinesUseCase(repository: DirectionsRepository): GetRouteDirectionsPolylines {
+        return GetRouteDirectionsPolylines(repository)
     }
 
 }

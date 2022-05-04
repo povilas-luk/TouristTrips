@@ -1,0 +1,725 @@
+@startuml
+
+title __TOURISTTRIPS.APP's Class Diagram__\n
+
+  namespace com.example.touristtrips {
+    class com.example.touristtrips.BuildConfig {
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    class com.example.touristtrips.DaggerTouristApp_HiltComponents_SingletonC {
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    abstract class com.example.touristtrips.Hilt_NavigationGraphActivity {
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    abstract class com.example.touristtrips.Hilt_TouristApp {
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    interface com.example.touristtrips.NavigationGraphActivity_GeneratedInjector {
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    class com.example.touristtrips.TouristApp_ComponentTreeDeps {
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    interface com.example.touristtrips.TouristApp_GeneratedInjector {
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    class com.example.touristtrips.TouristApp_HiltComponents {
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace data.retrofit.repository {
+      class com.example.touristtrips.data.retrofit.repository.DirectionsRepositoryImpl_Factory {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace data.room.source {
+      class com.example.touristtrips.data.room.source.LocalDatabase_Impl {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace data.room.source {
+      class com.example.touristtrips.data.room.source.LocationDao_Impl {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace data.room.source {
+      class com.example.touristtrips.data.room.source.RouteDao_Impl {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace dependency_injections {
+      class com.example.touristtrips.dependency_injections.AppModule_ProvideDirectionsRepositoryFactory {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace dependency_injections {
+      class com.example.touristtrips.dependency_injections.AppModule_ProvideDirectionsServicesFactory {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace dependency_injections {
+      class com.example.touristtrips.dependency_injections.AppModule_ProvideLocationRepositoryFactory {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace dependency_injections {
+      class com.example.touristtrips.dependency_injections.AppModule_ProvideMyLocationUseCasesFactory {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace dependency_injections {
+      class com.example.touristtrips.dependency_injections.AppModule_ProvideNoteDatabaseFactory {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace dependency_injections {
+      class com.example.touristtrips.dependency_injections.AppModule_ProvideRouteRepositoryFactory {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace dependency_injections {
+      class com.example.touristtrips.dependency_injections.AppModule_ProvideRouteUseCasesFactory {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.my_locations.all_locations_list {
+      abstract class com.example.touristtrips.presentation.my_locations.all_locations_list.Hilt_MyLocationsFragment {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.my_locations.all_locations_list {
+      abstract class com.example.touristtrips.presentation.my_locations.all_locations_list.Hilt_SortBottomSheetMyLocationsFragment {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.my_locations.all_locations_list {
+      interface com.example.touristtrips.presentation.my_locations.all_locations_list.MyLocationsFragment_GeneratedInjector {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.my_locations.all_locations_list {
+      class com.example.touristtrips.presentation.my_locations.all_locations_list.MyLocationsViewModel_Factory {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.my_locations.all_locations_list {
+      class com.example.touristtrips.presentation.my_locations.all_locations_list.MyLocationsViewModel_HiltModules {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.my_locations.all_locations_list {
+      class com.example.touristtrips.presentation.my_locations.all_locations_list.MyLocationsViewModel_HiltModules_KeyModule_ProvideFactory {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.my_locations.all_locations_list {
+      interface com.example.touristtrips.presentation.my_locations.all_locations_list.SortBottomSheetMyLocationsFragment_GeneratedInjector {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.my_locations.locations {
+      interface com.example.touristtrips.presentation.my_locations.locations.AddEditLocationFragment_GeneratedInjector {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.my_locations.locations {
+      class com.example.touristtrips.presentation.my_locations.locations.AddEditLocationViewModel_Factory {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.my_locations.locations {
+      class com.example.touristtrips.presentation.my_locations.locations.AddEditLocationViewModel_HiltModules {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.my_locations.locations {
+      class com.example.touristtrips.presentation.my_locations.locations.AddEditLocationViewModel_HiltModules_KeyModule_ProvideFactory {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.my_locations.locations {
+      abstract class com.example.touristtrips.presentation.my_locations.locations.Hilt_AddEditLocationFragment {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.my_locations.locations {
+      abstract class com.example.touristtrips.presentation.my_locations.locations.Hilt_MyLocationFragment {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.my_locations.locations {
+      interface com.example.touristtrips.presentation.my_locations.locations.MyLocationFragment_GeneratedInjector {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.my_routes.all_routes_list {
+      abstract class com.example.touristtrips.presentation.my_routes.all_routes_list.Hilt_MyRoutesFragment {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.my_routes.all_routes_list {
+      abstract class com.example.touristtrips.presentation.my_routes.all_routes_list.Hilt_SortBottomSheetMyRoutesFragment {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.my_routes.all_routes_list {
+      interface com.example.touristtrips.presentation.my_routes.all_routes_list.MyRoutesFragment_GeneratedInjector {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.my_routes.all_routes_list {
+      class com.example.touristtrips.presentation.my_routes.all_routes_list.MyRoutesViewModel_Factory {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.my_routes.all_routes_list {
+      class com.example.touristtrips.presentation.my_routes.all_routes_list.MyRoutesViewModel_HiltModules {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.my_routes.all_routes_list {
+      class com.example.touristtrips.presentation.my_routes.all_routes_list.MyRoutesViewModel_HiltModules_KeyModule_ProvideFactory {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.my_routes.all_routes_list {
+      interface com.example.touristtrips.presentation.my_routes.all_routes_list.SortBottomSheetMyRoutesFragment_GeneratedInjector {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.my_routes.route {
+      interface com.example.touristtrips.presentation.my_routes.route.AddEditRouteFragment_GeneratedInjector {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.my_routes.route {
+      class com.example.touristtrips.presentation.my_routes.route.AddEditRouteViewModel_Factory {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.my_routes.route {
+      class com.example.touristtrips.presentation.my_routes.route.AddEditRouteViewModel_HiltModules {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.my_routes.route {
+      class com.example.touristtrips.presentation.my_routes.route.AddEditRouteViewModel_HiltModules_KeyModule_ProvideFactory {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.my_routes.route {
+      abstract class com.example.touristtrips.presentation.my_routes.route.Hilt_AddEditRouteFragment {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.my_routes.route {
+      abstract class com.example.touristtrips.presentation.my_routes.route.Hilt_MyRouteFragment {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.my_routes.route {
+      abstract class com.example.touristtrips.presentation.my_routes.route.Hilt_RouteLocationSelectionFragment {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.my_routes.route {
+      interface com.example.touristtrips.presentation.my_routes.route.MyRouteFragment_GeneratedInjector {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.my_routes.route {
+      interface com.example.touristtrips.presentation.my_routes.route.RouteLocationSelectionFragment_GeneratedInjector {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.remote_locations.locations {
+      abstract class com.example.touristtrips.presentation.remote_locations.locations.Hilt_LocationFragment {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.remote_locations.locations {
+      abstract class com.example.touristtrips.presentation.remote_locations.locations.Hilt_LocationsFragment {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.remote_locations.locations {
+      interface com.example.touristtrips.presentation.remote_locations.locations.LocationFragment_GeneratedInjector {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.remote_locations.locations {
+      interface com.example.touristtrips.presentation.remote_locations.locations.LocationsFragment_GeneratedInjector {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.remote_routes.routes {
+      abstract class com.example.touristtrips.presentation.remote_routes.routes.Hilt_RouteFragment {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.remote_routes.routes {
+      interface com.example.touristtrips.presentation.remote_routes.routes.RouteFragment_GeneratedInjector {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.shared.locations.location_map {
+      abstract class com.example.touristtrips.presentation.shared.locations.location_map.Hilt_LocationMapsFragment {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.shared.locations.location_map {
+      interface com.example.touristtrips.presentation.shared.locations.location_map.LocationMapsFragment_GeneratedInjector {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.shared.routes.route_map {
+      abstract class com.example.touristtrips.presentation.shared.routes.route_map.Hilt_RouteMapsFragment {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.shared.routes.route_map {
+      interface com.example.touristtrips.presentation.shared.routes.route_map.RouteMapsFragment_GeneratedInjector {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.shared.routes.route_map {
+      class com.example.touristtrips.presentation.shared.routes.route_map.RouteMapsViewModel_Factory {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.shared.routes.route_map {
+      class com.example.touristtrips.presentation.shared.routes.route_map.RouteMapsViewModel_HiltModules {
+      }
+    }
+  }
+  
+
+  namespace com.example.touristtrips {
+    namespace presentation.shared.routes.route_map {
+      class com.example.touristtrips.presentation.shared.routes.route_map.RouteMapsViewModel_HiltModules_KeyModule_ProvideFactory {
+      }
+    }
+  }
+  
+
+  namespace dagger.hilt.internal.aggregatedroot.codegen {
+    class dagger.hilt.internal.aggregatedroot.codegen._com_example_touristtrips_TouristApp {
+    }
+  }
+  
+
+  namespace dagger.hilt.internal.processedrootsentinel.codegen {
+    class dagger.hilt.internal.processedrootsentinel.codegen._com_example_touristtrips_TouristApp {
+    }
+  }
+  
+
+  namespace hilt_aggregated_deps {
+    class hilt_aggregated_deps._com_example_touristtrips_NavigationGraphActivity_GeneratedInjector {
+    }
+  }
+  
+
+  namespace hilt_aggregated_deps {
+    class hilt_aggregated_deps._com_example_touristtrips_TouristApp_GeneratedInjector {
+    }
+  }
+  
+
+  namespace hilt_aggregated_deps {
+    class hilt_aggregated_deps._com_example_touristtrips_dependency_injections_AppModule {
+    }
+  }
+  
+
+  namespace hilt_aggregated_deps {
+    class hilt_aggregated_deps._com_example_touristtrips_presentation_my_locations_all_locations_list_MyLocationsFragment_GeneratedInjector {
+    }
+  }
+  
+
+  namespace hilt_aggregated_deps {
+    class hilt_aggregated_deps._com_example_touristtrips_presentation_my_locations_all_locations_list_MyLocationsViewModel_HiltModules_BindsModule {
+    }
+  }
+  
+
+  namespace hilt_aggregated_deps {
+    class hilt_aggregated_deps._com_example_touristtrips_presentation_my_locations_all_locations_list_MyLocationsViewModel_HiltModules_KeyModule {
+    }
+  }
+  
+
+  namespace hilt_aggregated_deps {
+    class hilt_aggregated_deps._com_example_touristtrips_presentation_my_locations_all_locations_list_SortBottomSheetMyLocationsFragment_GeneratedInjector {
+    }
+  }
+  
+
+  namespace hilt_aggregated_deps {
+    class hilt_aggregated_deps._com_example_touristtrips_presentation_my_locations_locations_AddEditLocationFragment_GeneratedInjector {
+    }
+  }
+  
+
+  namespace hilt_aggregated_deps {
+    class hilt_aggregated_deps._com_example_touristtrips_presentation_my_locations_locations_AddEditLocationViewModel_HiltModules_BindsModule {
+    }
+  }
+  
+
+  namespace hilt_aggregated_deps {
+    class hilt_aggregated_deps._com_example_touristtrips_presentation_my_locations_locations_AddEditLocationViewModel_HiltModules_KeyModule {
+    }
+  }
+  
+
+  namespace hilt_aggregated_deps {
+    class hilt_aggregated_deps._com_example_touristtrips_presentation_my_locations_locations_MyLocationFragment_GeneratedInjector {
+    }
+  }
+  
+
+  namespace hilt_aggregated_deps {
+    class hilt_aggregated_deps._com_example_touristtrips_presentation_my_routes_all_routes_list_MyRoutesFragment_GeneratedInjector {
+    }
+  }
+  
+
+  namespace hilt_aggregated_deps {
+    class hilt_aggregated_deps._com_example_touristtrips_presentation_my_routes_all_routes_list_MyRoutesViewModel_HiltModules_BindsModule {
+    }
+  }
+  
+
+  namespace hilt_aggregated_deps {
+    class hilt_aggregated_deps._com_example_touristtrips_presentation_my_routes_all_routes_list_MyRoutesViewModel_HiltModules_KeyModule {
+    }
+  }
+  
+
+  namespace hilt_aggregated_deps {
+    class hilt_aggregated_deps._com_example_touristtrips_presentation_my_routes_all_routes_list_SortBottomSheetMyRoutesFragment_GeneratedInjector {
+    }
+  }
+  
+
+  namespace hilt_aggregated_deps {
+    class hilt_aggregated_deps._com_example_touristtrips_presentation_my_routes_route_AddEditRouteFragment_GeneratedInjector {
+    }
+  }
+  
+
+  namespace hilt_aggregated_deps {
+    class hilt_aggregated_deps._com_example_touristtrips_presentation_my_routes_route_AddEditRouteViewModel_HiltModules_BindsModule {
+    }
+  }
+  
+
+  namespace hilt_aggregated_deps {
+    class hilt_aggregated_deps._com_example_touristtrips_presentation_my_routes_route_AddEditRouteViewModel_HiltModules_KeyModule {
+    }
+  }
+  
+
+  namespace hilt_aggregated_deps {
+    class hilt_aggregated_deps._com_example_touristtrips_presentation_my_routes_route_MyRouteFragment_GeneratedInjector {
+    }
+  }
+  
+
+  namespace hilt_aggregated_deps {
+    class hilt_aggregated_deps._com_example_touristtrips_presentation_my_routes_route_RouteLocationSelectionFragment_GeneratedInjector {
+    }
+  }
+  
+
+  namespace hilt_aggregated_deps {
+    class hilt_aggregated_deps._com_example_touristtrips_presentation_remote_locations_locations_LocationFragment_GeneratedInjector {
+    }
+  }
+  
+
+  namespace hilt_aggregated_deps {
+    class hilt_aggregated_deps._com_example_touristtrips_presentation_remote_locations_locations_LocationsFragment_GeneratedInjector {
+    }
+  }
+  
+
+  namespace hilt_aggregated_deps {
+    class hilt_aggregated_deps._com_example_touristtrips_presentation_remote_routes_routes_RouteFragment_GeneratedInjector {
+    }
+  }
+  
+
+  namespace hilt_aggregated_deps {
+    class hilt_aggregated_deps._com_example_touristtrips_presentation_shared_locations_location_map_LocationMapsFragment_GeneratedInjector {
+    }
+  }
+  
+
+  namespace hilt_aggregated_deps {
+    class hilt_aggregated_deps._com_example_touristtrips_presentation_shared_routes_route_map_RouteMapsFragment_GeneratedInjector {
+    }
+  }
+  
+
+  namespace hilt_aggregated_deps {
+    class hilt_aggregated_deps._com_example_touristtrips_presentation_shared_routes_route_map_RouteMapsViewModel_HiltModules_BindsModule {
+    }
+  }
+  
+
+  namespace hilt_aggregated_deps {
+    class hilt_aggregated_deps._com_example_touristtrips_presentation_shared_routes_route_map_RouteMapsViewModel_HiltModules_KeyModule {
+    }
+  }
+  
+
+  com.example.touristtrips.DaggerTouristApp_HiltComponents_SingletonC -up-|> com.example.touristtrips.TouristApp_HiltComponents.SingletonC
+  com.example.touristtrips.DaggerTouristApp_HiltComponents_SingletonC o-- com.example.touristtrips.DaggerTouristApp_HiltComponents_SingletonC : singletonC
+  com.example.touristtrips.Hilt_NavigationGraphActivity .up.|> dagger.hilt.internal.GeneratedComponentManagerHolder
+  com.example.touristtrips.Hilt_NavigationGraphActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.touristtrips.Hilt_TouristApp .up.|> dagger.hilt.internal.GeneratedComponentManagerHolder
+  com.example.touristtrips.Hilt_TouristApp -up-|> android.app.Application
+  com.example.touristtrips.data.retrofit.repository.DirectionsRepositoryImpl_Factory .up.|> dagger.internal.Factory
+  com.example.touristtrips.data.room.source.LocalDatabase_Impl -up-|> com.example.touristtrips.data.room.source.LocalDatabase
+  com.example.touristtrips.data.room.source.LocalDatabase_Impl o-- com.example.touristtrips.data.room.source.LocationDao : _locationDao
+  com.example.touristtrips.data.room.source.LocalDatabase_Impl o-- com.example.touristtrips.data.room.source.RouteDao : _routeDao
+  com.example.touristtrips.data.room.source.LocationDao_Impl .up.|> com.example.touristtrips.data.room.source.LocationDao
+  com.example.touristtrips.data.room.source.RouteDao_Impl .up.|> com.example.touristtrips.data.room.source.RouteDao
+  com.example.touristtrips.dependency_injections.AppModule_ProvideDirectionsRepositoryFactory .up.|> dagger.internal.Factory
+  com.example.touristtrips.dependency_injections.AppModule_ProvideDirectionsServicesFactory .up.|> dagger.internal.Factory
+  com.example.touristtrips.dependency_injections.AppModule_ProvideLocationRepositoryFactory .up.|> dagger.internal.Factory
+  com.example.touristtrips.dependency_injections.AppModule_ProvideMyLocationUseCasesFactory .up.|> dagger.internal.Factory
+  com.example.touristtrips.dependency_injections.AppModule_ProvideNoteDatabaseFactory .up.|> dagger.internal.Factory
+  com.example.touristtrips.dependency_injections.AppModule_ProvideRouteRepositoryFactory .up.|> dagger.internal.Factory
+  com.example.touristtrips.dependency_injections.AppModule_ProvideRouteUseCasesFactory .up.|> dagger.internal.Factory
+  com.example.touristtrips.presentation.my_locations.all_locations_list.Hilt_MyLocationsFragment .up.|> dagger.hilt.internal.GeneratedComponentManagerHolder
+  com.example.touristtrips.presentation.my_locations.all_locations_list.Hilt_MyLocationsFragment -up-|> androidx.fragment.app.Fragment
+  com.example.touristtrips.presentation.my_locations.all_locations_list.Hilt_SortBottomSheetMyLocationsFragment .up.|> dagger.hilt.internal.GeneratedComponentManagerHolder
+  com.example.touristtrips.presentation.my_locations.all_locations_list.Hilt_SortBottomSheetMyLocationsFragment -up-|> com.google.android.material.bottomsheet.BottomSheetDialogFragment
+  com.example.touristtrips.presentation.my_locations.all_locations_list.MyLocationsViewModel_Factory .up.|> dagger.internal.Factory
+  com.example.touristtrips.presentation.my_locations.all_locations_list.MyLocationsViewModel_HiltModules_KeyModule_ProvideFactory .up.|> dagger.internal.Factory
+  com.example.touristtrips.presentation.my_locations.locations.AddEditLocationViewModel_Factory .up.|> dagger.internal.Factory
+  com.example.touristtrips.presentation.my_locations.locations.AddEditLocationViewModel_HiltModules_KeyModule_ProvideFactory .up.|> dagger.internal.Factory
+  com.example.touristtrips.presentation.my_locations.locations.Hilt_AddEditLocationFragment .up.|> dagger.hilt.internal.GeneratedComponentManagerHolder
+  com.example.touristtrips.presentation.my_locations.locations.Hilt_AddEditLocationFragment -up-|> androidx.fragment.app.Fragment
+  com.example.touristtrips.presentation.my_locations.locations.Hilt_MyLocationFragment .up.|> dagger.hilt.internal.GeneratedComponentManagerHolder
+  com.example.touristtrips.presentation.my_locations.locations.Hilt_MyLocationFragment -up-|> androidx.fragment.app.Fragment
+  com.example.touristtrips.presentation.my_routes.all_routes_list.Hilt_MyRoutesFragment .up.|> dagger.hilt.internal.GeneratedComponentManagerHolder
+  com.example.touristtrips.presentation.my_routes.all_routes_list.Hilt_MyRoutesFragment -up-|> androidx.fragment.app.Fragment
+  com.example.touristtrips.presentation.my_routes.all_routes_list.Hilt_SortBottomSheetMyRoutesFragment .up.|> dagger.hilt.internal.GeneratedComponentManagerHolder
+  com.example.touristtrips.presentation.my_routes.all_routes_list.Hilt_SortBottomSheetMyRoutesFragment -up-|> com.google.android.material.bottomsheet.BottomSheetDialogFragment
+  com.example.touristtrips.presentation.my_routes.all_routes_list.MyRoutesViewModel_Factory .up.|> dagger.internal.Factory
+  com.example.touristtrips.presentation.my_routes.all_routes_list.MyRoutesViewModel_HiltModules_KeyModule_ProvideFactory .up.|> dagger.internal.Factory
+  com.example.touristtrips.presentation.my_routes.route.AddEditRouteViewModel_Factory .up.|> dagger.internal.Factory
+  com.example.touristtrips.presentation.my_routes.route.AddEditRouteViewModel_HiltModules_KeyModule_ProvideFactory .up.|> dagger.internal.Factory
+  com.example.touristtrips.presentation.my_routes.route.Hilt_AddEditRouteFragment .up.|> dagger.hilt.internal.GeneratedComponentManagerHolder
+  com.example.touristtrips.presentation.my_routes.route.Hilt_AddEditRouteFragment -up-|> androidx.fragment.app.Fragment
+  com.example.touristtrips.presentation.my_routes.route.Hilt_MyRouteFragment .up.|> dagger.hilt.internal.GeneratedComponentManagerHolder
+  com.example.touristtrips.presentation.my_routes.route.Hilt_MyRouteFragment -up-|> androidx.fragment.app.Fragment
+  com.example.touristtrips.presentation.my_routes.route.Hilt_RouteLocationSelectionFragment .up.|> dagger.hilt.internal.GeneratedComponentManagerHolder
+  com.example.touristtrips.presentation.my_routes.route.Hilt_RouteLocationSelectionFragment -up-|> androidx.fragment.app.Fragment
+  com.example.touristtrips.presentation.remote_locations.locations.Hilt_LocationFragment .up.|> dagger.hilt.internal.GeneratedComponentManagerHolder
+  com.example.touristtrips.presentation.remote_locations.locations.Hilt_LocationFragment -up-|> androidx.fragment.app.Fragment
+  com.example.touristtrips.presentation.remote_locations.locations.Hilt_LocationsFragment .up.|> dagger.hilt.internal.GeneratedComponentManagerHolder
+  com.example.touristtrips.presentation.remote_locations.locations.Hilt_LocationsFragment -up-|> androidx.fragment.app.Fragment
+  com.example.touristtrips.presentation.remote_routes.routes.Hilt_RouteFragment .up.|> dagger.hilt.internal.GeneratedComponentManagerHolder
+  com.example.touristtrips.presentation.remote_routes.routes.Hilt_RouteFragment -up-|> androidx.fragment.app.Fragment
+  com.example.touristtrips.presentation.shared.locations.location_map.Hilt_LocationMapsFragment .up.|> dagger.hilt.internal.GeneratedComponentManagerHolder
+  com.example.touristtrips.presentation.shared.locations.location_map.Hilt_LocationMapsFragment -up-|> androidx.fragment.app.Fragment
+  com.example.touristtrips.presentation.shared.routes.route_map.Hilt_RouteMapsFragment .up.|> dagger.hilt.internal.GeneratedComponentManagerHolder
+  com.example.touristtrips.presentation.shared.routes.route_map.Hilt_RouteMapsFragment -up-|> androidx.fragment.app.Fragment
+  com.example.touristtrips.presentation.shared.routes.route_map.RouteMapsViewModel_Factory .up.|> dagger.internal.Factory
+  com.example.touristtrips.presentation.shared.routes.route_map.RouteMapsViewModel_HiltModules_KeyModule_ProvideFactory .up.|> dagger.internal.Factory
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

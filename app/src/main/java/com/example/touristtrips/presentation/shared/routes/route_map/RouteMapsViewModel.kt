@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.touristtrips.data.retrofit.DirectionsResponseResource
 import com.example.touristtrips.domain.shared.repository.DirectionsRepository
 import com.example.touristtrips.domain.my_locations.model.Location
+import com.example.touristtrips.domain.shared.use_case.GetRouteDirectionsPolylines
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.PolylineOptions
 import com.google.maps.android.PolyUtil
@@ -16,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RouteMapsViewModel @Inject constructor(
-    private val repository: DirectionsRepository
+    private val getRouteDirectionsPolylines: GetRouteDirectionsPolylines
 ) : ViewModel() {
 
     private val _directionsPolylines = MutableLiveData<List<PolylineOptions>>()
@@ -25,29 +26,7 @@ class RouteMapsViewModel @Inject constructor(
     fun getDirectionsPolylines(locations: List<Location>) {
 
         viewModelScope.launch {
-            val polylines = ArrayList<PolylineOptions>()
-            for (i in locations.indices) {
-                if (i < locations.size - 1) {
-                    val fromLatLng =
-                        LatLng(locations[i].latitude.toDouble(), locations[i].longitude.toDouble())
-                    val toLatLng = LatLng(
-                        locations[i + 1].latitude.toDouble(),
-                        locations[i + 1].longitude.toDouble()
-                    )
-                    when (val directionsResponse = repository.getDirections(fromLatLng, toLatLng)) {
-                        is DirectionsResponseResource.Success -> {
-                            val shape =
-                                directionsResponse.data?.routes?.get(0)?.overviewPolyline?.points
-                            val polyline = PolylineOptions()
-                                .addAll(PolyUtil.decode(shape))
-                                .width(8f)
-                                .color(Color.RED)
-                            polylines.add(polyline)
-                        }
-                    }
-                }
-            }
-            _directionsPolylines.postValue(polylines)
+            _directionsPolylines.postValue(getRouteDirectionsPolylines.getDirectionsPolylines(locations))
         }
 
     }
