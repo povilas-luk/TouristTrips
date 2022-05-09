@@ -20,8 +20,6 @@ import com.example.touristtrips.domain.shared.use_case.SortRoutes
 //@HiltViewModel
 class RoutesViewModel : ViewModel() {
 
-    private val repository = RouteRepository()
-
     private val _routesState = MutableLiveData<RoutesState>()
     val routesState: LiveData<RoutesState> = _routesState
 
