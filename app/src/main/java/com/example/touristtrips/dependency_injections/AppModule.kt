@@ -3,11 +3,11 @@ package com.example.touristtrips.dependency_injections
 import android.app.Application
 import androidx.room.Room
 import com.example.touristtrips.domain.shared.util.Constants
-import com.example.touristtrips.data.room.source.LocalDatabase
-import com.example.touristtrips.data.room.repository.LocalLocationRepositoryImpl
-import com.example.touristtrips.data.room.repository.LocalRouteRepositoryImpl
-import com.example.touristtrips.data.retrofit.source.DirectionsApi
-import com.example.touristtrips.data.retrofit.repository.DirectionsRepositoryImpl
+import com.example.touristtrips.data.local.room.source.LocalDatabase
+import com.example.touristtrips.data.local.room.repository.LocalLocationRepositoryImpl
+import com.example.touristtrips.data.local.room.repository.LocalRouteRepositoryImpl
+import com.example.touristtrips.data.remote.retrofit.source.DirectionsApi
+import com.example.touristtrips.data.remote.retrofit.repository.DirectionsRepositoryImpl
 import com.example.touristtrips.domain.my_locations.repository.LocalLocationRepository
 import com.example.touristtrips.domain.shared.repository.DirectionsRepository
 import com.example.touristtrips.domain.my_locations.use_case.*

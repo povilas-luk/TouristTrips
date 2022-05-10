@@ -1,6 +1,6 @@
 package com.example.touristtrips.domain.my_locations.use_case
 
-import com.example.touristtrips.data.room.repository.LocalLocationRepositoryImpl
+import com.example.touristtrips.data.local.room.repository.LocalLocationRepositoryImpl
 import com.example.touristtrips.domain.my_locations.model.Location
 import com.example.touristtrips.domain.my_locations.repository.LocalLocationRepository
 

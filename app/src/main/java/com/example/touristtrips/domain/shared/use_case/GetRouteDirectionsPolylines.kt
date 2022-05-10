@@ -2,8 +2,8 @@ package com.example.touristtrips.domain.shared.use_case
 
 import android.graphics.Color
 import androidx.lifecycle.viewModelScope
-import com.example.touristtrips.data.retrofit.DirectionsResponseResource
-import com.example.touristtrips.data.retrofit.repository.DirectionsRepositoryImpl
+import com.example.touristtrips.data.remote.retrofit.DirectionsResponseResource
+import com.example.touristtrips.data.remote.retrofit.repository.DirectionsRepositoryImpl
 import com.example.touristtrips.domain.my_locations.model.Location
 import com.example.touristtrips.domain.shared.repository.DirectionsRepository
 import com.google.android.gms.maps.model.LatLng

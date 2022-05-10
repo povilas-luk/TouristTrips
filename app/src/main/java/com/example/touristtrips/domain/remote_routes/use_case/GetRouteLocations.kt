@@ -1,8 +1,8 @@
 package com.example.touristtrips.domain.remote_routes.use_case
 
 import androidx.lifecycle.MutableLiveData
-import com.example.touristtrips.data.firebase.repository.LocationRepository
-import com.example.touristtrips.presentation.shared.locations.location.LocationState
+import com.example.touristtrips.data.remote.firebase.repository.LocationRepository
+import com.example.touristtrips.presentation.shared.viewmodel.LocationState
 
 class GetRouteLocations {
 

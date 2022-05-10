@@ -3,7 +3,7 @@ package com.example.touristtrips.presentation.shared.epoxy.location_epoxy_model
 import android.text.TextWatcher
 import com.airbnb.epoxy.EpoxyController
 import com.example.touristtrips.presentation.shared.epoxy.model.SearchHeaderEpoxyModel
-import com.example.touristtrips.presentation.shared.locations.location.LocationState
+import com.example.touristtrips.presentation.shared.viewmodel.LocationState
 
 class LocationsEpoxyController(
     val itemSelected: (String) -> Unit,
