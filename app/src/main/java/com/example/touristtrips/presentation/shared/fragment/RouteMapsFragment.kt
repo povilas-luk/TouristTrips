@@ -1,13 +1,11 @@
 package com.example.touristtrips.presentation.shared.fragment
 
 import android.Manifest
-import android.app.Activity
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.location.Geocoder
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +13,6 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -23,7 +20,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.touristtrips.R
 import com.example.touristtrips.databinding.DialogLocationSequenceBinding
-import com.example.touristtrips.domain.shared.util.requestFineLocationPermission
 import com.example.touristtrips.databinding.FragmentRouteMapsBinding
 import com.example.touristtrips.domain.my_locations.model.Location
 import com.example.touristtrips.presentation.remote_routes.viewmodel.RoutesViewModel
@@ -33,6 +29,7 @@ import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.*
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.math.round
 
 @AndroidEntryPoint
 class RouteMapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
@@ -59,6 +56,7 @@ class RouteMapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
 
     private val locationsMarkers = ArrayList<MarkerOptions>()
     private var routePolylines: List<PolylineOptions> = emptyList()
+    private var routeDistance: Double = 0.0
 
     private var cameraPosition: CameraPosition? = null
 
@@ -87,6 +85,8 @@ class RouteMapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
                 map.addPolyline(polyline)
             }
         }
+
+        binding.distance.text = "%.2f".format(routeDistance)
     }
 
     override fun onMarkerClick(p0: Marker): Boolean {
@@ -95,6 +95,8 @@ class RouteMapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
             if (p0.title == location.title) {
                 locationSequenceDialog(location.locationId)
             }
+        } else {
+            p0.showInfoWindow()
         }
         return true
     }
@@ -159,7 +161,7 @@ class RouteMapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
                     ).show()
                 }
             }
-            routeMapsViewModel.getDirectionsPolylines(locations)
+            routeMapsViewModel.getRouteDirections(locations)
         }
     }
 
@@ -189,8 +191,9 @@ class RouteMapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
             routesFragment()
         }
 
-        routeMapsViewModel.directionsPolylines.observe(viewLifecycleOwner) { polylines ->
-            routePolylines = polylines
+        routeMapsViewModel.routeDirections.observe(viewLifecycleOwner) { directions ->
+            routePolylines = directions.map { it.polyline }
+            routeDistance = directions.sumOf { it.distance }
             mapReady()
         }
     }

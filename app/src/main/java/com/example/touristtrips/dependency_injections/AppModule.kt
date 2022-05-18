@@ -96,8 +96,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideDirectionsPolylinesUseCase(repository: DirectionsRepository): GetRouteDirectionsPolylines {
-        return GetRouteDirectionsPolylines(repository)
+    fun provideDirectionsPolylinesUseCase(repository: DirectionsRepository): GetRouteDirections {
+        return GetRouteDirections(repository)
     }
 
 }
