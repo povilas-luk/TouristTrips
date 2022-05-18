@@ -54,7 +54,7 @@ class LocationMapsFragment : Fragment() {
     private val callback = OnMapReadyCallback { googleMap ->
         this.map = googleMap
 
-        enableMyLocation()
+        enableFineLocation()
 
         if (currentLocation != null) {
             val latLng: LatLng? = if (currentLocation!!.location_search.isNotEmpty()) {
@@ -87,7 +87,6 @@ class LocationMapsFragment : Fragment() {
             null
         }
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -149,7 +148,7 @@ class LocationMapsFragment : Fragment() {
 
     }
 
-    private fun enableMyLocation() {
+    private fun enableFineLocation() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(
                     requireContext(),
@@ -195,4 +194,5 @@ class LocationMapsFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }

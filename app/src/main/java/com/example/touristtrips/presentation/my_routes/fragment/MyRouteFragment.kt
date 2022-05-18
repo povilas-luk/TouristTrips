@@ -1,15 +1,21 @@
 package com.example.touristtrips.presentation.my_routes.fragment
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.*
+import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.touristtrips.R
+import com.example.touristtrips.databinding.DialogLocationSequenceBinding
 import com.example.touristtrips.domain.shared.util.Operation
 import com.example.touristtrips.databinding.FragmentRouteBinding
 import com.example.touristtrips.domain.my_routes.model.Route
@@ -91,7 +97,7 @@ class MyRouteFragment : Fragment() {
             }
         }
 
-        val controller = RouteLocationsEpoxyController(::itemSelected, ::deleteItemSelected)
+        val controller = RouteLocationsEpoxyController(::itemSelected, ::deleteItemSelected, ::sequenceItemSelected)
         binding.routeLocationsEpoxyRecyclerView.setController(controller)
 
         addEditRoutesViewModel.locationsListLiveData.observe(viewLifecycleOwner) { locations ->
@@ -99,6 +105,44 @@ class MyRouteFragment : Fragment() {
             updatePrice()
         }
     }
+
+    private fun sequenceItemSelected(id: String) {
+        locationSequenceDialog(id)
+    }
+
+    private fun locationSequenceDialog(id: String) {
+        val dialogBinding: DialogLocationSequenceBinding = DialogLocationSequenceBinding.inflate(layoutInflater)
+
+        val currentLocation = addEditRoutesViewModel.getLocation(id)
+        val currentLocationIndex = addEditRoutesViewModel.getLocationIndex(currentLocation)
+
+        dialogBinding.titleTextView.text = currentLocation.title
+        Picasso.get().load(Uri.parse(currentLocation.imageUrl)).placeholder(R.drawable.bruno_soares_284974)
+            .into(dialogBinding.headerImageView)
+
+        val customDialog = AlertDialog.Builder(requireContext(), 0).create()
+
+        customDialog.apply {
+            setView(dialogBinding.root)
+            setCancelable(true)
+            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        }.show()
+
+        dialogBinding.saveButton.setOnClickListener {
+            val selectedSequence = dialogBinding.sequenceAutoCompleteTextView.text.toString().toIntOrNull()
+            if (selectedSequence != null && selectedSequence - 1 != currentLocationIndex )
+            addEditRoutesViewModel.onEvent(
+                AddEditRouteViewModel.AddEditRouteEvent.UpdateLocation(routeId, id, selectedSequence - 1)
+            )
+            customDialog.dismiss()
+        }
+
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, addEditRoutesViewModel.getLocationsSizeArray())
+
+        dialogBinding.sequenceAutoCompleteTextView.setAdapter(adapter)
+        dialogBinding.sequenceAutoCompleteTextView.setText((currentLocationIndex + 1).toString(), false)
+    }
+
 
     private fun deleteItemSelected(id: String) {
         addEditRoutesViewModel.onEvent(

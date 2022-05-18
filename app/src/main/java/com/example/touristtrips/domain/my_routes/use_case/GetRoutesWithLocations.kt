@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 class GetRoutesWithLocations(
     private val repositoryLocal: LocalRouteRepository
 ) {
-    operator fun invoke(): Flow<List<RouteWithLocations>> {
+    suspend operator fun invoke(): Flow<List<RouteWithLocations>> {
         return repositoryLocal.getRoutesWithLocations()
     }
 }

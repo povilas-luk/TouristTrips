@@ -36,6 +36,18 @@
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/white" />
 
+        <ImageView
+            android:id="@+id/locationSequenceImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="4dp"
+            android:backgroundTint="@color/transparentBlack"
+            android:src="@drawable/ic_baseline_format_list_numbered_32"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white" />
+
         <TextView
             android:id="@+id/titleTextView"
             android:layout_width="match_parent"

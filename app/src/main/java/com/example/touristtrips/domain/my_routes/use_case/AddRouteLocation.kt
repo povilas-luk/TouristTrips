@@ -6,7 +6,12 @@ class AddRouteLocation(
     private val repositoryLocal: LocalRouteRepository
 ) {
 
-    suspend operator fun invoke(routeId: String, locationId: String) {
-        repositoryLocal.insertRouteWithLocation(routeId, locationId)
+    suspend operator fun invoke(routeId: String, locationId: String, locationSeq: Int?) {
+        if (locationSeq != null) {
+            repositoryLocal.insertRouteWithLocation(routeId, locationId, locationSeq)
+        } else {
+            val newLocationSeq = repositoryLocal.getRouteLocationsSeq(routeId)?.size
+            repositoryLocal.insertRouteWithLocation(routeId, locationId, newLocationSeq ?: 0)
+        }
     }
 }

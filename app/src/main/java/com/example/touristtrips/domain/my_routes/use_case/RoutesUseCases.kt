@@ -15,5 +15,6 @@ class RoutesUseCases(
     val getRoutesWithLocations: GetRoutesWithLocations,
     val deleteRouteLocation: DeleteRouteLocation,
     val sortRoutes: SortRoutes,
-    val findRoutesWithText: FindRoutesWithText
+    val findRoutesWithText: FindRoutesWithText,
+    val updateRouteLocation: UpdateRouteLocation,
 )

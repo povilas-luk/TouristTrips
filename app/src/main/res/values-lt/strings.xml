@@ -42,5 +42,6 @@
     <string name="language">Kalba</string>
     <string name="lithuanian">Lietuvių</string>
     <string name="english">Anglų</string>
+    <string name="sequence">Seka</string>
 
 </resources>

@@ -54,7 +54,7 @@ class RouteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val controller = RouteLocationsEpoxyController(::itemSelected, ::deleteItemSelected, deleteButtonIsActive = false)
+        val controller = RouteLocationsEpoxyController(::itemSelected, ::deleteItemSelected, ::sequenceItemSelected, deleteButtonIsActive = false)
         binding.routeLocationsEpoxyRecyclerView.setController(controller)
 
         viewModel.routeWithLocationsId.observe(viewLifecycleOwner) { routeWithLocationsId ->
@@ -71,10 +71,13 @@ class RouteFragment : Fragment() {
     }
 
     private fun deleteItemSelected(id: String) {}
+    private fun sequenceItemSelected(id: String) {}
 
     private fun itemSelected(id: String) {
         findNavController().navigate(RouteFragmentDirections.actionRouteFragmentToLocationFragment(id))
     }
+
+
 
     private fun displayRoute(route: Route) {
         binding.titleTextVIew.text = route.title
@@ -108,11 +111,10 @@ class RouteFragment : Fragment() {
         val myRoutesViewModel: AddEditRouteViewModel by viewModels()
         val myLocationsViewModel: AddEditLocationViewModel by viewModels()
         myRoutesViewModel.onEvent(AddEditRouteViewModel.AddEditRouteEvent.SaveRoute(currentRoute))
-        routeLocations.forEach { location ->
+        routeLocations.forEachIndexed { index, location ->
             myLocationsViewModel.onEvent(AddEditLocationViewModel.AddEditLocationEvent.SaveLocation(location))
-            myRoutesViewModel.onEvent(AddEditRouteViewModel.AddEditRouteEvent.AddLocation(currentRoute.routeId, location.locationId))
+            myRoutesViewModel.onEvent(AddEditRouteViewModel.AddEditRouteEvent.AddLocation(currentRoute.routeId, location.locationId, index))
         }
-
     }
 
     override fun onDestroyView() {

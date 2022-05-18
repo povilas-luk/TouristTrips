@@ -38,19 +38,21 @@ class LocalRouteRepositoryImpl(
         return dao.deleteRoute(route)
     }
 
-    override suspend fun insertRouteWithLocation(routeId: String, locationId: String) {
-        val crossRef = RouteLocationCrossRef(routeId, locationId)
+    override suspend fun insertRouteWithLocation(routeId: String, locationId: String, locationSeq: Int) {
+        val crossRef = RouteLocationCrossRef(routeId, locationId, locationSeq)
         return dao.insertRouteWithLocation(crossRef)
     }
 
-    override suspend fun updateRouteWithLocation(routeId: String, locationId: String) {
-        val crossRef = RouteLocationCrossRef(routeId, locationId)
-        return dao.updateRouteWithLocation(crossRef)
+    override suspend fun updateRouteWithLocation(routeId: String, locationId: String, locationSeq: Int) {
+        return dao.updateRouteWithLocation(routeId, locationId, locationSeq)
     }
 
     override suspend fun deleteRouteWithLocation(routeId: String, locationId: String) {
-        val crossRef = RouteLocationCrossRef(routeId, locationId)
-        return dao.deleteRouteWithLocation(crossRef)
+        return dao.deleteRouteWithLocation(routeId, locationId)
+    }
+
+    override suspend fun getRouteLocationsSeq(routeId: String): List<String>? {
+        return dao.getRouteLocationsSeq(routeId)
     }
 
 }

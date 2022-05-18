@@ -12,6 +12,7 @@ class RouteLocationsEpoxyModel(
     val location: Location,
     val itemSelected: (String) -> Unit,
     val deleteItemSelected: (String) -> Unit,
+    val sequenceItemSelected: (String) -> Unit,
     val deleteButtonIsActive: Boolean = true
 ) : ViewBindingKotlinModel<ModelRouteLocationItemBinding>(R.layout.model_route_location_item) {
 
@@ -31,6 +32,9 @@ class RouteLocationsEpoxyModel(
             deleteLocationImageView.isVisible = true
             deleteLocationImageView.setOnClickListener {
                 deleteItemSelected(location.locationId)
+            }
+            locationSequenceImageView.setOnClickListener {
+                sequenceItemSelected(location.locationId)
             }
         } else {
             deleteLocationImageView.isVisible = false

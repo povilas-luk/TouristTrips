@@ -90,6 +90,7 @@ object AppModule {
             deleteRouteLocation = DeleteRouteLocation(repositoryLocal),
             sortRoutes = SortRoutes(),
             findRoutesWithText = FindRoutesWithText(),
+            updateRouteLocation = UpdateRouteLocation(repositoryLocal),
         )
     }
 

@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.ui.navigateUp
 import com.example.touristtrips.R
 import com.example.touristtrips.domain.shared.util.Operation
 import com.example.touristtrips.databinding.FragmentLocationBinding

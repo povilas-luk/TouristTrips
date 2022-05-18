@@ -8,7 +8,9 @@ import com.example.touristtrips.domain.shared.util.Operation
 import com.example.touristtrips.domain.my_locations.model.Location
 import com.example.touristtrips.domain.my_routes.model.InvalidRouteException
 import com.example.touristtrips.domain.my_routes.model.Route
+import com.example.touristtrips.domain.my_routes.model.RouteWithLocations
 import com.example.touristtrips.domain.my_routes.use_case.RoutesUseCases
+import com.example.touristtrips.presentation.my_locations.viewmodel.AddEditLocationViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -25,8 +27,9 @@ class AddEditRouteViewModel @Inject constructor(
 
     sealed class AddEditRouteEvent {
         data class SaveRoute(val route: Route) : AddEditRouteEvent()
-        data class AddLocation(val routeId: String, val locationId: String) : AddEditRouteEvent()
+        data class AddLocation(val routeId: String, val locationId: String, val locationSeq: Int? = null) : AddEditRouteEvent()
         data class DeleteLocation(val routeId: String, val locationId: String) : AddEditRouteEvent()
+        data class UpdateLocation(val routeId: String, val locationId: String, val locationSeq: Int) : AddEditRouteEvent()
         data class EditRoute(val route: Route) : AddEditRouteEvent()
         data class DeleteRoute(val route: Route) : AddEditRouteEvent()
     }
@@ -101,7 +104,8 @@ class AddEditRouteViewModel @Inject constructor(
                     try {
                         routesUseCases.addRouteLocation(
                             event.routeId,
-                            event.locationId
+                            event.locationId,
+                            event.locationSeq
                         )
                         _eventFlow.emit(RouteEvent.Success(Operation.RL_ADDED, Route()))
                     } catch (e: InvalidRouteException) {
@@ -118,9 +122,10 @@ class AddEditRouteViewModel @Inject constructor(
                     try {
                         routesUseCases.deleteRouteLocation(
                             event.routeId,
-                            event.locationId
+                            event.locationId,
                         )
                         _eventFlow.emit(RouteEvent.Success(Operation.RL_DELETED, Route()))
+                        getRouteWithLocations(event.routeId)
                     } catch (e: InvalidRouteException) {
                         _eventFlow.emit(
                             RouteEvent.Failure(
@@ -130,23 +135,50 @@ class AddEditRouteViewModel @Inject constructor(
                     }
                 }
             }
+            is AddEditRouteEvent.UpdateLocation -> {
+                viewModelScope.launch {
+                    try {
+                        routesUseCases.updateRouteLocation(
+                            event.routeId,
+                            event.locationId,
+                            event.locationSeq
+                        )
+                        _eventFlow.emit(RouteEvent.Success(Operation.RL_UPDATED, Route()))
+                        getRouteWithLocations(event.routeId)
+                    } catch (e: InvalidRouteException) {
+                        _eventFlow.emit(
+                            RouteEvent.Failure(
+                                e.message ?: "Failed to update route location"
+                            )
+                        )
+                    }
+                }
+            }
         }
     }
 
     fun getRouteWithLocations(id: String) {
-        getRoutesWithLocationsJob?.cancel()
-        getRoutesWithLocationsJob = routesUseCases.getRoutesWithLocations()
-            .onEach { routesWithLocations ->
-                val routeWithLocations = routesWithLocations.find { it.route.routeId == id }
-
-                if (routeWithLocations != null && routeWithLocations.route.routeId == id) {
-                    _locationsListLiveData.postValue(routeWithLocations.locations)
-                    _eventFlow.emit(RouteEvent.Success(Operation.FOUND, routeWithLocations.route))
-                } else {
-                    _eventFlow.emit(RouteEvent.Failure("Route not found"))
-                }
+        viewModelScope.launch {
+            val routeWithLocations: RouteWithLocations? = routesUseCases.getRouteWithLocations(id)
+            if (routeWithLocations != null && routeWithLocations.route.routeId == id) {
+                _locationsListLiveData.postValue(routeWithLocations.locations)
+                _eventFlow.emit(RouteEvent.Success(Operation.FOUND, routeWithLocations.route))
+            } else {
+                _eventFlow.emit(RouteEvent.Failure("Route not found"))
             }
-            .launchIn(viewModelScope)
+        }
+    }
+
+    fun getLocationsSizeArray(): Array<Int> {
+        return  Array(locationsListLiveData.value?.size ?: 0) {it + 1}
+    }
+
+    fun getLocation(locationId: String): Location {
+        return locationsListLiveData.value?.find { it.locationId == locationId } ?: Location()
+    }
+
+    fun getLocationIndex(location: Location): Int {
+        return locationsListLiveData.value?.indexOf(location) ?: 0
     }
 
 }

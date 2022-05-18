@@ -20,9 +20,11 @@ interface LocalRouteRepository {
 
     suspend fun deleteRoute(route: Route)
 
-    suspend fun insertRouteWithLocation(routeId: String, locationId: String)
+    suspend fun insertRouteWithLocation(routeId: String, locationId: String, locationSeq: Int)
 
-    suspend fun updateRouteWithLocation(routeId: String, locationId: String)
+    suspend fun updateRouteWithLocation(routeId: String, locationId: String, locationSeq: Int)
 
     suspend fun deleteRouteWithLocation(routeId: String, locationId: String)
+
+    suspend fun getRouteLocationsSeq(routeId: String): List<String>?
 }

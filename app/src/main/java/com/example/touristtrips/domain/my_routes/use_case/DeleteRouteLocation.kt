@@ -8,5 +8,8 @@ class DeleteRouteLocation(
 
     suspend operator fun invoke(routeId: String, locationId: String) {
         repositoryLocal.deleteRouteWithLocation(routeId, locationId)
+        repositoryLocal.getRouteLocationsSeq(routeId)?.forEachIndexed { index, locationSeqId ->
+            repositoryLocal.updateRouteWithLocation(routeId, locationSeqId, index)
+        }
     }
 }
