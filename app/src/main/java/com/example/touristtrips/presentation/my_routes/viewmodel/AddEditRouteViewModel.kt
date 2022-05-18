@@ -6,17 +6,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.touristtrips.domain.shared.util.Operation
 import com.example.touristtrips.domain.my_locations.model.Location
-import com.example.touristtrips.domain.my_routes.model.InvalidRouteException
-import com.example.touristtrips.domain.my_routes.model.Route
-import com.example.touristtrips.domain.my_routes.model.RouteWithLocations
+import com.example.touristtrips.domain.shared.model.route.InvalidRouteException
+import com.example.touristtrips.domain.shared.model.route.Route
+import com.example.touristtrips.domain.shared.model.route.RouteWithLocations
 import com.example.touristtrips.domain.my_routes.use_case.RoutesUseCases
-import com.example.touristtrips.presentation.my_locations.viewmodel.AddEditLocationViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

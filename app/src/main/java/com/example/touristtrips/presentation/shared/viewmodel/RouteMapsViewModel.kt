@@ -24,10 +24,9 @@ class RouteMapsViewModel @Inject constructor(
     val directionsPolylines: MutableLiveData<List<PolylineOptions>> = _directionsPolylines
 
     fun getDirectionsPolylines(locations: List<Location>) {
-
         viewModelScope.launch {
-            _directionsPolylines.postValue(getRouteDirectionsPolylines.getDirectionsPolylines(locations))
+            _directionsPolylines.value = getRouteDirectionsPolylines.getDirectionsPolylines(locations)
         }
-
     }
+
 }

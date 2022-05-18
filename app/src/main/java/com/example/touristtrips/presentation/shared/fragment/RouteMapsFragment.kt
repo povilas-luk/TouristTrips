@@ -1,36 +1,41 @@
 package com.example.touristtrips.presentation.shared.fragment
 
 import android.Manifest
+import android.app.Activity
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.location.Geocoder
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.touristtrips.R
+import com.example.touristtrips.databinding.DialogLocationSequenceBinding
 import com.example.touristtrips.domain.shared.util.requestFineLocationPermission
 import com.example.touristtrips.databinding.FragmentRouteMapsBinding
 import com.example.touristtrips.domain.my_locations.model.Location
 import com.example.touristtrips.presentation.remote_routes.viewmodel.RoutesViewModel
 import com.example.touristtrips.presentation.my_routes.viewmodel.AddEditRouteViewModel
 import com.example.touristtrips.presentation.shared.viewmodel.RouteMapsViewModel
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.*
+import com.google.android.gms.maps.model.*
+import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RouteMapsFragment : Fragment() {
+class RouteMapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
     private var _binding: FragmentRouteMapsBinding? = null
     private val binding get() = _binding!!
 
@@ -45,36 +50,107 @@ class RouteMapsFragment : Fragment() {
     }
 
     lateinit var map: GoogleMap
-    private val requestCode = 1
 
     private val routeMapsViewModel: RouteMapsViewModel by viewModels()
 
+    val addEditRoutesViewModel: AddEditRouteViewModel by viewModels()
 
     private var locationsList: List<Location> = emptyList()
-    private lateinit var updatedLocationsList: ArrayList<Location>
+
+    private val locationsMarkers = ArrayList<MarkerOptions>()
+    private var routePolylines: List<PolylineOptions> = emptyList()
+
+    private var cameraPosition: CameraPosition? = null
 
     private val callback = OnMapReadyCallback { googleMap ->
         this.map = googleMap
 
-        updatedLocationsList = ArrayList()
+        enableFineLocation()
 
-        if (!locationsList.isNullOrEmpty()) {
+        if (locationsMarkers.isNotEmpty()) {
+            if (cameraPosition == null) {
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locationsMarkers[0].position, 10F))
+                cameraPosition = googleMap.cameraPosition
+            } else if (cameraPosition != null) {
+                googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition!!))
+            }
 
+            locationsMarkers.forEach { locationMarker ->
+                googleMap.addMarker(locationMarker)
+            }
+        }
+
+        googleMap.setOnMarkerClickListener(this)
+
+        if (routePolylines.isNotEmpty()) {
+            routePolylines.forEach { polyline ->
+                map.addPolyline(polyline)
+            }
+        }
+    }
+
+    override fun onMarkerClick(p0: Marker): Boolean {
+        if (myRouteId != null)
             locationsList.forEachIndexed { index, location ->
-                val latLng: LatLng? = if (location.location_search.isNotEmpty()) {
-                    searchGeoCoder(location.location_search)
-                } else {
+            if (p0.title == location.title) {
+                locationSequenceDialog(location.locationId)
+            }
+        }
+        return true
+    }
+
+    private fun locationSequenceDialog(id: String) {
+        val dialogBinding: DialogLocationSequenceBinding = DialogLocationSequenceBinding.inflate(layoutInflater)
+
+        val currentLocation = addEditRoutesViewModel.getLocation(id)
+        val currentLocationIndex = addEditRoutesViewModel.getLocationIndex(currentLocation)
+
+        dialogBinding.titleTextView.text = currentLocation.title
+        Picasso.get().load(Uri.parse(currentLocation.imageUrl)).placeholder(R.drawable.bruno_soares_284974)
+            .into(dialogBinding.headerImageView)
+
+        val customDialog = AlertDialog.Builder(requireContext(), 0).create()
+
+        customDialog.apply {
+            setView(dialogBinding.root)
+            setCancelable(true)
+            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        }.show()
+
+        dialogBinding.saveButton.setOnClickListener {
+            val selectedSequence = dialogBinding.sequenceAutoCompleteTextView.text.toString().toIntOrNull()
+            if (selectedSequence != null && selectedSequence - 1 != currentLocationIndex ) {
+                saveCameraPosAndClearMap()
+                addEditRoutesViewModel.onEvent(
+                    AddEditRouteViewModel.AddEditRouteEvent.UpdateLocation(myRouteId!!, id, selectedSequence - 1)
+                )
+                customDialog.dismiss()
+            }
+        }
+
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, addEditRoutesViewModel.getLocationsSizeArray())
+
+        dialogBinding.sequenceAutoCompleteTextView.setAdapter(adapter)
+        dialogBinding.sequenceAutoCompleteTextView.setText((currentLocationIndex + 1).toString(), false)
+    }
+
+    private fun saveCameraPosAndClearMap() {
+        cameraPosition = map.cameraPosition
+        map.clear()
+    }
+
+    private fun setLocationsMarkers(locations: List<Location>) {
+        if (!locations.isNullOrEmpty()) {
+            locationsList = locations
+            locationsMarkers.clear()
+            locations.forEach { location ->
+                val latLng: LatLng? = if (location.latitude.isNotEmpty() && location.longitude.isNotEmpty()) {
                     LatLng(location.latitude.toDouble(), location.longitude.toDouble())
+                } else {
+                    searchGeoCoder(location.location_search)
                 }
                 if (latLng != null) {
-                    googleMap.addMarker(MarkerOptions().position(latLng).title(location.title))
-                    addToUpdatedLocations(latLng)
-                    if (index == 0) googleMap.moveCamera(
-                        CameraUpdateFactory.newLatLngZoom(
-                            latLng,
-                            10F
-                        )
-                    )
+                    locationsMarkers.add(MarkerOptions().position(latLng).title(location.title))
                 } else {
                     Toast.makeText(
                         context,
@@ -83,25 +159,8 @@ class RouteMapsFragment : Fragment() {
                     ).show()
                 }
             }
-
-            routeMapsViewModel.getDirectionsPolylines(updatedLocationsList)
-
-            routeMapsViewModel.directionsPolylines.observe(viewLifecycleOwner) { polylines ->
-                polylines.forEach { polyline ->
-                    map.addPolyline(polyline)
-                }
-            }
+            routeMapsViewModel.getDirectionsPolylines(locations)
         }
-        enableFineLocation()
-    }
-
-    private fun addToUpdatedLocations(latLng: LatLng) {
-        updatedLocationsList.add(
-            Location(
-                latitude = latLng.latitude.toString(),
-                longitude = latLng.longitude.toString(),
-            )
-        )
     }
 
     private fun searchGeoCoder(search: String): LatLng? {
@@ -129,6 +188,11 @@ class RouteMapsFragment : Fragment() {
         } else if (routeId != null) {
             routesFragment()
         }
+
+        routeMapsViewModel.directionsPolylines.observe(viewLifecycleOwner) { polylines ->
+            routePolylines = polylines
+            mapReady()
+        }
     }
 
     private fun mapReady() {
@@ -137,13 +201,11 @@ class RouteMapsFragment : Fragment() {
     }
 
     private fun myRoutesFragment() {
-        val addEditRoutesViewModel: AddEditRouteViewModel by viewModels()
 
         addEditRoutesViewModel.getRouteWithLocations(myRouteId!!)
 
         addEditRoutesViewModel.locationsListLiveData.observe(viewLifecycleOwner) { locations ->
-            locationsList = locations
-            mapReady()
+            setLocationsMarkers(locations)
         }
     }
 
@@ -151,59 +213,35 @@ class RouteMapsFragment : Fragment() {
         val routesViewModel: RoutesViewModel by viewModels()
 
         routesViewModel.getRouteWithLocationsId(routeId!!)
-        routesViewModel.routeWithLocationsId.observe(viewLifecycleOwner) { routeWithLocationsId ->
-            if (locationsList.isNullOrEmpty()) {
+        routesViewModel.routeWithLocationsId.observe(viewLifecycleOwner) { _ ->
+            if (locationsMarkers.isNullOrEmpty()) {
                 routesViewModel.getRouteLocations()
             }
         }
 
         routesViewModel.routeLocations.observe(viewLifecycleOwner) { locationState ->
-            if (locationsList.isNullOrEmpty()) {
-                locationsList = locationState.locations
+            if (locationsMarkers.isNullOrEmpty()) {
+                setLocationsMarkers(locationState.locations)
             }
-            mapReady()
         }
     }
 
     private fun enableFineLocation() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(
-                    requireContext(),
-                    Manifest.permission.ACCESS_FINE_LOCATION
-                )
-                == PackageManager.PERMISSION_GRANTED
-            ) {
-                map.isMyLocationEnabled = true
-            } else {
-                requestFineLocationPermission(requireActivity(), requestCode)
-            }
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            )
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            fineLocationPermission.launch(Manifest.permission.ACCESS_FINE_LOCATION)
         } else {
             map.isMyLocationEnabled = true
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        when (requestCode) {
-            1 -> {
-                if (grantResults.isNotEmpty() && grantResults[0] ==
-                    PackageManager.PERMISSION_GRANTED
-                ) {
-                    if (ContextCompat.checkSelfPermission(
-                            requireContext(),
-                            Manifest.permission.ACCESS_FINE_LOCATION
-                        )
-                        == PackageManager.PERMISSION_GRANTED
-                    ) {
-                        map.isMyLocationEnabled = true
-                    }
-                }
-                return
-            }
+    private val fineLocationPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+        if (granted) {
+            map.isMyLocationEnabled = true
         }
     }
 
@@ -211,4 +249,5 @@ class RouteMapsFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }

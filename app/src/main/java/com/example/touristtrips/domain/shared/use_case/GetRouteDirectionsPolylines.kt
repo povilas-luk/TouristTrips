@@ -31,6 +31,7 @@ class GetRouteDirectionsPolylines(
                     is DirectionsResponseResource.Success -> {
                         val shape =
                             directionsResponse.data?.routes?.get(0)?.overviewPolyline?.points
+                        directionsResponse.data?.routes?.get(0)?.legs?.get(0)?.distance
                         val polyline = PolylineOptions()
                             .addAll(PolyUtil.decode(shape))
                             .width(8f)

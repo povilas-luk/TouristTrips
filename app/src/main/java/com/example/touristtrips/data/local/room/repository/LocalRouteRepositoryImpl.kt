@@ -1,9 +1,9 @@
 package com.example.touristtrips.data.local.room.repository
 
 import com.example.touristtrips.data.local.room.source.RouteDao
-import com.example.touristtrips.domain.my_routes.model.RouteLocationCrossRef
-import com.example.touristtrips.domain.my_routes.model.RouteWithLocations
-import com.example.touristtrips.domain.my_routes.model.Route
+import com.example.touristtrips.domain.shared.model.route.RouteLocationCrossRef
+import com.example.touristtrips.domain.shared.model.route.RouteWithLocations
+import com.example.touristtrips.domain.shared.model.route.Route
 import com.example.touristtrips.domain.my_routes.repository.LocalRouteRepository
 import kotlinx.coroutines.flow.Flow
 

@@ -1,7 +1,6 @@
 package com.example.touristtrips.domain.shared.data
 
-import com.example.touristtrips.domain.my_locations.model.Location
-import com.example.touristtrips.domain.my_routes.model.Route
+import com.example.touristtrips.domain.shared.model.route.Route
 import java.util.*
 import kotlin.collections.ArrayList
 

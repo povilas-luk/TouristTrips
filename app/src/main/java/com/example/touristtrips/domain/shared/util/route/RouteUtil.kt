@@ -2,8 +2,8 @@ package com.example.touristtrips.domain.shared.util.route
 
 import com.example.touristtrips.domain.shared.util.SortOrder
 import com.example.touristtrips.domain.shared.util.SortType
-import com.example.touristtrips.domain.my_routes.model.InvalidRouteException
-import com.example.touristtrips.domain.my_routes.model.Route
+import com.example.touristtrips.domain.shared.model.route.InvalidRouteException
+import com.example.touristtrips.domain.shared.model.route.Route
 
 fun findRoutesWithText(text: String, routes: List<Route>): ArrayList<Route> {
     val foundRoutes = ArrayList<Route>()

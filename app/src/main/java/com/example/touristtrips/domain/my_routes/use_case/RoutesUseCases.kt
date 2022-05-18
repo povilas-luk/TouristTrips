@@ -1,7 +1,6 @@
 package com.example.touristtrips.domain.my_routes.use_case
 
 import com.example.touristtrips.domain.shared.use_case.FindRoutesWithText
-import com.example.touristtrips.domain.shared.use_case.SortLocations
 import com.example.touristtrips.domain.shared.use_case.SortRoutes
 
 class RoutesUseCases(

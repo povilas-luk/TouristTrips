@@ -1,4 +1,4 @@
-package com.example.touristtrips.domain.my_routes.model
+package com.example.touristtrips.domain.shared.model.route
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

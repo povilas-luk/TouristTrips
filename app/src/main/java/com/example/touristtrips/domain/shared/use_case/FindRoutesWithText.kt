@@ -1,6 +1,6 @@
 package com.example.touristtrips.domain.shared.use_case
 
-import com.example.touristtrips.domain.my_routes.model.Route
+import com.example.touristtrips.domain.shared.model.route.Route
 
 class FindRoutesWithText {
 

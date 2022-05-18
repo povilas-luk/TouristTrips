@@ -13,7 +13,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.touristtrips.R
 import com.example.touristtrips.domain.shared.util.Operation
 import com.example.touristtrips.databinding.FragmentAddEditRouteBinding
-import com.example.touristtrips.domain.my_routes.model.Route
+import com.example.touristtrips.domain.shared.model.route.Route
 import com.example.touristtrips.presentation.my_routes.viewmodel.AddEditRouteViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest

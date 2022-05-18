@@ -4,7 +4,7 @@ import android.net.Uri
 import com.example.touristtrips.R
 import com.example.touristtrips.presentation.shared.epoxy.ViewBindingKotlinModel
 import com.example.touristtrips.databinding.ModelRouteItemBinding
-import com.example.touristtrips.domain.my_routes.model.Route
+import com.example.touristtrips.domain.shared.model.route.Route
 import com.squareup.picasso.Picasso
 
 data class RoutesEpoxyModel(

@@ -1,8 +1,8 @@
 package com.example.touristtrips.domain.my_routes.use_case
 
 import com.example.touristtrips.domain.shared.util.route.checkRouteFormatErrors
-import com.example.touristtrips.domain.my_routes.model.InvalidRouteException
-import com.example.touristtrips.domain.my_routes.model.Route
+import com.example.touristtrips.domain.shared.model.route.InvalidRouteException
+import com.example.touristtrips.domain.shared.model.route.Route
 import com.example.touristtrips.domain.my_routes.repository.LocalRouteRepository
 
 class AddRoute(

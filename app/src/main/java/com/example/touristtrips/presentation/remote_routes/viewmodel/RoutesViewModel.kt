@@ -10,7 +10,7 @@ import com.example.touristtrips.domain.remote_routes.use_case.GetRouteLocations
 import com.example.touristtrips.domain.remote_routes.use_case.GetRouteWithLocationsId
 
 import com.example.touristtrips.presentation.shared.viewmodel.RoutesState
-import com.example.touristtrips.domain.my_routes.model.Route
+import com.example.touristtrips.domain.shared.model.route.Route
 import com.example.touristtrips.domain.remote_routes.use_case.GetRoutes
 import com.example.touristtrips.domain.shared.use_case.FindRoutesWithText
 import com.example.touristtrips.domain.shared.use_case.SortRoutes

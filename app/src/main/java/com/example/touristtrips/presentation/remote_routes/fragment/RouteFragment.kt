@@ -12,7 +12,7 @@ import com.example.touristtrips.R
 import com.example.touristtrips.databinding.FragmentRouteBinding
 import com.example.touristtrips.domain.my_locations.model.Location
 import com.example.touristtrips.presentation.my_locations.viewmodel.AddEditLocationViewModel
-import com.example.touristtrips.domain.my_routes.model.Route
+import com.example.touristtrips.domain.shared.model.route.Route
 import com.example.touristtrips.presentation.my_routes.fragment.MyRouteFragmentArgs
 import com.example.touristtrips.presentation.my_routes.viewmodel.AddEditRouteViewModel
 import com.example.touristtrips.presentation.my_routes.route_locations_epoxy.RouteLocationsEpoxyController

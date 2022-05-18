@@ -1,11 +1,9 @@
-package com.example.touristtrips.domain.my_routes.model
+package com.example.touristtrips.domain.shared.model.route
 
 import androidx.room.Embedded
 import androidx.room.Junction
 import androidx.room.Relation
 import com.example.touristtrips.domain.my_locations.model.Location
-import com.example.touristtrips.domain.my_routes.model.Route
-import com.example.touristtrips.domain.my_routes.model.RouteLocationCrossRef
 
 data class RouteWithLocations(
     @Embedded

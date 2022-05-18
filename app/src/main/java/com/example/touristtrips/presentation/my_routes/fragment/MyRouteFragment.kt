@@ -1,6 +1,5 @@
 package com.example.touristtrips.presentation.my_routes.fragment
 
-import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
@@ -18,7 +17,7 @@ import com.example.touristtrips.R
 import com.example.touristtrips.databinding.DialogLocationSequenceBinding
 import com.example.touristtrips.domain.shared.util.Operation
 import com.example.touristtrips.databinding.FragmentRouteBinding
-import com.example.touristtrips.domain.my_routes.model.Route
+import com.example.touristtrips.domain.shared.model.route.Route
 import com.example.touristtrips.presentation.my_routes.viewmodel.AddEditRouteViewModel
 import com.example.touristtrips.presentation.my_routes.route_locations_epoxy.RouteLocationsEpoxyController
 import com.squareup.picasso.Picasso

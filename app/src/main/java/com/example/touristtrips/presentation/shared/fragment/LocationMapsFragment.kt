@@ -1,6 +1,7 @@
 package com.example.touristtrips.presentation.shared.fragment
 
 import android.Manifest
+import android.app.Activity
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.os.Build
@@ -9,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -47,8 +49,6 @@ class LocationMapsFragment : Fragment() {
 
     lateinit var map: GoogleMap
 
-    private val requestCode = 2
-
     private var currentLocation: Location? = null
 
     private val callback = OnMapReadyCallback { googleMap ->
@@ -57,13 +57,14 @@ class LocationMapsFragment : Fragment() {
         enableFineLocation()
 
         if (currentLocation != null) {
-            val latLng: LatLng? = if (currentLocation!!.location_search.isNotEmpty()) {
-                searchGeoCoder(currentLocation!!.location_search)
-            } else {
+            val latLng: LatLng? = if (currentLocation!!.latitude.isNotEmpty() && currentLocation!!.longitude.isNotEmpty()) {
                 LatLng(
                     currentLocation!!.latitude.toDouble(),
                     currentLocation!!.longitude.toDouble()
                 )
+                searchGeoCoder(currentLocation!!.location_search)
+            } else {
+                searchGeoCoder(currentLocation!!.location_search)
             }
             if (latLng != null) {
                 googleMap.addMarker(MarkerOptions().position(latLng).title(currentLocation!!.title))
@@ -149,46 +150,24 @@ class LocationMapsFragment : Fragment() {
     }
 
     private fun enableFineLocation() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(
-                    requireContext(),
-                    Manifest.permission.ACCESS_FINE_LOCATION
-                )
-                == PackageManager.PERMISSION_GRANTED
-            ) {
-                map.isMyLocationEnabled = true
-            } else {
-                requestFineLocationPermission(requireActivity(), requestCode)
-            }
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            )
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            fineLocationPermission.launch(Manifest.permission.ACCESS_FINE_LOCATION)
         } else {
             map.isMyLocationEnabled = true
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        when (requestCode) {
-            1 -> {
-                if (grantResults.isNotEmpty() && grantResults[0] ==
-                    PackageManager.PERMISSION_GRANTED
-                ) {
-                    if (ContextCompat.checkSelfPermission(
-                            requireContext(),
-                            Manifest.permission.ACCESS_FINE_LOCATION
-                        )
-                        == PackageManager.PERMISSION_GRANTED
-                    ) {
-                        map.isMyLocationEnabled = true
-                    }
-                }
-                return
-            }
+    private val fineLocationPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+        if (granted) {
+            map.isMyLocationEnabled = true
         }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

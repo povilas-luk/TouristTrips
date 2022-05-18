@@ -1,7 +1,7 @@
 package com.example.touristtrips.domain.my_routes.repository
 
-import com.example.touristtrips.domain.my_routes.model.RouteWithLocations
-import com.example.touristtrips.domain.my_routes.model.Route
+import com.example.touristtrips.domain.shared.model.route.RouteWithLocations
+import com.example.touristtrips.domain.shared.model.route.Route
 import kotlinx.coroutines.flow.Flow
 
 interface LocalRouteRepository {
