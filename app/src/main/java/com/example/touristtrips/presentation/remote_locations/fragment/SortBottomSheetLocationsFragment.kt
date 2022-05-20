@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.*
 import androidx.navigation.navGraphViewModels
 import com.example.touristtrips.R
-import com.example.touristtrips.domain.shared.util.SortOrder
-import com.example.touristtrips.domain.shared.util.SortType
+import com.example.touristtrips.domain.shared.model.SortOrder
+import com.example.touristtrips.domain.shared.model.SortType
 import com.example.touristtrips.databinding.FragmentSortOrderBottomSheetDialogBinding
 import com.example.touristtrips.presentation.remote_locations.viewmodel.LocationsViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment

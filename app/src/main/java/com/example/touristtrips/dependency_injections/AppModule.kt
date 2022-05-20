@@ -1,11 +1,14 @@
 package com.example.touristtrips.dependency_injections
 
 import android.app.Application
+import android.content.Context
 import androidx.room.Room
 import com.example.touristtrips.domain.shared.util.Constants
 import com.example.touristtrips.data.local.room.source.LocalDatabase
 import com.example.touristtrips.data.local.room.repository.LocalLocationRepositoryImpl
 import com.example.touristtrips.data.local.room.repository.LocalRouteRepositoryImpl
+import com.example.touristtrips.data.remote.firebase.repository.LocationRepository
+import com.example.touristtrips.data.remote.firebase.repository.RouteRepository
 import com.example.touristtrips.data.remote.retrofit.source.DirectionsApi
 import com.example.touristtrips.data.remote.retrofit.repository.DirectionsRepositoryImpl
 import com.example.touristtrips.domain.my_locations.repository.LocalLocationRepository
@@ -13,10 +16,14 @@ import com.example.touristtrips.domain.shared.repository.DirectionsRepository
 import com.example.touristtrips.domain.my_locations.use_case.*
 import com.example.touristtrips.domain.my_routes.repository.LocalRouteRepository
 import com.example.touristtrips.domain.my_routes.use_case.*
+import com.example.touristtrips.domain.remote_routes.use_case.GetRouteLocations
+import com.example.touristtrips.domain.remote_routes.use_case.GetRouteWithLocationsId
+import com.example.touristtrips.domain.remote_routes.use_case.RouteUseCases
 import com.example.touristtrips.domain.shared.use_case.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -63,6 +70,14 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun provideRemoteRouteRepository(): RouteRepository = RouteRepository()
+
+    @Provides
+    @Singleton
+    fun provideRemoteLocationRepository(): LocationRepository = LocationRepository()
+
+    @Provides
+    @Singleton
     fun provideMyLocationUseCases(repositoryLocal: LocalLocationRepository): MyLocationUseCases {
         return MyLocationUseCases(
             addLocation = AddLocation(repositoryLocal),
@@ -77,7 +92,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideRouteUseCases(repositoryLocal: LocalRouteRepository): RoutesUseCases {
+    fun provideMyRouteUseCases(repositoryLocal: LocalRouteRepository): RoutesUseCases {
         return RoutesUseCases(
             addRoute = AddRoute(repositoryLocal),
             getRoutes = GetRoutes(repositoryLocal),
@@ -96,8 +111,31 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun provideRouteUseCases(repositoryRouteRemote: RouteRepository, repositoryLocationRemote: LocationRepository): RouteUseCases {
+        return RouteUseCases (
+            getRouteWithLocationsId = GetRouteWithLocationsId(repositoryRouteRemote),
+            getRouteLocations = GetRouteLocations(repositoryLocationRemote),
+            getRoutes = com.example.touristtrips.domain.remote_routes.use_case.GetRoutes(repositoryRouteRemote)
+        )
+    }
+
+    @Provides
+    @Singleton
     fun provideDirectionsPolylinesUseCase(repository: DirectionsRepository): GetRouteDirections {
         return GetRouteDirections(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideRouteMapUseCases(repositoryDirections: DirectionsRepository, repositoryRouteLocal: LocalRouteRepository, repositoryRouteRemote: RouteRepository, repositoryLocationRemote: LocationRepository, @ApplicationContext appContext: Context): RouteMapUseCases {
+        return RouteMapUseCases (
+            getRouteDirections = GetRouteDirections(repositoryDirections),
+            getRouteWithLocations = GetRouteWithLocations(repositoryRouteLocal),
+            getRouteWithLocationsId = GetRouteWithLocationsId(repositoryRouteRemote),
+            getRouteLocations = GetRouteLocations(repositoryLocationRemote),
+            updateRouteLocation = UpdateRouteLocation(repositoryRouteLocal),
+            context = appContext,
+        )
     }
 
 }

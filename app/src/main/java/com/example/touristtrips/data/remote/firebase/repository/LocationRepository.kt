@@ -1,7 +1,7 @@
 package com.example.touristtrips.data.remote.firebase.repository
 
 import androidx.lifecycle.MutableLiveData
-import com.example.touristtrips.presentation.shared.viewmodel.LocationState
+import com.example.touristtrips.presentation.shared.viewmodel.locations.LocationState
 import com.example.touristtrips.domain.my_locations.model.Location
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

@@ -1,4 +1,4 @@
-package com.example.touristtrips.domain.shared.util
+package com.example.touristtrips.domain.shared.model
 
 sealed class SortType {
     object Ascending : SortType()

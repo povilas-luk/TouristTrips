@@ -3,7 +3,7 @@ package com.example.touristtrips.domain.shared.use_case
 import android.graphics.Color
 import com.example.touristtrips.data.remote.retrofit.DirectionsResponseResource
 import com.example.touristtrips.domain.my_locations.model.Location
-import com.example.touristtrips.domain.shared.model.RouteDirection
+import com.example.touristtrips.domain.shared.model.route.RouteDirection
 import com.example.touristtrips.domain.shared.repository.DirectionsRepository
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.PolylineOptions
@@ -40,4 +40,6 @@ class GetRouteDirections(
         }
         return routeDirections
     }
+
+
 }

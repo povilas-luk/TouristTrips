@@ -1,4 +1,4 @@
-package com.example.touristtrips.domain.shared.util
+package com.example.touristtrips.domain.shared.model
 
 sealed class SortOrder(val sortType: SortType) {
     class Type(sortType: SortType) : SortOrder(sortType)

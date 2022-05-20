@@ -3,11 +3,10 @@ package com.example.touristtrips.domain.shared.use_case
 import com.google.common.truth.Truth.assertThat
 import com.example.touristtrips.domain.my_locations.model.Location
 import com.example.touristtrips.domain.shared.data.LocationsListTest
-import com.example.touristtrips.domain.shared.util.SortOrder
-import com.example.touristtrips.domain.shared.util.SortType
+import com.example.touristtrips.domain.shared.model.SortOrder
+import com.example.touristtrips.domain.shared.model.SortType
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
-import org.junit.BeforeClass
 import org.junit.Test
 import kotlin.system.measureTimeMillis
 

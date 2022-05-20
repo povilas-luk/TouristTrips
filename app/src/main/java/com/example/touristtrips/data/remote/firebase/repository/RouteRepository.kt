@@ -2,8 +2,8 @@ package com.example.touristtrips.data.remote.firebase.repository
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.example.touristtrips.presentation.shared.viewmodel.RouteLocationsState
-import com.example.touristtrips.presentation.shared.viewmodel.RoutesState
+import com.example.touristtrips.presentation.shared.viewmodel.route.RouteLocationsState
+import com.example.touristtrips.presentation.shared.viewmodel.route.RoutesState
 import com.example.touristtrips.domain.shared.model.route.Route
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

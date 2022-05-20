@@ -1,41 +1,7 @@
 package com.example.touristtrips.domain.shared.util.location
 
-import com.example.touristtrips.domain.shared.util.SortOrder
-import com.example.touristtrips.domain.shared.util.SortType
 import com.example.touristtrips.domain.my_locations.model.InvalidLocationException
 import com.example.touristtrips.domain.my_locations.model.Location
-
-fun findLocationsWithText(text: String, locations: List<Location>): ArrayList<Location> {
-    val foundLocations = ArrayList<Location>()
-
-    locations.forEach { location ->
-        if (location.title.lowercase().contains(text.lowercase()) || text.isEmpty()) {
-            foundLocations.add(location)
-        }
-    }
-    return foundLocations
-}
-
-fun sortLocations(sortOrder: SortOrder, locations: List<Location>): List<Location> {
-    return when (sortOrder.sortType) {
-        is SortType.Descending -> {
-            when (sortOrder) {
-                is SortOrder.City -> locations.sortedByDescending { it.city.lowercase() }
-                is SortOrder.Type -> locations.sortedByDescending { it.type.lowercase() }
-                is SortOrder.TimeToVisit -> locations.sortedByDescending { it.months_to_visit.lowercase() }
-                is SortOrder.Title -> locations.sortedByDescending { it.title.lowercase() }
-            }
-        }
-        is SortType.Ascending -> {
-            when (sortOrder) {
-                is SortOrder.City -> locations.sortedBy { it.city.lowercase() }
-                is SortOrder.Type -> locations.sortedBy { it.type.lowercase() }
-                is SortOrder.TimeToVisit -> locations.sortedBy { it.months_to_visit.lowercase() }
-                is SortOrder.Title -> locations.sortedBy { it.title.lowercase() }
-            }
-        }
-    }
-}
 
 fun checkLocationFormatErrors(location: Location) {
     if (location.title.isBlank()) {

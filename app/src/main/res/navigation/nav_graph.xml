@@ -109,7 +109,7 @@
     </fragment>
     <fragment
         android:id="@+id/routeMapsFragment"
-        android:name="com.example.touristtrips.presentation.shared.fragment.RouteMapsFragment"
+        android:name="com.example.touristtrips.presentation.shared.fragment.maps.RouteMapsFragment"
         android:label="@string/routeMapFragment_name"
         tools:layout="@layout/fragment_route_maps" >
         <argument
@@ -140,7 +140,7 @@
     </fragment>
     <fragment
         android:id="@+id/locationMapsFragment"
-        android:name="com.example.touristtrips.presentation.shared.fragment.LocationMapsFragment"
+        android:name="com.example.touristtrips.presentation.shared.fragment.maps.LocationMapsFragment"
         android:label="@string/locationMapFragment_name"
         tools:layout="@layout/fragment_location_maps" >
         <argument

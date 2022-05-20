@@ -3,20 +3,22 @@ package com.example.touristtrips.presentation.remote_routes.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.touristtrips.domain.shared.util.SortOrder
-import com.example.touristtrips.presentation.shared.viewmodel.LocationState
-import com.example.touristtrips.presentation.shared.viewmodel.RouteLocationsState
-import com.example.touristtrips.domain.remote_routes.use_case.GetRouteLocations
-import com.example.touristtrips.domain.remote_routes.use_case.GetRouteWithLocationsId
+import com.example.touristtrips.domain.shared.model.SortOrder
+import com.example.touristtrips.presentation.shared.viewmodel.locations.LocationState
+import com.example.touristtrips.presentation.shared.viewmodel.route.RouteLocationsState
 
-import com.example.touristtrips.presentation.shared.viewmodel.RoutesState
+import com.example.touristtrips.presentation.shared.viewmodel.route.RoutesState
 import com.example.touristtrips.domain.shared.model.route.Route
-import com.example.touristtrips.domain.remote_routes.use_case.GetRoutes
+import com.example.touristtrips.domain.remote_routes.use_case.RouteUseCases
 import com.example.touristtrips.domain.shared.use_case.FindRoutesWithText
 import com.example.touristtrips.domain.shared.use_case.SortRoutes
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-//@HiltViewModel
-class RoutesViewModel : ViewModel() {
+@HiltViewModel
+class RoutesViewModel @Inject constructor(
+    private val routeUseCases: RouteUseCases
+) : ViewModel() {
 
     private val _routesState = MutableLiveData<RoutesState>()
     val routesState: LiveData<RoutesState> = _routesState
@@ -31,17 +33,17 @@ class RoutesViewModel : ViewModel() {
 
     fun getRoutes() {
         //repository.getRoutes(_routesState)
-        GetRoutes().getRoutes(_routesState)
+        routeUseCases.getRoutes.getRoutes(_routesState)
     }
 
     fun getRouteWithLocationsId(routeId: String) {
-        GetRouteWithLocationsId().getRouteWithLocations(_routeWithLocationsId, routeId)
+        routeUseCases.getRouteWithLocationsId.getRouteWithLocations(_routeWithLocationsId, routeId)
     }
 
     fun getRouteLocations() {
         val locations = _routeWithLocationsId.value?.locations
         if (!locations.isNullOrEmpty()) {
-            GetRouteLocations().getRouteLocations(_routeLocations, locations)
+            routeUseCases.getRouteLocations.getRouteLocations(_routeLocations, locations)
         }
     }
 

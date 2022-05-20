@@ -11,12 +11,14 @@ import com.example.touristtrips.R
 import com.example.touristtrips.databinding.FragmentRoutesBinding
 import com.example.touristtrips.presentation.remote_routes.viewmodel.RoutesViewModel
 import com.example.touristtrips.presentation.shared.epoxy.routes_epoxy.RoutesEpoxyController
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RoutesFragment : Fragment() {
     private var _binding: FragmentRoutesBinding? = null
     private val binding get() = _binding!!
 
-    private val routesViewModel: RoutesViewModel by navGraphViewModels(R.id.routes_graph)
+    private val routesViewModel: RoutesViewModel by navGraphViewModels(R.id.routes_graph) { defaultViewModelProviderFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

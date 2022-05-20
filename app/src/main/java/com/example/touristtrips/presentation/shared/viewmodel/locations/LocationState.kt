@@ -1,6 +1,6 @@
-package com.example.touristtrips.presentation.shared.viewmodel
+package com.example.touristtrips.presentation.shared.viewmodel.locations
 
-import com.example.touristtrips.domain.shared.util.SortOrder
+import com.example.touristtrips.domain.shared.model.SortOrder
 import com.example.touristtrips.domain.my_locations.model.Location
 
 data class LocationState(

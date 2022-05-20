@@ -1,8 +1,8 @@
 package com.example.touristtrips.domain.shared.use_case
 
 import com.example.touristtrips.domain.my_locations.model.Location
-import com.example.touristtrips.domain.shared.util.SortOrder
-import com.example.touristtrips.domain.shared.util.SortType
+import com.example.touristtrips.domain.shared.model.SortOrder
+import com.example.touristtrips.domain.shared.model.SortType
 
 class SortLocations {
 

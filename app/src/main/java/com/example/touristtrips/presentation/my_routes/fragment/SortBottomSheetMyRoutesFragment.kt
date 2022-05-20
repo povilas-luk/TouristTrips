@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.navGraphViewModels
 import com.example.touristtrips.R
-import com.example.touristtrips.domain.shared.util.SortOrder
-import com.example.touristtrips.domain.shared.util.SortType
+import com.example.touristtrips.domain.shared.model.SortOrder
+import com.example.touristtrips.domain.shared.model.SortType
 import com.example.touristtrips.databinding.FragmentSortOrderBottomSheetDialogBinding
 import com.example.touristtrips.presentation.my_routes.viewmodel.MyRoutesViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment

@@ -1,24 +1,20 @@
-package com.example.touristtrips.presentation.shared.fragment
+package com.example.touristtrips.presentation.shared.fragment.maps
 
 import android.Manifest
-import android.app.Activity
 import android.content.pm.PackageManager
 import android.location.Geocoder
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.example.touristtrips.R
-import com.example.touristtrips.domain.shared.util.requestFineLocationPermission
 import com.example.touristtrips.databinding.FragmentLocationMapsBinding
 import com.example.touristtrips.domain.my_locations.model.Location
 import com.example.touristtrips.presentation.my_locations.viewmodel.AddEditLocationViewModel

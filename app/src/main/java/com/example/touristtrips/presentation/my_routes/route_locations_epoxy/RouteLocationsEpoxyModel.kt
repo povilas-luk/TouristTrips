@@ -30,6 +30,7 @@ class RouteLocationsEpoxyModel(
 
         if (deleteButtonIsActive) {
             deleteLocationImageView.isVisible = true
+            locationSequenceImageView.isVisible = true
             deleteLocationImageView.setOnClickListener {
                 deleteItemSelected(location.locationId)
             }
@@ -38,6 +39,7 @@ class RouteLocationsEpoxyModel(
             }
         } else {
             deleteLocationImageView.isVisible = false
+            locationSequenceImageView.isVisible = false
         }
 
     }

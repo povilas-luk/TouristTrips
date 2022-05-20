@@ -3,8 +3,8 @@ package com.example.touristtrips.presentation.my_routes.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.touristtrips.domain.shared.util.SortOrder
-import com.example.touristtrips.presentation.shared.viewmodel.RoutesState
+import com.example.touristtrips.domain.shared.model.SortOrder
+import com.example.touristtrips.presentation.shared.viewmodel.route.RoutesState
 import com.example.touristtrips.domain.shared.model.route.Route
 import com.example.touristtrips.domain.my_routes.use_case.RoutesUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel

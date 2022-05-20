@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.touristtrips.domain.shared.util.SortOrder
-import com.example.touristtrips.presentation.shared.viewmodel.LocationState
+import com.example.touristtrips.domain.shared.model.SortOrder
+import com.example.touristtrips.presentation.shared.viewmodel.locations.LocationState
 import com.example.touristtrips.domain.my_locations.model.Location
 import com.example.touristtrips.domain.my_locations.use_case.MyLocationUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel

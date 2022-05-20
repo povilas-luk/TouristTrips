@@ -4,17 +4,19 @@ import android.os.Bundle
 import android.view.*
 import androidx.navigation.navGraphViewModels
 import com.example.touristtrips.R
-import com.example.touristtrips.domain.shared.util.SortOrder
-import com.example.touristtrips.domain.shared.util.SortType
+import com.example.touristtrips.domain.shared.model.SortOrder
+import com.example.touristtrips.domain.shared.model.SortType
 import com.example.touristtrips.databinding.FragmentSortOrderBottomSheetDialogBinding
 import com.example.touristtrips.presentation.remote_routes.viewmodel.RoutesViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SortBottomSheetRoutesFragment: BottomSheetDialogFragment() {
     private var _binding: FragmentSortOrderBottomSheetDialogBinding? = null
     private val binding get() = _binding!!
 
-    private val routesViewModel: RoutesViewModel by navGraphViewModels(R.id.routes_graph)
+    private val routesViewModel: RoutesViewModel by navGraphViewModels(R.id.routes_graph) { defaultViewModelProviderFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

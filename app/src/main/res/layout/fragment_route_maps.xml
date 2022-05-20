@@ -11,7 +11,7 @@ tools:context=".presentation.remote_routes.fragment.RoutesFragment">
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.shared.fragment.RouteMapsFragment" />
+        tools:context=".presentation.shared.fragment.maps.RouteMapsFragment" />
 
     <TextView
         android:id="@+id/distance"
